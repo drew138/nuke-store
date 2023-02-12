@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\App;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,25 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        if (App::environment(['local', 'staging'])) {
-            $users = \App\Models\User::factory(5)->create();
+        // \App\Models\User::factory(10)->create();
 
-            $categories = \App\Models\Category::factory(5)->create();
-
-            $users->each(function($user) use ($categories) {
-                $categories->each(function($category) use ($user) {
-                    $questions = \App\Models\Question::factory(15)->create([
-                        'user_id' => $user->id,
-                        'category_id' => $category->id
-                    ]);
-
-                    $questions->each(function($question) {
-                        \App\Models\Answer::factory(2)->create([
-                            'question_id' => $question->id,
-                        ]);
-                    });
-                });
-            });
-        }
+        // \App\Models\User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
     }
 }
