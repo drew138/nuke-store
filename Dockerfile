@@ -28,6 +28,8 @@ ENV APP_NAME="Question Board" \
 
 # copy entrypoint files
 COPY ./docker/docker-php-* /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-php-entrypoint
+RUN chmod +x /usr/local/bin/docker-php-entrypoint-dev
 RUN dos2unix /usr/local/bin/docker-php-entrypoint
 RUN dos2unix /usr/local/bin/docker-php-entrypoint-dev
 
