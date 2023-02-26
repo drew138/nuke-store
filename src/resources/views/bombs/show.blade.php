@@ -20,6 +20,7 @@
                     </h5>
                 @endif
                 <p class="card-text">${{ $data["bomb"]["price"] }}</p>
+                <!--<button href="{{ route('bomb.destroy') }}" type="button" class="btn btn-danger">Danger</button>-->
             </div>
         </div>
     </div>

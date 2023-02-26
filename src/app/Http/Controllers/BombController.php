@@ -31,7 +31,7 @@ class BombController extends Controller
         if (filter_var($id, FILTER_VALIDATE_INT) == true) {
             // Checks if $id is on bounds
 
-            $bomb = Product::findOrFail($id);
+            $bomb = Bomb::findOrFail($id);
             $data = [];
             $data['title'] = $bomb['name'].' - Nukestore';
             $data['subtitle'] = $bomb['name'].' - Bomb information';
@@ -71,6 +71,32 @@ class BombController extends Controller
         ]);
 
         // Insert into database
+        Bomb::create($request->only([
+            'name',
+            'type', 
+            'price', 
+            'location_country', 
+            'manufacturing_country', 
+            'stock', 
+            'images', 
+            'destruction_power'
+        ]));
+
+        return back();
+    }
+
+    /**
+     * Remove a bomb from the database with a given $id
+     */
+    public function destroy(Request $request): View|RedirectResponse
+    {
+
+        $request->validate([
+            'id' => 'gt:0',    // Greater than 0
+        ]);
+
+        // Remove from database
+        Bomb::destroy($request->only(['id']));
 
         return back();
     }
