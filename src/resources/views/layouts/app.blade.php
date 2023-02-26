@@ -18,7 +18,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ms-auto">
-          <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
+          <a class="nav-link active" href="{{ route('home.index') }}">{{  __('messages.home') }}</a>
         </div>
       </div>
     </div>
