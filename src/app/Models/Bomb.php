@@ -36,112 +36,112 @@ class Bomb extends Model
         'updated_at',
     ];
 
-    public function getId()
+    public function getId(): int
     {
         return $this->attributes['id'];
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->attributes['name'];
     }
 
-    public function getType()
+    public function getType(): string
     {
         return $this->attributes['type'];
     }
 
-    public function getPrice()
+    public function getPrice(): float
     {
         return $this->attributes['price'];
     }
 
-    public function getLocationCountry()
+    public function getLocationCountry(): string
     {
         return $this->attributes['location_country'];
     }
 
-    public function getManufacturingCountry()
+    public function getManufacturingCountry(): string
     {
         return $this->attributes['manufacturing_country'];
     }
 
-    public function getStock()
+    public function getStock(): int
     {
         return $this->attributes['stock'];
     }
 
-    public function getImages()
+    public function getImages(): array
     {
         return $this->attributes['images'];
     }
 
-    public function getDestructionPower()
+    public function getDestructionPower(): float
     {
         return $this->attributes['destruction_power'];
     }
 
-    public function getCreatedAt()
+    public function getCreatedAt(): int
     {
         return $this->attributes['created_at'];
     }
 
-    public function getUpdatedAt()
+    public function getUpdatedAt(): int
     {
         return $this->attributes['updated_at'];
     }
 
-    public function setId(int $id)
+    public function setId(int $id): void
     {
         $this->attributes['id'] = $id;
     }
 
-    public function setName(int $name)
+    public function setName(int $name): void
     {
         $this->attributes['name'] = $name;
     }
 
-    public function setType(int $type)
+    public function setType(int $type): void
     {
         $this->attributes['type'] = $type;
     }
 
-    public function setPrice(int $price)
+    public function setPrice(int $price): void
     {
         $this->attributes['price'] = $price;
     }
 
-    public function setLocationCountry(int $location_country)
+    public function setLocationCountry(int $location_country): void
     {
         $this->attributes['location_country'] = $location_country;
     }
 
-    public function setManufacturingCountry(int $manufacturing_country)
+    public function setManufacturingCountry(int $manufacturing_country): void
     {
         $this->attributes['manufacturing_country'] = $manufacturing_country;
     }
 
-    public function setStock(int $stock)
+    public function setStock(int $stock): void
     {
         $this->attributes['stock'] = $stock;
     }
 
-    public function setImages(int $images)
+    public function setImages(int $images): void
     {
         $this->attributes['images'] = $images;
     }
 
-    public function setDestructionPower(int $destruction_power)
+    public function setDestructionPower(int $destruction_power): void
     {
         $this->attributes['destruction_power'] = $destruction_power;
     }
 
-    public function setCreatedAt(int $created_at)
+    public function setCreatedAt(int $created_at): void
     {
         $this->attributes['created_at'] = $created_at;
     }
 
-    public function setUpdatedAt(int $updated_at)
+    public function setUpdatedAt(int $updated_at): void
     {
         $this->attributes['updated_at'] = $updated_at;
     }
