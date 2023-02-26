@@ -10,7 +10,7 @@ class Bomb extends Model
     use HasFactory;
 
     /**
-     * PRODUCT ATTRIBUTES            
+     * PRODUCT ATTRIBUTES
      * $this->attributes['id']                    - int       - contains the bomb primary key (id)
      * $this->attributes['name']                  - string    - contains the name of the bomb
      * $this->attributes['type']                  - string    - contains the type of the bomb. Ex: Hydrogen, Uranium, Plutonium, Neutron, etc.
