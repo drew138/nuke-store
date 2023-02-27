@@ -19,7 +19,7 @@ class BombController extends Controller
         $data['subtitle'] = 'List of bombs';
         $data['bombs'] = Bomb::all();
 
-        return view('bomb.index')->with('data', $data);
+        return view('bombs.index')->with('data', $data);
     }
 
     /**
@@ -35,9 +35,9 @@ class BombController extends Controller
             $data = [];
             $data['title'] = $bomb['name'].' - Nukestore';
             $data['subtitle'] = $bomb['name'].' - Bomb information';
-            $data['product'] = $bomb;
+            $data['bomb'] = $bomb;
 
-            return view('bomb.show')->with('data', $data);
+            return view('bombs.show')->with('data', $data);
         }
 
         return redirect()->route('home.index');
@@ -51,7 +51,7 @@ class BombController extends Controller
         $data = [];
         $data['title'] = 'Create bomb';
 
-        return view('bomb.create')->with('data', $data);
+        return view('bombs.create')->with('data', $data);
     }
 
     /**
@@ -66,23 +66,23 @@ class BombController extends Controller
             'location_country' => 'string',   // Must be a string
             'manufacturing_country' => 'string',   // Must be a string
             'stock' => 'gte:0',    // Greater or equal than 0
-            'images' => 'array',    // Must be an array
+            'image' => 'string',    // Must be an array
             'destruction_power' => 'gte:0',    // Greater or equal than 0
         ]);
 
         // Insert into database
         Bomb::create($request->only([
             'name',
-            'type', 
-            'price', 
-            'location_country', 
-            'manufacturing_country', 
-            'stock', 
-            'images', 
-            'destruction_power'
+            'type',
+            'price',
+            'location_country',
+            'manufacturing_country',
+            'stock',
+            'image',
+            'destruction_power',
         ]));
 
-        return back();
+        return back()->withSuccess('Datos creados correctamente');
     }
 
     /**
@@ -90,14 +90,13 @@ class BombController extends Controller
      */
     public function destroy(Request $request): View|RedirectResponse
     {
-
         $request->validate([
-            'id' => 'gt:0',    // Greater than 0
+            'id' => 'gte:0',    // Greater than 0
         ]);
 
         // Remove from database
         Bomb::destroy($request->only(['id']));
 
-        return back();
+        return redirect()->route('bomb.index');
     }
 }

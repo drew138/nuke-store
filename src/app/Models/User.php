@@ -13,17 +13,17 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
-    * USER ATTRIBUTES
-    * $this->attributes['id'] - int - contains the user primary key (id) * $this->attributes['name'] - string - contains the user name
-    * $this->attributes['email'] - string - contains the user email
-    * $this->attributes['email_verified_at'] - timestamp - contains the user email verification date * $this->attributes['password'] - string - contains the user password
-    * $this->attributes['remember_token'] - string - contains the user password
-    * $this->attributes['role'] - string - contains the user role (client or admin)
-    * $this->attributes['country'] - int - contains the user balance
-    * $this->attributes['balance'] - int - contains the user balance
-    * $this->attributes['created_at'] - timestamp - contains the user creation date
-    * $this->attributes['updated_at'] - timestamp - contains the user update date
-    */
+     * USER ATTRIBUTES
+     * $this->attributes['id'] - int - contains the user primary key (id) * $this->attributes['name'] - string - contains the user name
+     * $this->attributes['email'] - string - contains the user email
+     * $this->attributes['email_verified_at'] - timestamp - contains the user email verification date * $this->attributes['password'] - string - contains the user password
+     * $this->attributes['remember_token'] - string - contains the user password
+     * $this->attributes['role'] - string - contains the user role (client or admin)
+     * $this->attributes['country'] - int - contains the user balance
+     * $this->attributes['balance'] - int - contains the user balance
+     * $this->attributes['created_at'] - timestamp - contains the user creation date
+     * $this->attributes['updated_at'] - timestamp - contains the user update date
+     */
     protected $fillable = [
         'name',
         'email',
@@ -32,78 +32,95 @@ class User extends Authenticatable
         'country',
     ];
 
-    public function getId() {
-        return $this->attributes['id']; 
+    public function getId()
+    {
+        return $this->attributes['id'];
     }
 
-    public function setId($id) {
-        $this->attributes['id'] = $id; 
+    public function setId($id)
+    {
+        $this->attributes['id'] = $id;
     }
 
-    public function getName() {
-        return $this->attributes['name']; 
+    public function getName()
+    {
+        return $this->attributes['name'];
     }
 
-    public function setName($name){
+    public function setName($name)
+    {
         $this->attributes['name'] = $name;
     }
 
-    public function getEmail() {
-        return $this->attributes['email']; 
+    public function getEmail()
+    {
+        return $this->attributes['email'];
     }
 
-    public function setEmail($email) {
-        $this->attributes['email'] = $email; 
-    }
-    
-    public function getPassword() {
-        return $this->attributes['password']; 
+    public function setEmail($email)
+    {
+        $this->attributes['email'] = $email;
     }
 
-    public function setPassword($password) {
-        $this->attributes['password'] = $password; 
-    }
-    
-    public function getRole() {
-        return $this->attributes['role']; 
+    public function getPassword()
+    {
+        return $this->attributes['password'];
     }
 
-    public function setRole($role) {
-        $this->attributes['role'] = $role; 
+    public function setPassword($password)
+    {
+        $this->attributes['password'] = $password;
     }
 
-    public function getCountry() {
-        return $this->attributes['country']; 
+    public function getRole()
+    {
+        return $this->attributes['role'];
     }
 
-    public function setCountry($role) {
-        $this->attributes['country'] = $role; 
+    public function setRole($role)
+    {
+        $this->attributes['role'] = $role;
     }
 
-    public function getBalance() {
+    public function getCountry()
+    {
+        return $this->attributes['country'];
+    }
+
+    public function setCountry($role)
+    {
+        $this->attributes['country'] = $role;
+    }
+
+    public function getBalance()
+    {
         return $this->attributes['balance'];
     }
 
-    public function setBalance($balance) {
-        $this->attributes['balance'] = $balance; 
+    public function setBalance($balance)
+    {
+        $this->attributes['balance'] = $balance;
     }
 
-    public function getCreatedAt() {
+    public function getCreatedAt()
+    {
         return $this->attributes['created_at'];
     }
 
-    public function setCreatedAt($createdAt) {
-        $this->attributes['created_at'] = $createdAt; 
+    public function setCreatedAt($createdAt)
+    {
+        $this->attributes['created_at'] = $createdAt;
     }
 
-    public function getUpdatedAt(){
+    public function getUpdatedAt()
+    {
         return $this->attributes['updated_at'];
     }
 
-    public function setUpdatedAt($updatedAt) {
-        $this->attributes['updated_at'] = $updatedAt; 
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->attributes['updated_at'] = $updatedAt;
     }
-        
 
     /**
      * The attributes that should be hidden for serialization.
@@ -124,4 +141,3 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 }
-

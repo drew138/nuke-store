@@ -5,7 +5,7 @@
 <div class="card mb-3">
     <div class="row g-0">
         <div class="col-md-4">
-            <img src="{{$data['bomb']['images'][0]}}" class="img-fluid rounded-start"> 
+            <img src="{{$data['bomb']['image']}}" class="img-fluid rounded-start"> 
         </div>
         
         <div class="col-md-8">
@@ -20,7 +20,13 @@
                     </h5>
                 @endif
                 <p class="card-text">${{ $data["bomb"]["price"] }}</p>
-                <!--<button href="{{ route('bomb.destroy') }}" type="button" class="btn btn-danger">Danger</button>-->
+                <form action="{{ route('bomb.destroy', ['id'=> $data['bomb']->getId()]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger">
+                  BORRE ESA MIERDA MMGVO
+                    </button>
+                </form>
             </div>
         </div>
     </div>
