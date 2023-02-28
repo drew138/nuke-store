@@ -1,10 +1,12 @@
 @extends('layouts.app')
+@section('import')
+<link href="{{ asset('/css/bomb-index.css') }}" rel="stylesheet" />
 @section('title',    $data["title"])
 @section('subtitle', $data["subtitle"])
 @section('content')
 <div class="row">
     @foreach ($data["bombs"] as $bomb) 
-        <div class="col-md-4 col-lg-3 mb-2"> 
+        <div class="col-md-4 col-lg-4 mb-3"> 
             <div class="card"> 
             <img src="{{$bomb['image']}}" class="card-img-top img-card"> 
                 <div class="card-body text-center"> 
