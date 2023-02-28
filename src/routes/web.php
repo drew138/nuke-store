@@ -20,3 +20,10 @@ Route::get('/reviews/create', 'App\Http\Controllers\ReviewController@create')->n
 Route::post('/reviews/create', 'App\Http\Controllers\ReviewController@save')->name('reviews.save');
 Route::delete('/reviews/{id}', 'App\Http\Controllers\ReviewController@destroy')->name('reviews.destroy');
 Route::get('/reviews/{id}', 'App\Http\Controllers\ReviewController@show')->name('reviews.show');
+
+// Orders Controller routes
+Route::get('/orders', 'App\Http\Controllers\OrderController@index')->name('orders.index');
+Route::get('/orders/create', 'App\Http\Controllers\OrderController@create')->name('orders.create');
+Route::post('/orders/save', 'App\Http\Controllers\OrderController@save')->name('orders.save');
+Route::get('/orders/{id}', 'App\Http\Controllers\OrderController@show')->name('orders.show');
+Route::delete('/orders/destroy', 'App\Http\Controllers\OrderController@destroy')->name('orders.destroy');
