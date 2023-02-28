@@ -17,7 +17,7 @@ class HomeController extends Controller
     /**
      * Used to set a language into the app. For example
      * go to /language/ru and it chages to russian.
-     * 
+     *
      * There are just two languages available: English (en) and
      * Russian (ru).
      */

@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'delete_bomb'  => 'Delete bomb',
+    'delete_bomb' => 'Delete bomb',
 ];

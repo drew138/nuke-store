@@ -15,8 +15,8 @@ class BombController extends Controller
     public function index(): View
     {
         $data = [];
-        $data['title'] = 'Bombs - Nukestore';
-        $data['subtitle'] = 'List of bombs';
+        $data['title'] = 'Bombs - '.__('app.app_name');
+        $data['subtitle'] = __('home.home_header_bomb');
         $data['bombs'] = Bomb::all();
 
         return view('bombs.index')->with('data', $data);
@@ -33,8 +33,8 @@ class BombController extends Controller
 
             $bomb = Bomb::findOrFail($id);
             $data = [];
-            $data['title'] = $bomb['name'].' - Nukestore';
-            $data['subtitle'] = $bomb['name'].' - Bomb information';
+            $data['title'] = $bomb['name'].' - '.__('app.app_name');
+            $data['subtitle'] = $bomb['name'];
             $data['bomb'] = $bomb;
 
             return view('bombs.show')->with('data', $data);
@@ -82,7 +82,7 @@ class BombController extends Controller
             'destruction_power',
         ]));
 
-        return back()->withSuccess('Datos creados correctamente');
+        return back()->withSuccess(__('bomb-create.successfully'));
     }
 
     /**

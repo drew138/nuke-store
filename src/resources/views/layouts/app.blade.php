@@ -19,9 +19,9 @@
         </div>
         <nav class="nav">
             <ul class="links">
-                <li><a href="{{ route('home.index') }}">{{ __('messages.home') }}</a></li>
-                <li><a href="{{ route('bomb.index') }}">Bombs</a></li>
-                <li><a href="{{ route('bomb.create') }}">Create bomb</a></li>
+                <li><a href="{{ route('home.index') }}">{{ __('home.home') }}</a></li>
+                <li><a href="{{ route('bomb.index') }}">{{ __('home.home_header_bomb') }}</a></li>
+                <li><a href="{{ route('bomb.create') }}">{{ __('home.home_header_create_bomb') }}b</a></li>
             </ul>
         </nav>
 
