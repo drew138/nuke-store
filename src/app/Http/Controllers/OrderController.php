@@ -3,65 +3,48 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(): Response
+    public function index(): View
     {
-        //
+        $data = [];
+        $data["orders"] = Order::all();
+        return view('orders.index')->with("data", $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(): Response
+    public function create(): View
     {
-        //
+        return view('orders.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request): RedirectResponse
+    public function save(Request $request): View
     {
-        //
+        $request->validate([
+            "total" => ["required", "integer", "min:0"],
+        ]);
+        Order::create($request->only(["is_shipped", "total"]));
+        return view('orders.create');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Order $order): Response
+    public function show(string $id): View
     {
-        //
+        $data = [];
+        $order = Order::findOrFail($id);
+        $data["order"] = $order;
+        return view('orders.show')->with("data", $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order): Response
+    public function destroy(Request $request): View|RedirectResponse
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Order $order): RedirectResponse
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Order $order): RedirectResponse
-    {
-        //
+        $request->validate([
+            'id' => 'gte:0',    // Greater than 0
+        ]);
+        Order::destroy($request->only(['id']));
+        return redirect()->route('orders.index');
     }
 }

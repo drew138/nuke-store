@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    protected $fillable = [
+        'is_shipped',
+        'total',
+    ];
     protected $table = 'orders';
 
     /** ORDER ATTRIBUTES
