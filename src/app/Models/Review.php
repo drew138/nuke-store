@@ -10,15 +10,15 @@ class Review extends Model
     use HasFactory;
 
     /**
-     * USER ATTRIBUTES
-     * $this->attributes['id'] - int - contains the user primary key (id)
+     * Review ATTRIBUTES
+     * $this->attributes['id'] - int - contains the review primary key (id)
      * $this->attributes['title'] - string - contains the review title
      * $this->attributes['rating'] - int - contains the review rating (1-5)
      * $this->attributes['image'] - string - contains the review image
      * $this->attributes['description'] - string - contains the review description
      * $this->attributes['is_verified'] - boolean - contains the if the review has been verified
-     * $this->attributes['created_at'] - timestamp - contains the user creation date
-     * $this->attributes['updated_at'] - timestamp - contains the user update date
+     * $this->attributes['created_at'] - timestamp - contains the review creation date
+     * $this->attributes['updated_at'] - timestamp - contains the review update date
      */
     protected $fillable = [
         'title',
