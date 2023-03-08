@@ -9,7 +9,7 @@
       <div class="card-body text-center">
 
         <a href="{{ route('reviews.show', ['id'=> $review->getId()]) }}"
-          class="btn bg-primary text-white">{{ $review["id"] }}. {{ $review["title"] }}</a>
+          class="btn bg-primary text-white">{{ $review->getId() }}. {{ $review->getTitle() }}</a>
       </div>
     </div>
   </div>
