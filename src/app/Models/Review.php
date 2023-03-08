@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\HasClassicSetter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Review extends Model
 {
+    use HasClassicSetter;
     use HasFactory;
 
     /**
@@ -33,7 +36,7 @@ class Review extends Model
         return $this->attributes['id'];
     }
 
-    public function setId($id): void
+    public function setId(int $id): void
     {
         $this->attributes['id'] = $id;
     }
@@ -43,7 +46,7 @@ class Review extends Model
         return $this->attributes['title'];
     }
 
-    public function setTitle($title): void
+    public function setTitle(string $title): void
     {
         $this->attributes['title'] = $title;
     }
@@ -53,7 +56,7 @@ class Review extends Model
         return $this->attributes['rating'];
     }
 
-    public function setRating($rating): void
+    public function setRating(int $rating): void
     {
         $this->attributes['rating'] = $rating;
     }
@@ -63,7 +66,7 @@ class Review extends Model
         return $this->attributes['image'];
     }
 
-    public function setImage($image): void
+    public function setImage(string $image): void
     {
         $this->attributes['image'] = $image;
     }
@@ -73,7 +76,7 @@ class Review extends Model
         return $this->attributes['description'];
     }
 
-    public function setDescription($description): void
+    public function setDescription(string $description): void
     {
         $this->attributes['description'] = $description;
     }
@@ -83,28 +86,28 @@ class Review extends Model
         return $this->attributes['is_verified'];
     }
 
-    public function setIsVerified($isVerified): void
+    public function setIsVerified(bool $isVerified): void
     {
         $this->attributes['is_verified'] = $isVerified;
     }
 
-    public function getCreatedAt()
+    public function getCreatedAt(): int
     {
         return $this->attributes['created_at'];
     }
 
-    public function setCreatedAt($createdAt)
-    {
-        $this->attributes['created_at'] = $createdAt;
-    }
-
-    public function getUpdatedAt()
+    public function getUpdatedAt(): int
     {
         return $this->attributes['updated_at'];
     }
 
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->attributes['updated_at'] = $updatedAt;
+    public static function validateRequest(Request $request): void {
+        $request->validate([
+            'title' => 'required',
+            'rating' => 'required|gte:1|lte:5',
+            'image' => 'required',
+            'description' => 'required',
+            'is_verified' => 'required',
+        ]);
     }
 }
