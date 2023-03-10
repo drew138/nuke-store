@@ -4,8 +4,10 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -21,6 +23,9 @@ class User extends Authenticatable
     * $this->attributes['role'] - string - contains the user role (client or admin)
     * $this->attributes['country'] - int - contains the user balance
     * $this->attributes['balance'] - int - contains the user balance
+    * this->bombUsers - HasMany - contains the user bombUsers
+    * this->orders - HasMany - contains the user orders
+    * this->reviews - HasMany - contains the user reviews
     * $this->attributes['created_at'] - timestamp - contains the user creation date
     * $this->attributes['updated_at'] - timestamp - contains the user update date
     */
@@ -87,6 +92,52 @@ class User extends Authenticatable
     public function setBalance($balance) {
         $this->attributes['balance'] = $balance; 
     }
+
+    public function bombUsers(): HasMany
+    {
+        return $this->hasMany(BombUser::class);
+    }
+
+    public function getBombUsers(): Collection
+    {
+        return $this->bombUsers;
+    }
+
+    public function setBombUsers(Collection $bombUsers): void
+    {
+        $this->bombUsers = $bombUsers;
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function setOrders(Collection $orders): void
+    {
+        $this->orders = $orders;
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function setReviews(Collection $reviews): void
+    {
+        $this->reviews = $reviews;
+    }
+
 
     public function getCreatedAt() {
         return $this->attributes['created_at'];
