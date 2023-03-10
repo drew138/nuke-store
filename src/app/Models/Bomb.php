@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Bomb extends Model
 {
@@ -20,6 +21,8 @@ class Bomb extends Model
      * $this->attributes['stock']                 - int       - contains the quantity of bombs available
      * $this->attributes['image']                - string     - contains the links of the image related to the bomb
      * $this->attributes['destruction_power']     - string    - contains the megatons (Mt) of the bomb
+     * $this->attributes['created_at'] - timestamp - contains the bomb creation date
+     * $this->attributes['updated_at'] - timestamp - contains the bomb update date
      */
     protected $fillable = [
         'name',
@@ -77,9 +80,14 @@ class Bomb extends Model
         return $this->attributes['destruction_power'];
     }
 
-    public function setId(int $id): void
+    public function getCreatedAt(): int
     {
-        $this->attributes['id'] = $id;
+        return $this->attributes['created_at'];
+    }
+
+    public function getUpdatedAt(): int
+    {
+        return $this->attributes['updated_at'];
     }
 
     public function setName(int $name): void
@@ -120,5 +128,18 @@ class Bomb extends Model
     public function setDestructionPower(int $destruction_power): void
     {
         $this->attributes['destruction_power'] = $destruction_power;
+    }
+
+    public static function validate(Request $request): void{
+        $request->validate([
+            'name' => 'string',
+            'type' => 'string',
+            'price' => 'gt:0',
+            'location_country' => 'string',
+            'manufacturing_country' => 'string',
+            'stock' => 'gte:0',
+            'image' => 'string',
+            'destruction_power' => 'gte:0',
+        ]);
     }
 }
