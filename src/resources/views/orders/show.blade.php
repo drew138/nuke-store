@@ -10,6 +10,13 @@
                     <p />
                 <p>{{__('orders.is_shipped') }}: {{ $data["order"]->getIsShipped()? "true": "false"}}
                     <p />
+                <form action="{{ route('orders.destroy', ['id'=> $data['order']->getId()]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger">
+                        {{ __('orders.delete') }}
+                    </button>
+                </form>
             </div>
         </div>
     </div>
