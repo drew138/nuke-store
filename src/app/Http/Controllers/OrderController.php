@@ -19,16 +19,15 @@ class OrderController extends Controller
 
     public function create(): View
     {
-        return view('orders.create');
+        $data = [];
+        return view('orders.create')->with("data", $data);
     }
 
     public function save(Request $request): View
     {
-        $request->validate([
-            "total" => ["required", "integer", "min:0"],
-        ]);
-        Order::create($request->only(["is_shipped", "total"]));
-        return view('orders.create');
+        $creationData = $request->only(["is_shipped", "total"]);
+        Order::create($creationData);
+        return back()->withSuccess(__('orders.created_successfully'));
     }
 
     public function show(string $id): View
@@ -39,12 +38,9 @@ class OrderController extends Controller
         return view('orders.show')->with("data", $data);
     }
 
-    public function destroy(Request $request): View|RedirectResponse
+    public function destroy(string $id): RedirectResponse
     {
-        $request->validate([
-            'id' => 'gte:0',    // Greater than 0
-        ]);
-        Order::destroy($request->only(['id']));
+        Order::destroy($id);
         return redirect()->route('orders.index');
     }
 }
