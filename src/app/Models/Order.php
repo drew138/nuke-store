@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -21,63 +22,70 @@ class Order extends Model
      * $this->attributes['updated_at'] -timestamp -contains the order update date
      */
 
-    public function getId()
+    public function getId(): int
     {
         return $this->attributes['id'];
     }
 
-    public function setId($id)
+    public function setId($id): void
     {
         $this->attributes['id'] = $id;
     }
 
-    public function getIsShipped()
+    public function getIsShipped(): bool
     {
         return $this->attributes['is_shipped'];
     }
 
-    public function setIsShipped($is_shipped)
+    public function setIsShipped($is_shipped): void
     {
         $this->attributes['is_shipped'] = $is_shipped;
     }
 
-    public function getUser()
+    public function getUser(): int
     {
         return $this->attributes['user'];
     }
 
-    public function setUser($user)
+    public function setUser($user): void
     {
         $this->attributes['user'] = $user;
     }
 
-    public function getTotal()
+    public function getTotal(): int
     {
         return $this->attributes['total'];
     }
 
-    public function setTotal($total)
+    public function setTotal($total): void
     {
         $this->attributes['total'] = $total;
     }
 
-    public function getCreatedAt()
+    public function getCreatedAt(): int
     {
         return $this->attributes['created_at'];
     }
 
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt($createdAt): void
     {
         $this->attributes['created_at'] = $createdAt;
     }
 
-    public function getUpdatedAt()
+    public function getUpdatedAt(): int
     {
         return $this->attributes['updated_at'];
     }
 
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt($updatedAt): void
     {
         $this->attributes['updated_at'] = $updatedAt;
+    }
+
+    public static function validateRequest(Request $request): void
+    {
+        $request->validate([
+            "total" => ["required", "integer", "min:0"],
+        ]);
     }
 }
