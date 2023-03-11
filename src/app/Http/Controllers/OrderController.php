@@ -23,7 +23,7 @@ class OrderController extends Controller
         return view('orders.create')->with("data", $data);
     }
 
-    public function save(Request $request): View
+    public function save(Request $request): RedirectResponse
     {
         $creationData = $request->only(["is_shipped", "total"]);
         Order::create($creationData);
@@ -40,6 +40,7 @@ class OrderController extends Controller
 
     public function destroy(string $id): RedirectResponse
     {
+        // Order::destroy($request->only(["id"]));
         Order::destroy($id);
         return redirect()->route('orders.index');
     }

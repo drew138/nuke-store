@@ -21,4 +21,4 @@ Route::get('/orders', 'App\Http\Controllers\OrderController@index')->name('order
 Route::get('/orders/create', 'App\Http\Controllers\OrderController@create')->name('orders.create');
 Route::post('/orders/save', 'App\Http\Controllers\OrderController@save')->name('orders.save');
 Route::get('/orders/{id}', 'App\Http\Controllers\OrderController@show')->name('orders.show');
-Route::delete('/orders/destroy', 'App\Http\Controllers\OrderController@destroy')->name('orders.destroy');
+Route::delete('/orders/{id}', 'App\Http\Controllers\OrderController@destroy')->name('orders.destroy');
