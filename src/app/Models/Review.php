@@ -107,7 +107,7 @@ class Review extends Model
             'rating' => 'required|gte:1|lte:5',
             'image' => 'required',
             'description' => 'required',
-            'is_verified' => 'required',
+            'is_verified' => 'required|boolean',
         ]);
     }
 }

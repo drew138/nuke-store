@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('description');
             $table->boolean('is_verified');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->timestamps();
         });
     }
 

@@ -16,5 +16,4 @@ return [
     'enter_rating' => 'Enter rating',
     'enter_image' => 'Enter image',
     'enter_description' => 'Enter description',
-
 ];

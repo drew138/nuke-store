@@ -47,7 +47,7 @@
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="is_verified" id="is_verified_false" value="">
+                <input class="form-check-input" type="radio" name="is_verified" id="is_verified_false" value="0">
                 <label class="form-check-label" for="is_verified_false">
                   {{ __("reviews.false") }}
                 </label>
