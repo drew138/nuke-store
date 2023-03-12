@@ -10,6 +10,7 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100 bg-tertiary">
+    <!-- header -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary py-4">
         <div class="container">
             <a class="navbar-brand" href="#">NukeStore</a>
@@ -21,8 +22,8 @@
                     <a class="nav-link active" href="{{ route('home.index') }}">{{ __('messages.home') }}</a>
                     <a class="nav-link active" href="{{ route('reviews.index') }}">{{ __('reviews.review_list') }}</a>
                     <a class="nav-link active" href="{{ route('reviews.create') }}">{{ __('reviews.review_create') }}</a>
-                    <a class="nav-link active" href="{{ route('orders.index') }}">Orders</a>
-                    <a class="nav-link active" href="{{ route('orders.create') }}">Create orders</a>
+                    <a class="nav-link active" href="{{ route('orders.index') }}">{{ __('orders.review_create') }}</a>
+                    <a class="nav-link active" href="{{ route('orders.create') }}">{{ __('orders.review_create') }}</a>
                 </div>
             </div>
         </div>

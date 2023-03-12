@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
 Route::get('/language/{locale}', 'App\Http\Controllers\HomeController@locale')->name('home.language');
+// Reviews Controller routes
 Route::get('/reviews', 'App\Http\Controllers\ReviewController@index')->name('reviews.index');
 Route::get('/reviews/create', 'App\Http\Controllers\ReviewController@create')->name('reviews.create');
 Route::post('/reviews/create', 'App\Http\Controllers\ReviewController@save')->name('reviews.save');

@@ -15,4 +15,6 @@ return [
     'delete' => 'Delete',
     'true' => 'true',
     'false' => 'false',
+    'orders_list' => 'Orders',
+    'orders_create' => 'Create Order',
 ];
