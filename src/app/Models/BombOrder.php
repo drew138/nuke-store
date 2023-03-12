@@ -14,12 +14,14 @@ class BombOrder extends Model
 
     /**
      * BOMBORDER ATTRIBUTES
-     * $this->attributes['id'] - int - contains the bomborder primary key (id)
-     * $this->attributes['rating'] - int - contains the bomborder amount
-     * $this->bomb - Bomb - contains the bomborder bomb
-     * $this->order - Order - contains the bomborder order
-     * $this->attributes['created_at'] - timestamp - contains the bomborder creation date
-     * $this->attributes['updated_at'] - timestamp - contains the bomborder update date
+     * $this->attributes['id'] - int - contains the bombOrder primary key (id)
+     * $this->attributes['amount'] - int - contains the bombOrder amount
+     * $this->attributes['bomb_id'] - int - contains the referenced bomb id
+     * $this->attributes['order_id'] - int - contains the referenced order id
+     * $this->bomb - Bomb - contains the bombOrder bomb
+     * $this->order - Order - contains the bombOrder order
+     * $this->attributes['created_at'] - timestamp - contains the bombOrder creation date
+     * $this->attributes['updated_at'] - timestamp - contains the bombOrder update date
      */
 
     public function getId(): int
@@ -37,6 +39,26 @@ class BombOrder extends Model
         $this->attributes['amount'] = $amount;
     }
 
+
+    public function getBombId(): int
+    {
+        return $this->attributes['bomb_id'];
+    }
+
+    public function setBombId(int $bombId): void
+    {
+        $this->attributes['bomb_id'] = $bombId;
+    }
+
+    public function getOrderId(): int
+    {
+        return $this->attributes['order_id'];
+    }
+
+    public function setOrderId(int $orderId): void
+    {
+        $this->attributes['order_id'] = $orderId;
+    }
 
     public function bomb(): BelongsTo
     {

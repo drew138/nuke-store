@@ -15,26 +15,45 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
-    * USER ATTRIBUTES
-    * $this->attributes['id'] - int - contains the user primary key (id) * $this->attributes['name'] - string - contains the user name
-    * $this->attributes['email'] - string - contains the user email
-    * $this->attributes['email_verified_at'] - timestamp - contains the user email verification date * $this->attributes['password'] - string - contains the user password
-    * $this->attributes['remember_token'] - string - contains the user password
-    * $this->attributes['role'] - string - contains the user role (client or admin)
-    * $this->attributes['country'] - int - contains the user balance
-    * $this->attributes['balance'] - int - contains the user balance
-    * this->bombUsers - HasMany - contains the user bombUsers
-    * this->orders - HasMany - contains the user orders
-    * this->reviews - HasMany - contains the user reviews
-    * $this->attributes['created_at'] - timestamp - contains the user creation date
-    * $this->attributes['updated_at'] - timestamp - contains the user update date
-    */
+     * USER ATTRIBUTES
+     * $this->attributes['id'] - int - contains the user primary key (id) * $this->attributes['name'] - string - contains the user name
+     * $this->attributes['email'] - string - contains the user email
+     * $this->attributes['email_verified_at'] - timestamp - contains the user email verification date * $this->attributes['password'] - string - contains the user password
+     * $this->attributes['remember_token'] - string - contains the user password
+     * $this->attributes['role'] - string - contains the user role (client or admin)
+     * $this->attributes['country'] - string - contains the user country
+     * $this->attributes['balance'] - float - contains the user balance
+     * this->bombUsers - HasMany - contains the user bombUsers
+     * this->orders - HasMany - contains the user orders
+     * this->reviews - HasMany - contains the user reviews
+     * $this->attributes['created_at'] - timestamp - contains the user creation date
+     * $this->attributes['updated_at'] - timestamp - contains the user update date
+     */
     protected $fillable = [
         'name',
         'email',
         'password',
         'balance',
         'country',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
 
     public function getId(): int
@@ -92,12 +111,12 @@ class User extends Authenticatable
         $this->attributes['country'] = $country;
     }
 
-    public function getBalance(): int
+    public function getBalance(): float
     {
         return $this->attributes['balance'];
     }
 
-    public function setBalance(int $balance): void
+    public function setBalance(float $balance): void
     {
         $this->attributes['balance'] = $balance;
     }
@@ -147,7 +166,8 @@ class User extends Authenticatable
         $this->reviews = $reviews;
     }
 
-    public function getCreatedAt() {
+    public function getCreatedAt()
+    {
         return $this->attributes['created_at'];
     }
 
@@ -155,23 +175,4 @@ class User extends Authenticatable
     {
         return $this->attributes['updated_at'];
     }
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
 }

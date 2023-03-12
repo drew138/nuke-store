@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasClassicSetter;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,6 +11,7 @@ use Illuminate\Support\Collection;
 
 class Order extends Model
 {
+    use HasClassicSetter;
     protected $fillable = [
         'is_shipped',
         'total',
@@ -17,10 +19,12 @@ class Order extends Model
     protected $table = 'orders';
 
     /** ORDER ATTRIBUTES
-     * $this-> attributes['id'] -int -contains the order primary key (id)
-     * $this->attributes['is_shipped'] -boolean -determines whether an order is shipped
-     * $this->attributes['user'] - User -contains the user that the order belongs to
-     * $this->attributes['total'] -float -contains the total cost of the order
+     * $this-> attributes['id'] -int - contains the order primary key (id)
+     * $this->attributes['is_shipped'] - boolean -determines whether an order is shipped
+     * $this->attributes['total'] - float -contains the total cost of the order
+     * $this->attributes['user_id'] - int - contains the referenced user id
+     * $this->user - User - contains the order user
+     * $this->bombOrders - Collection - contains the order bombOrders
      * $this->attributes['created_at'] -timestamp -contains the order creation date
      * $this->attributes['updated_at'] -timestamp -contains the order update date
      */
@@ -45,9 +49,19 @@ class Order extends Model
         return $this->attributes['total'];
     }
 
-    public function setTotal($total): void
+    public function setTotal(int $total): void
     {
         $this->attributes['total'] = $total;
+    }
+
+    public function getUserId(): int
+    {
+        return $this->attributes['user_id'];
+    }
+
+    public function setUserId(int $userId): void
+    {
+        $this->attributes['user_id'] = $userId;
     }
 
     public function users(): BelongsTo
