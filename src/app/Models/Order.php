@@ -14,7 +14,7 @@ class Order extends Model
     protected $table = 'orders';
 
     /** ORDER ATTRIBUTES
-     * $this-> attributes['id'] -int -contains the product primary key (id)
+     * $this-> attributes['id'] -int -contains the order primary key (id)
      * $this->attributes['is_shipped'] -boolean -determines whether an order is shipped
      * $this->attributes['user'] -foreign key -contains the user that the order belongs to
      * $this->attributes['total'] -float -contains the total cost of the order
@@ -27,17 +27,12 @@ class Order extends Model
         return $this->attributes['id'];
     }
 
-    public function setId($id): void
-    {
-        $this->attributes['id'] = $id;
-    }
-
     public function getIsShipped(): bool
     {
         return $this->attributes['is_shipped'];
     }
 
-    public function setIsShipped($is_shipped): void
+    public function setIsShipped(bool $is_shipped): void
     {
         $this->attributes['is_shipped'] = $is_shipped;
     }
@@ -47,7 +42,7 @@ class Order extends Model
         return $this->attributes['user'];
     }
 
-    public function setUser($user): void
+    public function setUser(int $user): void
     {
         $this->attributes['user'] = $user;
     }
@@ -57,7 +52,7 @@ class Order extends Model
         return $this->attributes['total'];
     }
 
-    public function setTotal($total): void
+    public function setTotal(int $total): void
     {
         $this->attributes['total'] = $total;
     }
@@ -67,19 +62,9 @@ class Order extends Model
         return $this->attributes['created_at'];
     }
 
-    public function setCreatedAt($createdAt): void
-    {
-        $this->attributes['created_at'] = $createdAt;
-    }
-
     public function getUpdatedAt(): int
     {
         return $this->attributes['updated_at'];
-    }
-
-    public function setUpdatedAt($updatedAt): void
-    {
-        $this->attributes['updated_at'] = $updatedAt;
     }
 
     public static function validateRequest(Request $request): void

@@ -25,6 +25,7 @@ class OrderController extends Controller
 
     public function save(Request $request): RedirectResponse
     {
+        Order::validateRequest($request);
         $creationData = $request->only(["is_shipped", "total"]);
         Order::create($creationData);
         return back()->withSuccess(__('orders.created_successfully'));
@@ -40,7 +41,6 @@ class OrderController extends Controller
 
     public function destroy(string $id): RedirectResponse
     {
-        // Order::destroy($request->only(["id"]));
         Order::destroy($id);
         return redirect()->route('orders.index');
     }
