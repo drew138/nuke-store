@@ -132,14 +132,14 @@ class Bomb extends Model
 
     public static function validate(Request $request): void{
         $request->validate([
-            'name' => 'string',
-            'type' => 'string',
-            'price' => 'gt:0',
-            'location_country' => 'string',
-            'manufacturing_country' => 'string',
-            'stock' => 'gte:0',
-            'image' => 'string',
-            'destruction_power' => 'gte:0',
+            'name' => 'required|string',
+            'type' => 'required|string',
+            'price' => 'required|gt:0',
+            'location_country' => 'required|string',
+            'manufacturing_country' => 'required|string',
+            'stock' => 'required|gte:0',
+            'image' => 'required|image',
+            'destruction_power' => 'required|gte:0',
         ]);
     }
 }
