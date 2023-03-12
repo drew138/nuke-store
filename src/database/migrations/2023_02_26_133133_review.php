@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->boolean("is_shipped")->default(false);
-            // $table->foreign('user')->references('id')->on('users')->onDelete('cascade');
-            $table->float('total', 10, 2);
+            $table->string('title');
+            $table->integer('rating')->default('1');
+            $table->string('image');
+            $table->string('description');
+            $table->boolean('is_verified');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        //
     }
 };

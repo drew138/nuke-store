@@ -37,60 +37,69 @@ class User extends Authenticatable
         'country',
     ];
 
-    public function getId() {
-        return $this->attributes['id']; 
+    public function getId(): int
+    {
+        return $this->attributes['id'];
     }
 
-    public function setId($id) {
-        $this->attributes['id'] = $id; 
+    public function getName(): string
+    {
+        return $this->attributes['name'];
     }
 
-    public function getName() {
-        return $this->attributes['name']; 
-    }
-
-    public function setName($name){
+    public function setName(string $name): void
+    {
         $this->attributes['name'] = $name;
     }
 
-    public function getEmail() {
-        return $this->attributes['email']; 
+    public function getEmail(): string
+    {
+        return $this->attributes['email'];
     }
 
-    public function setEmail($email) {
-        $this->attributes['email'] = $email; 
-    }
-    
-    public function getPassword() {
-        return $this->attributes['password']; 
+    public function setEmail(string $email): void
+    {
+        $this->attributes['email'] = $email;
     }
 
-    public function setPassword($password) {
-        $this->attributes['password'] = $password; 
-    }
-    
-    public function getRole() {
-        return $this->attributes['role']; 
+    public function getPassword(): string
+    {
+        return $this->attributes['password'];
     }
 
-    public function setRole($role) {
-        $this->attributes['role'] = $role; 
+    public function setPassword(string $password): void
+    {
+        $this->attributes['password'] = $password;
     }
 
-    public function getCountry() {
-        return $this->attributes['country']; 
+    public function getRole(): string
+    {
+        return $this->attributes['role'];
     }
 
-    public function setCountry($role) {
-        $this->attributes['country'] = $role; 
+    public function setRole(string $role): void
+    {
+        $this->attributes['role'] = $role;
     }
 
-    public function getBalance() {
+    public function getCountry(): string
+    {
+        return $this->attributes['country'];
+    }
+
+    public function setCountry(string $country): void
+    {
+        $this->attributes['country'] = $country;
+    }
+
+    public function getBalance(): int
+    {
         return $this->attributes['balance'];
     }
 
-    public function setBalance($balance) {
-        $this->attributes['balance'] = $balance; 
+    public function setBalance(int $balance): void
+    {
+        $this->attributes['balance'] = $balance;
     }
 
     public function bombUsers(): HasMany
@@ -138,23 +147,14 @@ class User extends Authenticatable
         $this->reviews = $reviews;
     }
 
-
     public function getCreatedAt() {
         return $this->attributes['created_at'];
     }
 
-    public function setCreatedAt($createdAt) {
-        $this->attributes['created_at'] = $createdAt; 
-    }
-
-    public function getUpdatedAt(){
+    public function getUpdatedAt()
+    {
         return $this->attributes['updated_at'];
     }
-
-    public function setUpdatedAt($updatedAt) {
-        $this->attributes['updated_at'] = $updatedAt; 
-    }
-        
 
     /**
      * The attributes that should be hidden for serialization.
@@ -175,4 +175,3 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 }
-

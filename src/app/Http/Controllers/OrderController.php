@@ -3,65 +3,45 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(): Response
+    public function index(): View
     {
-        //
+        $data = [];
+        $data["orders"] = Order::all();
+        return view('orders.index')->with("data", $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(): Response
+    public function create(): View
     {
-        //
+        $data = [];
+        return view('orders.create')->with("data", $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request): RedirectResponse
+    public function save(Request $request): RedirectResponse
     {
-        //
+        Order::validateRequest($request);
+        $creationData = $request->only(["is_shipped", "total"]);
+        Order::create($creationData);
+        return back()->withSuccess(__('orders.created_successfully'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Order $order): Response
+    public function show(string $id): View
     {
-        //
+        $data = [];
+        $order = Order::findOrFail($id);
+        $data["order"] = $order;
+        return view('orders.show')->with("data", $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order): Response
+    public function destroy(string $id): RedirectResponse
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Order $order): RedirectResponse
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Order $order): RedirectResponse
-    {
-        //
+        Order::destroy($id);
+        return redirect()->route('orders.index');
     }
 }

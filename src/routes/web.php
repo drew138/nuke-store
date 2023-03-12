@@ -13,5 +13,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Home Controller routes
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
-Route::get('/language/{locale}', 'App\Http\Controllers\HomeController@locale')->name('home.language');
+
+// Language Controller routes
+Route::get('/language', 'App\Http\Controllers\LanguageController@locale')->name('language.locale');
+
+// Bombs Controller routes
+Route::get('/bombs', 'App\Http\Controllers\BombController@index')->name('bomb.index');
+Route::get('/bombs/create', 'App\Http\Controllers\BombController@create')->name('bomb.create');
+Route::post('/bombs/save', 'App\Http\Controllers\BombController@save')->name('bomb.save');
+Route::get('/bombs/{id}', 'App\Http\Controllers\BombController@show')->name('bomb.show');
+Route::delete('/bombs/destroy', 'App\Http\Controllers\BombController@destroy')->name('bomb.destroy');
+
+// Reviews Controller routes
+Route::get('/reviews', 'App\Http\Controllers\ReviewController@index')->name('reviews.index');
+Route::get('/reviews/create', 'App\Http\Controllers\ReviewController@create')->name('reviews.create');
+Route::post('/reviews/create', 'App\Http\Controllers\ReviewController@save')->name('reviews.save');
+Route::delete('/reviews/{id}', 'App\Http\Controllers\ReviewController@destroy')->name('reviews.destroy');
+Route::get('/reviews/{id}', 'App\Http\Controllers\ReviewController@show')->name('reviews.show');
+
+// Orders Controller routes
+Route::get('/orders', 'App\Http\Controllers\OrderController@index')->name('orders.index');
+Route::get('/orders/create', 'App\Http\Controllers\OrderController@create')->name('orders.create');
+Route::post('/orders/save', 'App\Http\Controllers\OrderController@save')->name('orders.save');
+Route::get('/orders/{id}', 'App\Http\Controllers\OrderController@show')->name('orders.show');
+Route::delete('/orders/{id}', 'App\Http\Controllers\OrderController@destroy')->name('orders.destroy');
