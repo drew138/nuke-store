@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('bomb_users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('bomb_id');
+            $table->integer('amount');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('bomb_id')->references('id')->on('bombs')->onDelete('cascade');
-            $table->integer('amount');
             $table->timestamps();
         });
     }

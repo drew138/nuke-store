@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('bomb_orders', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('bomb_id');
+            $table->integer('amount');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('bomb_id')->references('id')->on('bombs')->onDelete('cascade');
-            $table->integer('amount');
             $table->timestamps();
         });
     }
