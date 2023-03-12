@@ -13,8 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Home Controller routes
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index');
-Route::get('/language/{locale}', 'App\Http\Controllers\HomeController@locale')->name('home.language');
+
+// Language Controller routes
+Route::get('/language', 'App\Http\Controllers\LanguageController@locale')->name('language.locale');
+
+// Bombs Controller routes
+Route::get('/bombs', 'App\Http\Controllers\BombController@index')->name('bomb.index');
+Route::get('/bombs/create', 'App\Http\Controllers\BombController@create')->name('bomb.create');
+Route::post('/bombs/save', 'App\Http\Controllers\BombController@save')->name('bomb.save');
+Route::get('/bombs/{id}', 'App\Http\Controllers\BombController@show')->name('bomb.show');
+Route::delete('/bombs/destroy', 'App\Http\Controllers\BombController@destroy')->name('bomb.destroy');
+
 // Reviews Controller routes
 Route::get('/reviews', 'App\Http\Controllers\ReviewController@index')->name('reviews.index');
 Route::get('/reviews/create', 'App\Http\Controllers\ReviewController@create')->name('reviews.create');
