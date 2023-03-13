@@ -8,4 +8,5 @@ return [
     'english' => "English",
     'russian' => 'Russian',
     'search_placeholder' => 'Search a bomb...',
+    'errors' => 'There are some errors to check:'
 ];
