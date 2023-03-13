@@ -14,4 +14,6 @@ return [
     'last_name_placeholder' => 'Maduro',
     'country' => 'Country',
     'country_placeholder' => 'Select a country',
+    'dictator_of' => 'Dictator of',
+    'user_bombs' => "'s bombs",
 ];
