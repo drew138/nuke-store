@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'SEXUAL - ' . __('app.app_name'))
+@section('title', 'Compare - ' . __('app.app_name'))
 @section('content')
     <div class="max-w-7xl h-[calc(100vh-230px)] mx-auto mb-28 px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col items-center px-4 pt-4 pb-24 md:p-4 md:flex-row -mx-4">
