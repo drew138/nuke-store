@@ -12,11 +12,6 @@ use Illuminate\Support\Collection;
 class Order extends Model
 {
     use HasClassicSetter;
-    protected $fillable = [
-        'is_shipped',
-        'total',
-    ];
-    protected $table = 'orders';
 
     /** ORDER ATTRIBUTES
      * $this-> attributes['id'] -int - contains the order primary key (id)
@@ -28,6 +23,13 @@ class Order extends Model
      * $this->attributes['created_at'] -timestamp -contains the order creation date
      * $this->attributes['updated_at'] -timestamp -contains the order update date
      */
+
+     protected $fillable = [
+        'is_shipped',
+        'total',
+        'user_id',
+    ];
+    protected $table = 'orders';
 
     public function getId(): int
     {

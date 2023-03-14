@@ -34,6 +34,8 @@ class Review extends Model
         'image',
         'description',
         'is_verified',
+        'bomb_id',
+        'user_id',
     ];
 
     public function getId(): int

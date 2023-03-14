@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class BombUser extends Model
 {
     use HasClassicSetter;
-    use HasFactory;
 
     /**
      * BOMBORDER ATTRIBUTES
@@ -23,6 +22,13 @@ class BombUser extends Model
      * $this->attributes['created_at'] - timestamp - contains the bombuUser creation date
      * $this->attributes['updated_at'] - timestamp - contains the bombUser update date
      */
+
+    protected $fillable = [
+        'amount',
+        'bomb_id',
+        'user_id',
+    ];
+
 
     public function getId(): int
     {

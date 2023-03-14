@@ -11,8 +11,7 @@ use Illuminate\Support\Collection;
 
 class Bomb extends Model
 {
-    use HasClassicSetter;
-    use HasFactory;
+    use HasClassicSetter, HasFactory;
 
     /**
      * BOMB ATTRIBUTES
