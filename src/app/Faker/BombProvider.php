@@ -42,7 +42,9 @@ class BombProvider extends Base
         'Neutron',
     ];
     protected static $images = [
-        ''
+        '/storage/641124e367d94faker_image_1.jpg',
+        '/storage/641125c4e9fb6faker_image_3.jpg',
+        '/storage/6411253b9040efaker_image_2.gif'
     ];
     public function bombName(): string
     {
