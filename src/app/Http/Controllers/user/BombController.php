@@ -66,4 +66,11 @@ class BombController extends Controller
 
         return redirect()->route('bomb.index');
     }
+
+    public function search(string $query): View
+    {
+        $data = [];
+        $data['bombs'] = Bomb::searchByName($query);
+        return view('bombs.search')->with('data', $data);
+    }
 }
