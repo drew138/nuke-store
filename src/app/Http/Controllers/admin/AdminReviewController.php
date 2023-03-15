@@ -1,29 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Review;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-class ReviewController extends Controller
+class AdminReviewController extends Controller
 {
     public function index(): View
     {
         $data = [];
         $data['reviews'] = Review::all();
-
-        return view('user.reviews.index')->with('data', $data);
+        return view('admin.reviews.index')->with('data', $data);
     }
 
     public function create(): View
     {
         $data = [];
-
-        return view('user.reviews.create')->with('data', $data);
+        return view('admin.reviews.create')->with('data', $data);
     }
 
     public function save(Request $request): RedirectResponse
@@ -39,15 +36,13 @@ class ReviewController extends Controller
         $data = [];
         $review = Review::findorFail($id);
         $data['review'] = $review;
-
-        return view('user.reviews.show')->with('data', $data);
+        return view('admin.reviews.show')->with('data', $data);
     }
 
 
     public function destroy(string $id): RedirectResponse
     {
         Review::destroy($id);
-
-        return redirect()->route('reviews.index');
+        return redirect()->route('admin.reviews.index');
     }
 }

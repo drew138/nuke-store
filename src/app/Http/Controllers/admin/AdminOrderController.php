@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
@@ -9,19 +9,19 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
 
-class OrderController extends Controller
+class AdminOrderController extends Controller
 {
     public function index(): View
     {
         $data = [];
         $data["orders"] = Order::all();
-        return view('user.orders.index')->with("data", $data);
+        return view('admin.orders.index')->with("data", $data);
     }
 
     public function create(): View
     {
         $data = [];
-        return view('user.orders.create')->with("data", $data);
+        return view('admin.orders.create')->with("data", $data);
     }
 
     public function save(Request $request): RedirectResponse
@@ -37,12 +37,12 @@ class OrderController extends Controller
         $data = [];
         $order = Order::findOrFail($id);
         $data["order"] = $order;
-        return view('user.orders.show')->with("data", $data);
+        return view('admin.orders.show')->with("data", $data);
     }
 
     public function destroy(string $id): RedirectResponse
     {
         Order::destroy($id);
-        return redirect()->route('user.orders.index');
+        return redirect()->route('admin.orders.index');
     }
 }

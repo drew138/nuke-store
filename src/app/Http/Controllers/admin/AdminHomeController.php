@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 
-class HomeController extends Controller
+class AdminHomeController extends Controller
 {
     /**
      * Returns a view to the home of the app
      */
     public function index(): View
     {
-        return view('user.home.index');
+        return view('admin.home.index');
     }
 }
+
