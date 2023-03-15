@@ -171,7 +171,6 @@ class Bomb extends Model
         $this->reviews = $reviews;
     }
 
-
     public function getCreatedAt(): int
     {
         return $this->attributes['created_at'];

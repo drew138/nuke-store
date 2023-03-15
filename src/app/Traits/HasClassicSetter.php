@@ -28,4 +28,4 @@ trait HasClassicSetter
     {
         return $this->{'set'.Str::studly($key)}($value);
     }
-} 
+}

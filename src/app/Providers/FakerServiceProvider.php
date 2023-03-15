@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Faker\BombProvider;
-use Faker\{Factory, Generator};
+use App\Faker\ReviewProvider;
+use App\Faker\UserProvider;
+use Faker\Factory;
+use Faker\Generator;
 use Illuminate\Support\ServiceProvider;
-
 
 class FakerServiceProvider extends ServiceProvider
 {
@@ -17,6 +19,9 @@ class FakerServiceProvider extends ServiceProvider
         $this->app->singleton(Generator::class, function () {
             $faker = Factory::create();
             $faker->addProvider(new BombProvider($faker));
+            $faker->addProvider(new UserProvider($faker));
+            $faker->addProvider(new ReviewProvider($faker));
+
             return $faker;
         });
     }

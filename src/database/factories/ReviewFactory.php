@@ -19,9 +19,9 @@ class ReviewFactory extends Factory
         return [
             'title' => fake()->name(),
             'rating' => fake()->numberBetween(1, 5),
-            'image' => $this->faker->bombImage,
-            'description' => fake()->sentences(),
-            'is_verified' => fake()->boolean()
+            'image' => $this->faker->reviewImage,
+            'description' => $this->faker->reviews,
+            'is_verified' => fake()->boolean(),
         ];
     }
 }
