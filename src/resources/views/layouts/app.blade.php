@@ -26,7 +26,7 @@
 						dark:text-white">{{ __('app.app_name') }}</span>
                 </a>
 
-                <div class="flex md:order-2">
+                <div class="flex md:order-2 w-1/3">
                     <a href="{{ route('home.index') }}"
                         class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <svg aria-hidden="true" class="w-5 h-5 " fill="currentColor" viewBox="0 0 20 20"
@@ -41,10 +41,11 @@
                         </span>
                     </a>
 
-                    <form class="relative hidden md:block">
+                    <form class="w-full relative hidden md:block" action="{{ route('bombs.search') }}" method="POST">
+                        @csrf
                         <div class="flex">
                             <div class="relative w-full">
-                                <input type="search" id="search-dropdown"
+                                <input type="search" id="query" name="query"
                                     class="block p-2 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
                                     placeholder="{{ __('app.search_placeholder') }}" required>
                                 <button type="submit"
