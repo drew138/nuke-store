@@ -196,4 +196,12 @@ class Bomb extends Model
             'destruction_power' => 'required|gte:0',
         ]);
     }
+
+    public static function searchByName(string $name)
+    {
+        if ($name == '') {
+            return Bomb::all();
+        }
+        return Bomb::where('name', 'LIKE', '%' . $name . '%')->get();
+    }
 }
