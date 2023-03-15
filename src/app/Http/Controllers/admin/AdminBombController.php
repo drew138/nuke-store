@@ -1,21 +1,30 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use App\Interfaces\ImageStorage;
 use App\Models\Bomb;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class BombController extends Controller
+class AdminBombController extends Controller
 {
     public function index(): View
     {
         $data = [];
         $data['bombs'] = Bomb::all();
+        return view('admin.bombs.index')->with('data', $data);
+    }
 
-        return view('bombs.index')->with('data', $data);
+    public function search(Request $request): View
+    {
+        $query = $request['query'];
+        
+        $data = [];
+        $data['bombs'] = Bomb::searchByName($query);
+        return view('admin.bombs.index')->with('data', $data);
     }
 
     public function show(string $id): View|RedirectResponse
@@ -27,15 +36,15 @@ class BombController extends Controller
             $data = [];
             $data['bomb'] = $bomb;
 
-            return view('bombs.show')->with('data', $data);
+            return view('admin.bombs.show')->with('data', $data);
         }
 
-        return redirect()->route('home.index');
+        return redirect()->route('admin.home.index');
     }
 
     public function create(): View
     {
-        return view('bombs.create');
+        return view('admin.bombs.create');
     }
 
     public function save(Request $request): RedirectResponse
@@ -64,6 +73,6 @@ class BombController extends Controller
     {
         Bomb::destroy($request->only(['id']));
 
-        return redirect()->route('bomb.index');
+        return redirect()->route('admin.bombs.index');
     }
 }

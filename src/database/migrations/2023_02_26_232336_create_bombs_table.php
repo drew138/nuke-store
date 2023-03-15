@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('bombs', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
-            $table->text('type');
-            $table->integer('price');
-            $table->text('location_country');
-            $table->text('manufacturing_country');
+            $table->string('name');
+            $table->string('type');
+            $table->float('price', 10, 2);
+            $table->string('location_country');
+            $table->string('manufacturing_country');
             $table->integer('stock');
-            $table->text('image');
-            $table->integer('destruction_power');
+            $table->string('image');
+            $table->float('destruction_power', 10, 2);
             $table->timestamps();
         });
     }

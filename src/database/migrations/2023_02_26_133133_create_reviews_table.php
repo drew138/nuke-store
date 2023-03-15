@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->integer('rating')->default('1');
             $table->string('image');
-            $table->string('description');
+            $table->text('description');
             $table->boolean('is_verified');
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('reviews');
     }
 };

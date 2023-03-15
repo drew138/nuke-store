@@ -42,7 +42,7 @@
         <div
             class="w-full max-w-2xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
 
-            <form class="space-y-6" method="POST" action="{{ route('bombs.save') }}" enctype="multipart/form-data">
+            <form class="space-y-6" method="POST" action="{{ route('admin.bombs.save') }}" enctype="multipart/form-data">
                 @csrf
                 <h5 class="text-xl font-medium text-gray-900 dark:text-white">
                     {{ __('bomb.create_bomb') }}</h5>
