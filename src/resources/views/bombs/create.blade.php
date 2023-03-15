@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 @section('title', __('bomb.create_bomb') . ' - ' . __('app.app_name'))
 @section('content')
-    <div class="w-full mb-[100px] p-4 flex flex-col justify-center items-center">
+    <div class="w-full p-4 flex flex-col justify-center items-center">
         @if (session('success'))
-            <div class="w-full max-w-2xl border border-green-600 flex p-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+            <div class="w-full max-w-2xl mb-4 border border-green-600 flex p-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
                 role="alert">
                 <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg">
@@ -18,8 +18,8 @@
         @endif
         @if ($errors->any())
             <div
-                class="w-full max-w-2xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                class="w-full max-w-2xl p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+                <div class="flex p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
                     role="alert">
                     <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor"
                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -40,9 +40,9 @@
         @endif
 
         <div
-            class="w-full max-w-2xl mt-6 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+            class="w-full max-w-2xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
 
-            <form class="space-y-6" method="POST" action="{{ route('bomb.save') }}" enctype="multipart/form-data">
+            <form class="space-y-6" method="POST" action="{{ route('bombs.save') }}" enctype="multipart/form-data">
                 @csrf
                 <h5 class="text-xl font-medium text-gray-900 dark:text-white">
                     {{ __('bomb.create_bomb') }}</h5>

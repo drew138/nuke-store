@@ -20,11 +20,11 @@ Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home.index')
 Route::get('/language', 'App\Http\Controllers\LanguageController@locale')->name('language.locale');
 
 // Bombs Controller routes
-Route::get('/bombs', 'App\Http\Controllers\BombController@index')->name('bomb.index');
-Route::get('/bombs/create', 'App\Http\Controllers\BombController@create')->name('bomb.create');
-Route::post('/bombs/save', 'App\Http\Controllers\BombController@save')->name('bomb.save');
-Route::get('/bombs/{id}', 'App\Http\Controllers\BombController@show')->name('bomb.show');
-Route::delete('/bombs/destroy', 'App\Http\Controllers\BombController@destroy')->name('bomb.destroy');
+Route::get('/bombs', 'App\Http\Controllers\BombController@index')->name('bombs.index');
+Route::get('/bombs/create', 'App\Http\Controllers\BombController@create')->name('bombs.create');
+Route::post('/bombs/save', 'App\Http\Controllers\BombController@save')->name('bombs.save');
+Route::get('/bombs/{id}', 'App\Http\Controllers\BombController@show')->name('bombs.show');
+Route::delete('/bombs/destroy', 'App\Http\Controllers\BombController@destroy')->name('bombs.destroy');
 
 // Reviews Controller routes
 Route::get('/reviews', 'App\Http\Controllers\ReviewController@index')->name('reviews.index');

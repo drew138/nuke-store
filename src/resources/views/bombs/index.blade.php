@@ -7,12 +7,12 @@
                 <div class="p-4 flex justify-center">
                     <div
                         class="w-full max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                        <a href="{{ route('bomb.show', ['id' => $bomb->getId()]) }}">
+                        <a href="{{ route('bombs.show', ['id' => $bomb->getId()]) }}">
                             <img class="mb-4 rounded-t-lg object-cover h-72 w-full"
                                 src="{{ URL::asset($bomb->getImage()) }}" />
                         </a>
                         <div class="px-5 pb-5">
-                            <a href="{{ route('bomb.show', ['id' => $bomb->getId()]) }}">
+                            <a href="{{ route('bombs.show', ['id' => $bomb->getId()]) }}">
                                 <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                                     {{ $bomb->getName() }}</h5>
                             </a>

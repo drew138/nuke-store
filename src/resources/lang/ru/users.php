@@ -14,4 +14,6 @@ return [
     'last_name_placeholder' => 'Мадуро',
     'country' => 'Страна',
     'country_placeholder' => 'Выберите страну',
+    'dictator_of' => 'Диктатор',
+    'user_bombs' => " Бомб",
 ];

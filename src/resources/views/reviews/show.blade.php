@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 @section('title', $data["review"]->getTitle())
 @section('subtitle', $data["review"]->getTitle())
 @section('content')
