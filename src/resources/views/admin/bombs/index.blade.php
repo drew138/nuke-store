@@ -69,8 +69,7 @@
                                             class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {{ $bomb->getName() }}</th>
                                         <td class="px-4 py-3">{{ __('bomb.' . $bomb->getType()) }}</td>
-                                        <td class="px-4 py-3">{{ __('countries.' . $bomb->getManufacturingCountry()) }}
-                                        </td>
+                                        <td class="px-4 py-3">{{ __('countries.' . $bomb->getManufacturingCountry()) }}</td>
                                         <td class="px-4 py-3">{{ __('countries.' . $bomb->getLocationCountry()) }}</td>
                                         <td class="px-4 py-3">${{ $bomb->getPrice() }}</td>
                                         <td class="px-4 py-3">{{ $bomb->getStock() }}</td>

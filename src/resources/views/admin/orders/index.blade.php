@@ -30,9 +30,7 @@
                                     <th scope="col" class="px-4 py-3">Bombs</th>
                                     <th scope="col" class="px-4 py-3">Total</th>
                                     <th scope="col" class="px-4 py-3">Created at</th>
-                                    <th scope="col" class="px-4 py-3">
-                                        <span class="sr-only">Actions</span>
-                                    </th>
+                                    <th scope="col" class="px-4 py-3"></th>
                                 </tr>
                             </thead>
                             <tbody>
