@@ -61,3 +61,8 @@ Route::get('/orders/create', 'App\Http\Controllers\user\OrderController@create')
 Route::post('/orders/create', 'App\Http\Controllers\user\OrderController@save')->name('orders.save');
 Route::get('/orders/{id}', 'App\Http\Controllers\user\OrderController@show')->name('orders.show');
 Route::delete('/orders/{id}', 'App\Http\Controllers\user\OrderController@destroy')->name('orders.destroy');
+
+// Shopping Cart Controller routes
+Route::get('/cart', 'App\Http\Controllers\user\ShoppingCartController@index')->name('shopping_cart.index');
+Route::post('/cart', 'App\Http\Controllers\user\ShoppingCartController@add')->name('shopping_cart.add');
+Route::delete('/cart', 'App\Http\Controllers\user\ShoppingCartController@delete')->name('shopping_cart.delete');

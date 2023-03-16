@@ -91,13 +91,19 @@
                                     class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5
                                 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">5.0</span>
                             </div>
+
+
+
                             <div class="flex items-center justify-between">
                                 <span
                                     class="text-2xl font-bold text-gray-900 dark:text-white">{{ "$" . $bomb->getPrice() }}</span>
-                                <a href="#"
-                                    class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium 
-                                    rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    {{ __('shopping_cart.add') }}</a>
+                                <form action="{{ route('shopping_cart.add', ['id' => $bomb->getId(), 'quantity' => 12]) }}"
+                                    method="POST">
+                                    @csrf
+                                    <button
+                                        class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        {{ __('shopping_cart.add') }}</button>
+                                </form>
                             </div>
                         </div>
                     </div>
