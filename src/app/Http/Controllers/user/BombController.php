@@ -70,6 +70,7 @@ class BombController extends Controller
     {
         $data = [];
         $data['bombs'] = Bomb::searchByName($query);
+
         return view('bombs.search')->with('data', $data);
     }
 }

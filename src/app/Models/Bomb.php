@@ -200,6 +200,7 @@ class Bomb extends Model
         if ($name == '') {
             return Bomb::all();
         }
-        return Bomb::where('name', 'LIKE', '%' . $name . '%')->get();
+
+        return Bomb::where('name', 'LIKE', '%'.$name.'%')->get();
     }
 }
