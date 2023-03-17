@@ -29,7 +29,7 @@ Route::post('/admin/bombs/', 'App\Http\Controllers\admin\AdminBombController@sea
 Route::get('/admin/bombs/create', 'App\Http\Controllers\admin\AdminBombController@create')->name('admin.bombs.create');
 Route::post('/admin/bombs/create', 'App\Http\Controllers\admin\AdminBombController@save')->name('admin.bombs.save');
 Route::get('/admin/bombs/{id}', 'App\Http\Controllers\admin\AdminBombController@show')->name('admin.bombs.show');
-Route::delete('/admin/bombs/{id}', 'App\Http\Controllers\admin\AdminBombController@destroy')->name('admin.bombs.destroy');
+Route::delete('/admin/bombs/', 'App\Http\Controllers\admin\AdminBombController@destroy')->name('admin.bombs.destroy');
 // user routes
 Route::get('/bombs', 'App\Http\Controllers\user\BombController@index')->name('bombs.index');
 Route::post('/bombs', 'App\Http\Controllers\user\BombController@search')->name('bombs.search');

@@ -69,10 +69,10 @@ class AdminBombController extends Controller
         return back()->withSuccess(__('bomb.successfully'));
     }
 
-    public function destroy(Request $request): View|RedirectResponse
+    public function destroy(Request $request): RedirectResponse
     {
         Bomb::destroy($request->only(['id']));
 
-        return redirect()->route('admin.bombs.index');
+        return redirect()->back();
     }
 }

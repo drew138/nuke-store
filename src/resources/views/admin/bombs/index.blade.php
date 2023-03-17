@@ -69,7 +69,8 @@
                                             class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {{ $bomb->getName() }}</th>
                                         <td class="px-4 py-3">{{ __('bomb.' . $bomb->getType()) }}</td>
-                                        <td class="px-4 py-3">{{ __('countries.' . $bomb->getManufacturingCountry()) }}</td>
+                                        <td class="px-4 py-3">{{ __('countries.' . $bomb->getManufacturingCountry()) }}
+                                        </td>
                                         <td class="px-4 py-3">{{ __('countries.' . $bomb->getLocationCountry()) }}</td>
                                         <td class="px-4 py-3">${{ $bomb->getPrice() }}</td>
                                         <td class="px-4 py-3">{{ $bomb->getStock() }}</td>
@@ -97,11 +98,17 @@
                                                         <a href="#"
                                                             class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
                                                     </li>
+                                                    <li>
+                                                        <form
+                                                            action="{{ route('admin.bombs.destroy', ['id' => $bomb->getId()]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button
+                                                                class="w-full block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('bomb.delete_bomb') }}</button>
+                                                        </form>
+                                                    </li>
                                                 </ul>
-                                                <div class="py-1">
-                                                    <a href="#"
-                                                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
-                                                </div>
                                             </div>
                                         </td>
                                     </tr>
