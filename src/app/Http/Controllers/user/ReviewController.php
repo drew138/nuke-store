@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\user;
 
+use App\Http\Controllers\Controller;
 use App\Models\Review;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,14 +15,14 @@ class ReviewController extends Controller
         $data = [];
         $data['reviews'] = Review::all();
 
-        return view('reviews.index')->with('data', $data);
+        return view('user.reviews.index')->with('data', $data);
     }
 
     public function create(): View
     {
         $data = [];
 
-        return view('reviews.create')->with('data', $data);
+        return view('user.reviews.create')->with('data', $data);
     }
 
     public function save(Request $request): RedirectResponse
@@ -39,7 +40,7 @@ class ReviewController extends Controller
         $review = Review::findorFail($id);
         $data['review'] = $review;
 
-        return view('reviews.show')->with('data', $data);
+        return view('user.reviews.show')->with('data', $data);
     }
 
     public function destroy(string $id): RedirectResponse

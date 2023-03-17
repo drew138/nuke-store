@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'id' => 'ID',
+    'image' => 'Image',
+    'name' => 'Name',
+    'type' => 'Type',
+    'price' => 'Price',
     'bombs' => 'Bombs',
     'enter_name' => 'Enter name',
     'enter_name_placeholder' => 'Destructor of worlds',
@@ -26,14 +31,13 @@ return [
     'create_bomb' => 'Create bomb',
     'successfully' => 'Bomb created successfully',
     'delete_bomb' => 'Delete bomb',
-    'stock' => 'unit available!!!',
+    'stock' => 'unit available!',
     'stocks' => 'units available',
     'no-stock' => 'out of stock :(',
-    'manufacturing_country' => 'Manufacturing country:',
-    'location_country' => 'Location country:',
-    'destrucion_power' => 'Destrucion power:',
+    'manufacturing_country' => 'Manufacturing country',
+    'location_country' => 'Location country',
+    'destruction_power' => 'Destruction power',
     'megaton' => 'megaton',
-    'megatons' => 'megatons!!!',
-    'write_review' => 'Write a review...',
-    'post_review' => 'Post review',
+    'megatons' => 'megatons',
+    'add_bomb' => 'Add bomb',
 ];

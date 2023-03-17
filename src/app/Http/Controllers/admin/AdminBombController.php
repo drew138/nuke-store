@@ -1,17 +1,27 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use App\Interfaces\ImageStorage;
 use App\Models\Bomb;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class BombController extends Controller
+class AdminBombController extends Controller
 {
-    public function index(string $query): View
+    public function index(): View
     {
+        $data = [];
+        $data['bombs'] = Bomb::all();
+        return view('admin.bombs.index')->with('data', $data);
+    }
+
+    public function search(Request $request): View
+    {
+        $query = $request['query'];
+        
         $data = [];
         $data['bombs'] = Bomb::searchByName($query);
 
