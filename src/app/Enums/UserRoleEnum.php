@@ -7,6 +7,6 @@ use App\Traits\EnumToArray;
 enum UserRoleEnum: string
 {
     use EnumToArray;
-    case USER = 'user';
+    case CLIENT = 'client';
     case ADMIN = 'admin';
 };

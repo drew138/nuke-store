@@ -14,8 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Home Controller routes
-// admin user
-Route::get('/admin', 'App\Http\Controllers\admin\AdminHomeController@index')->name('admin.home.index');
 // user routes
 Route::get('/', 'App\Http\Controllers\user\HomeController@index')->name('home.index');
 
@@ -24,12 +22,15 @@ Route::get('/language', 'App\Http\Controllers\LanguageController@locale')->name(
 
 // Bombs Controller routes
 // admin routes
-Route::get('/admin/bombs/', 'App\Http\Controllers\admin\AdminBombController@index')->name('admin.bombs.index');
-Route::post('/admin/bombs/', 'App\Http\Controllers\admin\AdminBombController@search')->name('admin.bombs.search');
-Route::get('/admin/bombs/create', 'App\Http\Controllers\admin\AdminBombController@create')->name('admin.bombs.create');
-Route::post('/admin/bombs/create', 'App\Http\Controllers\admin\AdminBombController@save')->name('admin.bombs.save');
-Route::get('/admin/bombs/{id}', 'App\Http\Controllers\admin\AdminBombController@show')->name('admin.bombs.show');
-Route::delete('/admin/bombs/{id}', 'App\Http\Controllers\admin\AdminBombController@destroy')->name('admin.bombs.destroy');
+Route::middleware('admin')->group(function () {
+    Route::get('/admin', 'App\Http\Controllers\admin\AdminHomeController@index')->name('admin.home.index');
+    Route::get('/admin/bombs/', 'App\Http\Controllers\admin\AdminBombController@index')->name('admin.bombs.index');
+    Route::post('/admin/bombs/', 'App\Http\Controllers\admin\AdminBombController@search')->name('admin.bombs.search');
+    Route::get('/admin/bombs/create', 'App\Http\Controllers\admin\AdminBombController@create')->name('admin.bombs.create');
+    Route::post('/admin/bombs/create', 'App\Http\Controllers\admin\AdminBombController@save')->name('admin.bombs.save');
+    Route::get('/admin/bombs/{id}', 'App\Http\Controllers\admin\AdminBombController@show')->name('admin.bombs.show');
+    Route::delete('/admin/bombs/{id}', 'App\Http\Controllers\admin\AdminBombController@destroy')->name('admin.bombs.destroy');
+});
 // user routes
 Route::get('/bombs', 'App\Http\Controllers\user\BombController@index')->name('bombs.index');
 Route::post('/bombs', 'App\Http\Controllers\user\BombController@search')->name('bombs.search');
@@ -66,3 +67,5 @@ Route::delete('/orders/{id}', 'App\Http\Controllers\user\OrderController@destroy
 Route::get('/cart', 'App\Http\Controllers\user\ShoppingCartController@index')->name('shopping_cart.index');
 Route::post('/cart', 'App\Http\Controllers\user\ShoppingCartController@add')->name('shopping_cart.add');
 Route::delete('/cart', 'App\Http\Controllers\user\ShoppingCartController@delete')->name('shopping_cart.delete');
+
+Auth::routes();
