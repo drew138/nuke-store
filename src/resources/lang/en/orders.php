@@ -25,5 +25,5 @@ return [
     'no' => 'No',
     'enter_total' => 'Enter total',
     'enter_total_placeholder' => '$256000 USD',
-    'created_successfully' => 'Order created sucessfully!'
+    'created_successfully' => 'Order created sucessfully!',
 ];

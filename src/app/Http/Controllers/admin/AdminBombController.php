@@ -15,13 +15,14 @@ class AdminBombController extends Controller
     {
         $data = [];
         $data['bombs'] = Bomb::all();
+
         return view('admin.bombs.index')->with('data', $data);
     }
 
     public function search(Request $request): View
     {
         $query = $request['query'];
-        
+
         $data = [];
         $data['bombs'] = Bomb::searchByName($query);
 

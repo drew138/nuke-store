@@ -22,7 +22,6 @@ Route::get('/language', 'App\Http\Controllers\LanguageController@locale')->name(
 
 Auth::routes();
 
-
 // admin routes
 Route::middleware('admin')->group(function () {
     // Bombs Controller routes
