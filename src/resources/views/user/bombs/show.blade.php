@@ -17,9 +17,9 @@
                             <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                         @endif
                     @endforeach
-                    <p class="ml-2 text-sm font-bold text-gray-900 dark:text-white">4.95</p>
+                    <p class="ml-2 text-sm font-bold text-gray-900 dark:text-white">{{ $data['bomb_rating'] }}</p>
                     <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
-                    <p class="text-sm font-medium text-gray-900 dark:text-white">{{ '2 ' . __('app.reviews') }}</p>
+                    <p class="text-sm font-medium text-gray-900 dark:text-white">{{ count($data['bomb']->getReviews()) . ' ' . __('app.reviews') }}</p>
                 </div>
 
                 <form enctype="multipart/form-data">
@@ -145,32 +145,36 @@
                         class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         {{ __('shopping_cart.add') }}</button>
                 </form>
-
-                <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
-                <h3 class="mb-4 text-3xl font-bold dark:text-white">{{ __('app.reviews') }}</h3>
-
-                <article>
-                    <div class="flex items-center mb-4 space-x-4">
-                        <img class="w-10 h-10 rounded-full" src="https://www.lasillavacia.com/media/ivan_duque_presidencia-qyq.jpg" alt="">
-                        <div class="space-y-1 font-medium dark:text-white">
-                            <p>{{ 'Ivan Duque' }}<p class="block text-sm text-gray-500 dark:text-gray-400">{{ __('users.dictator_of') . ' Colombia'}}</p></p>
-                        </div>
-                    </div>
-                    <div class="flex items-center mb-1">
-                        @foreach (range(1, 5) as $number)
-                            @if ($number > 3)
-                            <svg aria-hidden="true" class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            @else
-                            <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                            @endif
-                        @endforeach
-            
-                        <h3 class="ml-2 text-sm font-semibold text-gray-900 dark:text-white">No se leer!</h3>
-                    </div>
-                    <p class="mb-2 font-light text-gray-500 dark:text-gray-400">ajajaajajaja y aun asi fui presidente lol.</p>
-                    <a href="#" class="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Read more</a>
+           
+                @if (count($data['bomb']->getReviews()) > 0)
                     <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
-                </article>
+                    <h3 class="mb-4 text-3xl font-bold dark:text-white">{{ __('app.reviews') }}</h3>
+
+                    @foreach ($data['bomb']->getReviews() as $review)
+                        <article>
+                            <div class="flex items-center mb-4 space-x-4">
+                                <img class="w-10 h-10 rounded-full" src="https://www.lasillavacia.com/media/ivan_duque_presidencia-qyq.jpg" alt="">
+                                <div class="space-y-1 font-medium dark:text-white">
+                                    <p>{{ $review->getUser()->getName() }}<p class="block text-sm text-gray-500 dark:text-gray-400">{{ __('users.dictator_of') . ' ' . $review->getUser()->getCountry()}}</p></p>
+                                </div>
+                            </div>
+                            <div class="flex items-center mb-1">
+                                @foreach (range(1, 5) as $number)
+                                    @if ($number > $review->getRating())
+                                    <svg aria-hidden="true" class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                    @else
+                                    <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                    @endif
+                                @endforeach
+                    
+                                <h3 class="ml-2 text-sm font-semibold text-gray-900 dark:text-white">{{ $review->getTitle() }}</h3>
+                            </div>
+                            <p class="mb-2 font-light text-gray-500 dark:text-gray-400">{{ $review->getDescription() }}</p>
+                            <a href="#" class="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Read more</a>
+                            <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+                        </article>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
