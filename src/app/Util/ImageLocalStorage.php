@@ -9,9 +9,8 @@ use Illuminate\Support\Facades\Storage;
 class ImageLocalStorage implements ImageStorage
 {
     public function store(Request $request): string
-    { 
-        if ($request->hasFile('image'))
-        {
+    {
+        if ($request->hasFile('image')) {
             // Creating an uniq path for the image
             $image_url = uniqid().$request->file('image')->getClientOriginalName();
 
@@ -20,7 +19,7 @@ class ImageLocalStorage implements ImageStorage
                 file_get_contents($request->file('image')->getRealPath())
             );
 
-            // Returning the image's path 
+            // Returning the image's path
             return 'storage/'.$image_url;
         }
 

@@ -11,8 +11,7 @@ use Illuminate\Support\Collection;
 
 class Bomb extends Model
 {
-    use HasClassicSetter;
-    use HasFactory;
+    use HasClassicSetter, HasFactory;
 
     /**
      * BOMB ATTRIBUTES
@@ -172,7 +171,6 @@ class Bomb extends Model
         $this->reviews = $reviews;
     }
 
-
     public function getCreatedAt(): int
     {
         return $this->attributes['created_at'];
@@ -202,6 +200,7 @@ class Bomb extends Model
         if ($name == '') {
             return Bomb::all();
         }
-        return Bomb::where('name', 'LIKE', '%' . $name . '%')->get();
+
+        return Bomb::where('name', 'LIKE', '%'.$name.'%')->get();
     }
 }

@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) { 
-            $table->string('role')->default('client'); 
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('role')->default('client');
             $table->string('country');
             $table->float('balance', 10, 2);
+            $table->string('profile_picture');
         });
     }
 
@@ -28,8 +29,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role'); 
-            $table->dropColumn('country'); 
+            $table->dropColumn('role');
+            $table->dropColumn('country');
             $table->dropColumn('balance');
         });
     }

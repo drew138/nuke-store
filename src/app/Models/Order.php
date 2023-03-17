@@ -3,20 +3,15 @@
 namespace App\Models;
 
 use App\Traits\HasClassicSetter;
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 class Order extends Model
 {
     use HasClassicSetter;
-    protected $fillable = [
-        'is_shipped',
-        'total',
-    ];
-    protected $table = 'orders';
 
     /** ORDER ATTRIBUTES
      * $this-> attributes['id'] -int - contains the order primary key (id)
@@ -28,6 +23,13 @@ class Order extends Model
      * $this->attributes['created_at'] -timestamp -contains the order creation date
      * $this->attributes['updated_at'] -timestamp -contains the order update date
      */
+    protected $fillable = [
+        'is_shipped',
+        'total',
+        'user_id',
+    ];
+
+    protected $table = 'orders';
 
     public function getId(): int
     {
@@ -78,7 +80,7 @@ class Order extends Model
     {
         $this->user = $user;
     }
-    
+
     public function bombOrders(): HasMany
     {
         return $this->hasMany(BombOrder::class);
@@ -107,7 +109,7 @@ class Order extends Model
     public static function validateRequest(Request $request): void
     {
         $request->validate([
-            "total" => ["required", "integer", "min:0"],
+            'total' => ['required', 'integer', 'min:0'],
         ]);
     }
 }

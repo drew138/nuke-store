@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->boolean("is_shipped")->default(false);
+            $table->boolean('is_shipped')->default(false);
             $table->float('total', 10, 2);
             $table->timestamps();
         });
