@@ -3,14 +3,12 @@
 namespace App\Models;
 
 use App\Traits\HasClassicSetter;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BombOrder extends Model
 {
     use HasClassicSetter;
-    use HasFactory;
 
     /**
      * BOMBORDER ATTRIBUTES
@@ -23,6 +21,11 @@ class BombOrder extends Model
      * $this->attributes['created_at'] - timestamp - contains the bombOrder creation date
      * $this->attributes['updated_at'] - timestamp - contains the bombOrder update date
      */
+    protected $fillable = [
+        'amount',
+        'bomb_id',
+        'order_id',
+    ];
 
     public function getId(): int
     {
@@ -38,7 +41,6 @@ class BombOrder extends Model
     {
         $this->attributes['amount'] = $amount;
     }
-
 
     public function getBombId(): int
     {

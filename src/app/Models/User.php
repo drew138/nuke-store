@@ -23,6 +23,7 @@ class User extends Authenticatable
      * $this->attributes['role'] - string - contains the user role (client or admin)
      * $this->attributes['country'] - string - contains the user country
      * $this->attributes['balance'] - float - contains the user balance
+     * $this->attributes['profile_picture'] - string - cotains the profile picture
      * this->bombUsers - HasMany - contains the user bombUsers
      * this->orders - HasMany - contains the user orders
      * this->reviews - HasMany - contains the user reviews

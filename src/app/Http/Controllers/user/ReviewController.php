@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Review;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class ReviewController extends Controller
@@ -31,6 +30,7 @@ class ReviewController extends Controller
         Review::validateRequest($request);
         $creationData = $request->only(['title', 'rating', 'image', 'description', 'is_verified']);
         Review::create($creationData);
+
         return back()->withSuccess(__('reviews.created_succesfully'));
     }
 
@@ -42,7 +42,6 @@ class ReviewController extends Controller
 
         return view('user.reviews.show')->with('data', $data);
     }
-
 
     public function destroy(string $id): RedirectResponse
     {

@@ -10,8 +10,7 @@ use Illuminate\Http\Request;
 
 class Review extends Model
 {
-    use HasClassicSetter;
-    use HasFactory;
+    use HasClassicSetter, HasFactory;
 
     /**
      * Review ATTRIBUTES
@@ -34,6 +33,8 @@ class Review extends Model
         'image',
         'description',
         'is_verified',
+        'bomb_id',
+        'user_id',
     ];
 
     public function getId(): int
@@ -156,7 +157,8 @@ class Review extends Model
         return $this->attributes['updated_at'];
     }
 
-    public static function validateRequest(Request $request): void {
+    public static function validateRequest(Request $request): void
+    {
         $request->validate([
             'title' => 'required',
             'rating' => 'required|gte:1|lte:5',

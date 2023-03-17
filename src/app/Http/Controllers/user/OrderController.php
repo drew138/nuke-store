@@ -4,10 +4,9 @@ namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
-
 
 class OrderController extends Controller
 {
@@ -27,8 +26,9 @@ class OrderController extends Controller
     public function save(Request $request): RedirectResponse
     {
         Order::validateRequest($request);
-        $creationData = $request->only(["is_shipped", "total"]);
+        $creationData = $request->only(['is_shipped', 'total']);
         Order::create($creationData);
+
         return back()->withSuccess(__('orders.created_successfully'));
     }
 

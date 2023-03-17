@@ -22,7 +22,6 @@ class BombController extends Controller
     public function show(string $id): View|RedirectResponse
     {
         if (filter_var($id, FILTER_VALIDATE_INT) == true) {
-
             $bomb = Bomb::findOrFail($id);
 
             $data = [];
@@ -43,19 +42,19 @@ class BombController extends Controller
     {
         Bomb::validate($request);
 
-        # Storing the bomb image and getting its path
+        // Storing the bomb image and getting its path
         $storeInterface = app(ImageStorage::class);
         $image_url = $storeInterface->store($request);
 
         Bomb::create([
-            'name' =>                  $request['name'],
-            'type' =>                  $request['type'],
-            'price' =>                 $request['price'],
-            'location_country' =>      $request['location_country'],
+            'name' => $request['name'],
+            'type' => $request['type'],
+            'price' => $request['price'],
+            'location_country' => $request['location_country'],
             'manufacturing_country' => $request['manufacturing_country'],
-            'stock' =>                 $request['stock'],
-            'destruction_power' =>     $request['destruction_power'],
-            'image' =>                 $image_url
+            'stock' => $request['stock'],
+            'destruction_power' => $request['destruction_power'],
+            'image' => $image_url,
         ]);
 
         return back()->withSuccess(__('bomb.successfully'));
