@@ -131,12 +131,20 @@
                         </svg>
 
                         @if ($data['bomb']->getDestructionPower() > 1)
-                            <span>{{ __('bomb.destrucion_power') . ' ' . $data['bomb']->getDestructionPower() . ' ' . __('bomb.megatons') }}</span>
+                            <span>{{ __('bomb.destruction_power') . ' ' . $data['bomb']->getDestructionPower() . ' ' . __('bomb.megatons') }}</span>
                         @else
-                            <span>{{ __('bomb.destrucion_power') . ' ' . $data['bomb']->getDestructionPower() . ' ' . __('bomb.megaton') }}</span>
+                            <span>{{ __('bomb.destruction_power') . ' ' . $data['bomb']->getDestructionPower() . ' ' . __('bomb.megaton') }}</span>
                         @endif
                     </li>
                 </ul>
+
+                <form action="{{ route('shopping_cart.add', ['id' => $data['bomb']->getId()]) }}"
+                    method="POST">
+                    @csrf
+                    <button
+                        class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        {{ __('shopping_cart.add') }}</button>
+                </form>
 
                 <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                 <h3 class="mb-4 text-3xl font-bold dark:text-white">{{ __('app.reviews') }}</h3>

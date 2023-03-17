@@ -37,7 +37,7 @@
                         </svg>
                         <span
                             class="inline-flex items-center justify-center w-4 h-4 ml-1 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full">
-                            2
+                            {{ count(session()->get('shopping_cart')) }}
                         </span>
                     </a>
 
