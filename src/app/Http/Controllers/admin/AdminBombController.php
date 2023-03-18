@@ -29,18 +29,14 @@ class AdminBombController extends Controller
         return view('admin.bombs.index')->with('data', $data);
     }
 
-    public function show(string $id): View|RedirectResponse
+    public function show(string $id): View
     {
-        if (filter_var($id, FILTER_VALIDATE_INT) == true) {
-            $bomb = Bomb::findOrFail($id);
+        $bomb = Bomb::findOrFail($id);
 
-            $data = [];
-            $data['bomb'] = $bomb;
+        $data = [];
+        $data['bomb'] = $bomb;
 
-            return view('admin.bombs.show')->with('data', $data);
-        }
-
-        return redirect()->route('admin.home.index');
+        return view('admin.bombs.show')->with('data', $data);
     }
 
     public function create(): View
@@ -67,13 +63,40 @@ class AdminBombController extends Controller
             'image' => $image_url,
         ]);
 
-        return back()->withSuccess(__('bomb.successfully'));
+        return back()->withSuccess(__('bomb.created_successfully'));
     }
 
-    public function destroy(Request $request): View|RedirectResponse
+    public function update(Request $request): View
+    {
+        $id = $request['id'];
+        $bomb = Bomb::findOrFail($id);
+
+        $data = [];
+        $data['bomb'] = $bomb;
+
+        return view('admin.bombs.update')->with('data', $data);
+    }
+
+    public function saveUpdate(Request $request): RedirectResponse
+    {
+        Bomb::validate($request);
+        Bomb::where('id', $request['id'])->update($request->only([
+            'name',
+            'type',
+            'price',
+            'location_country',
+            'manufacturing_country',
+            'stock',
+            'destruction_power'])
+        );
+
+        return back()->withSuccess(__('bomb.updated_successfully'));
+    }
+
+    public function destroy(Request $request): RedirectResponse
     {
         Bomb::destroy($request->only(['id']));
 
-        return redirect()->route('admin.bombs.index');
+        return redirect()->back();
     }
 }

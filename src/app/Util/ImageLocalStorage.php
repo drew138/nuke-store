@@ -23,6 +23,6 @@ class ImageLocalStorage implements ImageStorage
             return 'storage/'.$image_url;
         }
 
-        return null;
+        return '';
     }
 }

@@ -190,7 +190,7 @@ class Bomb extends Model
             'location_country' => 'required|string',
             'manufacturing_country' => 'required|string',
             'stock' => 'required|gte:0',
-            'image' => 'required|image',
+            'image' => 'image',
             'destruction_power' => 'required|gte:0',
         ]);
     }

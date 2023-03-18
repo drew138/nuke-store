@@ -24,14 +24,19 @@ Auth::routes();
 
 // admin routes
 Route::middleware('admin')->group(function () {
-    // Bombs Controller routes
+    // Home Controller routes
     Route::get('/admin', 'App\Http\Controllers\admin\AdminHomeController@index')->name('admin.home.index');
+
+    // Bombs Controller routes
     Route::get('/admin/bombs/', 'App\Http\Controllers\admin\AdminBombController@index')->name('admin.bombs.index');
     Route::post('/admin/bombs/', 'App\Http\Controllers\admin\AdminBombController@search')->name('admin.bombs.search');
     Route::get('/admin/bombs/create', 'App\Http\Controllers\admin\AdminBombController@create')->name('admin.bombs.create');
     Route::post('/admin/bombs/create', 'App\Http\Controllers\admin\AdminBombController@save')->name('admin.bombs.save');
     Route::get('/admin/bombs/{id}', 'App\Http\Controllers\admin\AdminBombController@show')->name('admin.bombs.show');
     Route::delete('/admin/bombs/{id}', 'App\Http\Controllers\admin\AdminBombController@destroy')->name('admin.bombs.destroy');
+    Route::get('/admin/bombs/update/{id}', 'App\Http\Controllers\admin\AdminBombController@update')->name('admin.bombs.update');
+    Route::post('/admin/bombs/update', 'App\Http\Controllers\admin\AdminBombController@saveUpdate')->name('admin.bombs.save_update');
+
     // Reviews Controller routes
     Route::get('admin/reviews', 'App\Http\Controllers\admin\AdminReviewController@index')->name('admin.reviews.index');
     Route::get('admin/reviews/create', 'App\Http\Controllers\admin\AdminReviewController@create')->name('admin.reviews.create');

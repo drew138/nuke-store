@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Interfaces\ImageStorage;
 use App\Models\Bomb;
+use App\Models\Review;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -19,18 +20,16 @@ class BombController extends Controller
         return view('user.bombs.index')->with('data', $data);
     }
 
-    public function show(string $id): View|RedirectResponse
+    public function show(string $id): View
     {
-        if (filter_var($id, FILTER_VALIDATE_INT) == true) {
-            $bomb = Bomb::findOrFail($id);
+        $bomb = Bomb::findOrFail($id);
+        $bomb_rating = Review::where('bomb_id', '=', $id)->avg('rating');
 
-            $data = [];
-            $data['bomb'] = $bomb;
+        $data = [];
+        $data['bomb'] = $bomb;
+        $data['bomb_rating'] = $bomb_rating;
 
-            return view('user.bombs.show')->with('data', $data);
-        }
-
-        return redirect()->route('user.home.index');
+        return view('user.bombs.show')->with('data', $data);
     }
 
     public function create(): View
