@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="{{ asset('/favicon.ico') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css"  rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
     @yield('import')
@@ -96,6 +97,41 @@
                                 clip-rule="evenodd"></path>
                         </svg>
                     </button>
+                </div>
+                <div class="flex md:order-2">
+                    <ul
+                        class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg
+						bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium
+						md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-800
+						dark:border-gray-700">
+                    @guest
+                    <li>
+                    <a class="block py-2 pl-3 pr-4 text-gray-700 rounded
+							hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0
+							md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700
+							dark:hover:text-white md:dark:hover:bg-transparent
+							dark:border-gray-700" href="{{ route('login') }}">{{__('auth.login')}}</a>
+                    </li>
+                    <li>
+                    <a class="block py-2 pl-3 pr-4 text-gray-700 rounded
+							hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0
+							md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700
+							dark:hover:text-white md:dark:hover:bg-transparent
+							dark:border-gray-700" href="{{ route('register') }}">{{__('auth.register')}}</a>
+                    </li>
+                    @else
+                    <li>
+                    <form id="logout" action="{{ route('logout') }}" method="POST">
+                    <a role="button" class="block py-2 pl-3 pr-4 text-gray-700 rounded
+							hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0
+							md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700
+							dark:hover:text-white md:dark:hover:bg-transparent
+							dark:border-gray-700" onclick="document.getElementById('logout').submit();">{{__('auth.logout')}}</a>
+                    @csrf
+                    </form>
+                    </li>
+                    @endguest
+                    </ul>
                 </div>
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
                     <form class="relative mt-3 md:hidden">
