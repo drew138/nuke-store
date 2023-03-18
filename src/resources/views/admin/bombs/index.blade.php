@@ -62,7 +62,7 @@
                                             class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {{ $bomb->getId() }}</th>
                                         <td class="px-4 py-3">
-                                            <img class="w-10 h-10 object-cover rounded"
+                                            <img class="w-24 h-24 object-cover rounded"
                                                 src="{{ URL::asset($bomb->getImage()) }}">
                                         </td>
                                         <th scope="row"
@@ -76,40 +76,28 @@
                                         <td class="px-4 py-3">{{ $bomb->getStock() }}</td>
                                         <td class="px-4 py-3">{{ $bomb->getDestructionPower() }} Mt</td>
                                         <td class="px-4 py-3 justify-end">
-                                            <button id="apple-imac-27-dropdown-button"
-                                                data-dropdown-toggle="apple-imac-27-dropdown"
-                                                class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
-                                                type="button">
-                                                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
-                                                    viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                                </svg>
-                                            </button>
-                                            <div id="apple-imac-27-dropdown"
-                                                class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                                                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                                                    aria-labelledby="apple-imac-27-dropdown-button">
-                                                    <li>
-                                                        <a href="#"
-                                                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"
-                                                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
-                                                    </li>
-                                                    <li>
-                                                        <form
-                                                            action="{{ route('admin.bombs.destroy', ['id' => $bomb->getId()]) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button
-                                                                class="w-full block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('bomb.delete_bomb') }}</button>
-                                                        </form>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            
+                                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                                aria-labelledby="apple-imac-27-dropdown-button">
+                                                <li>
+                                                    <a href="#"
+                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ route('admin.bombs.update', ['id' => $bomb->getId()]) }}"
+                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('bomb.update_bomb') }}</a>
+                                                </li>
+                                                <li>
+                                                    <form
+                                                        action="{{ route('admin.bombs.destroy', ['id' => $bomb->getId()]) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button
+                                                            class="text-left w-full block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('bomb.delete_bomb') }}</button>
+                                                    </form>
+                                                </li>
+                                            </ul>
                                         </td>
                                     </tr>
                                 @endforeach

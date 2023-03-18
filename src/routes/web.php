@@ -30,6 +30,9 @@ Route::get('/admin/bombs/create', 'App\Http\Controllers\admin\AdminBombControlle
 Route::post('/admin/bombs/create', 'App\Http\Controllers\admin\AdminBombController@save')->name('admin.bombs.save');
 Route::get('/admin/bombs/{id}', 'App\Http\Controllers\admin\AdminBombController@show')->name('admin.bombs.show');
 Route::delete('/admin/bombs/', 'App\Http\Controllers\admin\AdminBombController@destroy')->name('admin.bombs.destroy');
+Route::get('/admin/bombs/update/{id}', 'App\Http\Controllers\admin\AdminBombController@update')->name('admin.bombs.update');
+Route::post('/admin/bombs/update', 'App\Http\Controllers\admin\AdminBombController@saveUpdate')->name('admin.bombs.save_update');
+
 // user routes
 Route::get('/bombs', 'App\Http\Controllers\user\BombController@index')->name('bombs.index');
 Route::post('/bombs', 'App\Http\Controllers\user\BombController@search')->name('bombs.search');

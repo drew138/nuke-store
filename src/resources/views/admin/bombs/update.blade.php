@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', __('bomb.create_bomb') . ' - ' . __('app.app_name'))
+@section('title', __('bomb.update_bomb') . ' - ' . __('app.app_name'))
 @section('content')
     <div class="w-full p-4 flex flex-col justify-center items-center">
         @if (session('success'))
@@ -42,16 +42,17 @@
         <div
             class="w-full max-w-2xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
 
-            <form class="space-y-6" method="POST" action="{{ route('admin.bombs.save') }}" enctype="multipart/form-data">
+            <form class="space-y-6" method="POST" action="{{ route('admin.bombs.save_update') }}" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="id" value="{{ $data['bomb']->getId() }}">
                 <h5 class="text-xl font-medium text-gray-900 dark:text-white">
-                    {{ __('bomb.create_bomb') }}</h5>
+                    {{ __('bomb.update_bomb') }}</h5>
 
                 <div>
                     <label for="name"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('bomb.enter_name') }}</label>
                     <input type="text" name="name" id="name"
-                        placeholder="{{ __('bomb.enter_name_placeholder') }}" value="{{ old('name') }}"
+                        placeholder="{{ __('bomb.enter_name_placeholder') }}" value="{{ $data['bomb']->getName() }}"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
                 </div>
                 <div>
@@ -59,9 +60,14 @@
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('bomb.enter_type') }}</label>
                     <select id="type" name="type"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
-                        <option disabled selected value>{{ __('bomb.enter_type_placeholder') }}</option>
+                        <option disabled value>{{ __('bomb.enter_type_placeholder') }}</option>
                         @foreach (BombTypeEnum::getValues() as $value)
                             <option value="{{ $value }}">{{ __('bomb.' . $value) }}</option>
+                            @if ($value == $data['bomb']->getType())
+                                <option selected value="{{ $value }}">{{ __('bomb.' . $value) }}</option>
+                            @else
+                                <option value="{{ $value }}">{{ __('bomb.' . $value) }}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
@@ -69,7 +75,7 @@
                     <label for="price"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('bomb.enter_price') }}</label>
                     <input type="number" name="price" id="price"
-                        placeholder="{{ __('bomb.enter_price_placeholder') }}" value="{{ old('price') }}"
+                        placeholder="{{ __('bomb.enter_price_placeholder') }}" value="{{ $data['bomb']->getPrice() }}"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
                 </div>
                 <div>
@@ -80,7 +86,11 @@
                         <option disabled selected value>{{ __('bomb.enter_location_country_placeholder') }}
                         </option>
                         @foreach (CountriesEnum::getValues() as $value)
-                            <option value="{{ $value }}">{{ __('countries.' . $value) }}</option>
+                            @if ($value == $data['bomb']->getLocationCountry())
+                                <option selected value="{{ $value }}">{{ __('countries.' . $value) }}</option>
+                            @else
+                                <option value="{{ $value }}">{{ __('countries.' . $value) }}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
@@ -89,10 +99,14 @@
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('bomb.enter_manufacturing_country') }}</label>
                     <select id="manufacturing_country" name="manufacturing_country"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
-                        <option disabled selected value>{{ __('bomb.enter_manufacturing_country_placeholder') }}
+                        <option disabled value>{{ __('bomb.enter_manufacturing_country_placeholder') }}
                         </option>
                         @foreach (CountriesEnum::getValues() as $value)
-                            <option value="{{ $value }}">{{ __('countries.' . $value) }}</option>
+                            @if ($value == $data['bomb']->getManufacturingCountry())
+                                <option selected value="{{ $value }}">{{ __('countries.' . $value) }}</option>
+                            @else
+                                <option value="{{ $value }}">{{ __('countries.' . $value) }}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
@@ -100,31 +114,22 @@
                     <label for="stock"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('bomb.enter_stock') }}</label>
                     <input type="number" name="stock" id="stock"
-                        placeholder="{{ __('bomb.enter_stock_placeholder') }}" value="{{ old('stock') }}"
+                        placeholder="{{ __('bomb.enter_stock_placeholder') }}" value="{{ $data['bomb']->getStock() }}"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
                 </div>
-
-
-                <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                        for="image">{{ __('bomb.enter_image') }}</label>
-                    <input type="file" name="image" id="image" accept=".jpg,.jpeg,.bmp,.png,.gif"
-                        class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
-                </div>
-
 
                 <div>
                     <label for="destruction_power"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('bomb.enter_destruction_power') }}</label>
                     <input type="number" name="destruction_power" id="destruction_power"
                         placeholder="{{ __('bomb.enter_destruction_power_placeholder') }}"
-                        value="{{ old('destruction_power') }}"
+                        value="{{ $data['bomb']->getDestructionPower() }}"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
                 </div>
 
                 <button type="submit"
                     class="w-full text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    {{ __('bomb.create_bomb') }}</button>
+                    {{ __('bomb.update_bomb') }}</button>
             </form>
         </div>
     </div>
