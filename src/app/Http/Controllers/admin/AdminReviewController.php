@@ -27,7 +27,7 @@ class AdminReviewController extends Controller
 
     public function save(Request $request): RedirectResponse
     {
-        Review::validateRequest($request);
+        Review::validate($request);
         $creationData = $request->only(['title', 'rating', 'image', 'description', 'is_verified']);
         Review::create($creationData);
 
