@@ -3,8 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use COM;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
@@ -122,15 +125,15 @@ class User extends Authenticatable
         $this->attributes['balance'] = $balance;
     }
 
-    public function bombUsers(): HasMany
-    {
-        return $this->hasMany(BombUser::class);
-    }
-
-    public function getBombUsers(): Collection
-    {
-        return $this->bombUsers;
-    }
+    // public function bombUsers(): HasMany
+    // {
+    //     return $this->hasMany(BombUser::class);
+    // }
+    //
+    // public function getBombUsers(): Collection
+    // {
+    //     return $this->bombUsers;
+    // }
 
     public function setBombUsers(Collection $bombUsers): void
     {
@@ -150,6 +153,21 @@ class User extends Authenticatable
     public function setOrders(Collection $orders): void
     {
         $this->orders = $orders;
+    }
+
+    public function bombs(): BelongsToMany
+    {
+        return $this->belongsToMany(Bomb::class, 'bomb_users')->withPivot('amount');
+    }
+
+    public function getBombs(): BelongsToMany
+    {
+        return $this->bombs();
+    }
+
+    public function addBomb(int $bombId, int $amount): void
+    {
+        $this->getBombs()->attach($bombId, ['amount' => $amount]);
     }
 
     public function reviews(): HasMany
@@ -175,5 +193,30 @@ class User extends Authenticatable
     public function getUpdatedAt()
     {
         return $this->attributes['updated_at'];
+    }
+
+    public function getTotalMegatons(): int
+    {
+        $total = 0;
+        foreach ($this->bombs as $bomb) {
+            $amount = $bomb->pivot->amount;
+            $total += $amount * $bomb->getDestructionPower();
+        }
+        return $total;
+    }
+
+    public static function getTotalMegatonsByCountry(): array
+    {
+        $data = [];
+        $users = User::all();
+        foreach ($users as $user) {
+            $country = $user->getCountry();
+            if (array_key_exists($country, $data)) {
+                $data[$country] += $user->getTotalMegatons();
+            } else {
+                $data[$country] = $user->getTotalMegatons();
+            }
+        }
+        return $data;
     }
 }
