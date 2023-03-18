@@ -20,6 +20,7 @@ Route::get('/', 'App\Http\Controllers\user\HomeController@index')->name('home.in
 // Language Controller routes
 Route::get('/language', 'App\Http\Controllers\LanguageController@locale')->name('language.locale');
 
+// Authentication Controllers routes
 Auth::routes();
 
 // admin routes
@@ -49,6 +50,14 @@ Route::middleware('admin')->group(function () {
     Route::post('admin/orders/create', 'App\Http\Controllers\admin\AdminOrderController@save')->name('admin.orders.save');
     Route::get('admin/orders/{id}', 'App\Http\Controllers\admin\AdminOrderController@show')->name('admin.orders.show');
     Route::delete('admin/orders/{id}', 'App\Http\Controllers\admin\AdminOrderController@destroy')->name('admin.orders.destroy');
+
+    // Users Controller routes
+    Route::get('admin/users', 'App\Http\Controllers\admin\AdminUserController@index')->name('admin.users.index');
+    Route::get('/admin/users/create', 'App\Http\Controllers\admin\AdminUserController@create')->name('admin.users.create');
+    Route::post('/admin/users/create', 'App\Http\Controllers\admin\AdminUserController@save')->name('admin.users.save');
+    Route::delete('/admin/users/{id}', 'App\Http\Controllers\admin\AdminUserController@destroy')->name('admin.users.destroy');
+    Route::get('/admin/users/update/{id}', 'App\Http\Controllers\admin\AdminUserController@update')->name('admin.users.update');
+    Route::post('/admin/users/update', 'App\Http\Controllers\admin\AdminUserController@saveUpdate')->name('admin.users.save_update');
 });
 
 Route::middleware('auth')->group(function () {

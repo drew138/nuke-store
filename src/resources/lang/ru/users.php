@@ -1,8 +1,14 @@
 <?php
 
 return [
-    'login' => 'Вход',
-    'register' => 'Регистрация',
+    'id' => 'ID пользователя',
+    'balance' => 'Баланс',
+    'balance_placeholder' => '$14000 USD',
+    'role' => 'Роль',
+    'role_placeholder' => 'Выберите роль',
+    'profile_picture' => 'Изображение профиля',
+    'login' => 'Войти',
+    'register' => 'Зарегистрироваться',
     'email' => 'Адрес электронной почты',
     'email_placeholder' => 'nicolasmaduro@dictator.com',
     'name' => 'Имя',
@@ -14,4 +20,13 @@ return [
     'country_placeholder' => 'Выберите страну',
     'dictator_of' => 'Диктатор',
     'user_bombs' => ' бомб(ы)',
+    'add_user' => 'Добавить пользователя',
+    'show_user' => 'Показать пользователя',
+    'update_user' => 'Обновить пользователя',
+    'delete_user' => 'Удалить пользователя',
+    'create_user' => 'Создать пользователя',
+    'admin' => 'Администратор',
+    'client' => 'Клиент',
+    'created_successfully' => 'Пользователь успешно создан!',
+    'updated_successfully' => 'Пользователь успешно обновлен!',
 ];
