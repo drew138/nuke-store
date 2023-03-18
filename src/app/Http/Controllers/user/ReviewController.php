@@ -13,7 +13,7 @@ class ReviewController extends Controller
     public function index(): View
     {
         $data = [];
-        $data['reviews'] = Review::all();
+        $data['reviews'] = Review::with('user')->with('bomb')->get();
 
         return view('user.reviews.index')->with('data', $data);
     }
