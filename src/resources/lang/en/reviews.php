@@ -23,7 +23,7 @@ return [
     'id' => 'Review ID',
     'user' => 'User',
     'bomb' => 'Bomb',
-    'add_review' => 'Add review', 
+    'add_review' => 'Add review',
     'yes' => 'Yes',
     'no' => 'No',
     'edit_review' => 'Edit review',

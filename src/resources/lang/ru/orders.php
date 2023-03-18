@@ -25,5 +25,5 @@ return [
     'no' => 'Нет',
     'enter_total' => 'Введите итоговую сумму',
     'enter_total_placeholder' => '$256000 USD',
-    'created_successfully' => 'Заказ успешно создан!'
+    'created_successfully' => 'Заказ успешно создан!',
 ];
