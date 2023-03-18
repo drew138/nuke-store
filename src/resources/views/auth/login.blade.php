@@ -1,60 +1,80 @@
 @extends('layouts.app')
-
+@section('title', __('auth.login') . ' - ' . __('app.app_name'))
 @section('content')
-<section class="bg-gray-50 dark:bg-gray-900">
-  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-      <a href="{{ route('home.index') }}" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-        
-            <img src="{{ asset('/images/app_logo_white.png') }}" class="h-6 mr-3
-						sm:h-9" alt="Nukestore Logo" />
-          {{__('app.app_name')}}
-      </a>
-      <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-          <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                {{ __('auth.login') }}
-              </h1>
-              <form class="space-y-4 md:space-y-6" method="POST" action="{{ route('login') }}">
-                  @csrf
-                  <div>
-                      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('auth.email') }}</label>
-                      <input type="email" name="email" id="email" class="@error('email') is-invalid @enderror bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                      @error('email')
-                          <br/>
-                          <span class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-600 dark:text-red-400" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
-                  </div>
-                  <div>
-                      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('auth.password') }}</label>
-                      <input type="password" name="password" id="password" placeholder="••••••••" class="@error('password') is-invalid @enderror bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required autocomplete="current-password">
-                      @error('password')
-                          <br/>
-                          <span class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-600 dark:text-red-400" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
-                  </div>
-                  <div class="flex items-center justify-between">
-                      <div class="flex items-start">
-                          <div class="flex items-center h-5">
-                            <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800">
-                          </div>
-                          <div class="ml-3 text-sm">
-                            <label for="remember" class="text-gray-500 dark:text-gray-300" value="{{ old('remember') ? 'checked' : '' }}">{{ __('auth.remember_me') }}</label>
-                          </div>
-                      </div>
-                  </div>
-                  <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('auth.login') }}</button>
-                  
-                  <a href="{{ route('register') }}" class="text-blue-700 hover:underline dark:text-blue-500">
-                    {{ __('auth.sign_up') }}
-                  </a>
-                  
-              </form>
-          </div>
-      </div>
-  </div>
-</section>
+    <div class="w-full h-[calc(100vh-140px)] bg-[url('/images/home_background.jpg')] bg-center bg-cover">
+        <div class="w-full h-full flex bg-gradient-to-r from-[#0f0c29]/80 to-[#24243e]/80 mb-[100px]">
+            <div class="p-4 w-full flex items-center justify-center">
+                <div class="w-full mb-[100px] flex flex-col justify-center items-center">
+                    <h1
+                        class="mb-8 text-4xl text-center font-extrabold text-gray-900 dark:text-white md:text-4xl lg:text-6xl">
+                        <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r to-blue-600 from-sky-400">{{ __('auth.login') }}</span>
+                    </h1>
+                    <div
+                        class="backdrop-blur-sm w-full max-w-2xl p-4 mb-4 bg-white/50 border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800/50 dark:border-gray-700">
+                        <form class="space-y-6" method="POST" action="{{ route('login') }}" enctype="multipart/form-data">
+                            @csrf
+                            <div>
+                                <label for="email"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('auth.email') }}</label>
+                                <input type="email" name="email" id="email"
+                                    placeholder="{{ __('users.email_placeholder') }}" value="{{ old('email') }}"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                            </div>
+
+                            <div>
+                                <label for="password"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('auth.password') }}</label>
+                                <input type="password" name="password" id="password"
+                                    placeholder="{{ __('users.password_placeholder') }}" value="{{ old('password') }}"
+                                    class="@error('password') is-invalid @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                    required autocomplete="current-password">
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-start">
+                                    <div class="flex items-center h-5">
+                                        <input id="remember" aria-describedby="remember" type="checkbox"
+                                            class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800">
+                                    </div>
+                                    <div class="ml-3 text-sm">
+                                        <label for="remember" class="text-gray-500 dark:text-gray-300"
+                                            value="{{ old('remember') ? 'checked' : '' }}">{{ __('auth.remember_me') }}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit"
+                                class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                {{ __('auth.login') }}</button>
+
+                                <a href="{{ route('register') }}" class="ml-4 text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-blue-800">
+                                    {{ __('auth.sign_up') }}
+                                </a>
+                        </form>
+                    </div>
+
+                    @if ($errors->any())
+                        <div class="backdrop-blur-sm w-full max-w-2xl bg-white/50 border border-gray-200 rounded-lg shadow flex p-4 text-sm text-red-800 rounded-lg dark:bg-gray-800/50 dark:border-gray-700 dark:text-red-400"
+                            role="alert">
+                            <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor"
+                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 000-1-1H9z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <div>
+                                <span class="font-medium">{{ __('app.errors') }}</span>
+                                <ul class="mt-1.5 ml-4 list-disc list-inside">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
