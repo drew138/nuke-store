@@ -114,14 +114,12 @@
                         </svg>
                     </button>
                     <ul id="dropdown-example" class="hidden py-2 space-y-2">
-                        <li>
-                            <a href="{{ route('language.locale', ['locale' => 'en']) }}"
-                                class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ __('app.english') }}</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('language.locale', ['locale' => 'ru']) }}"
-                                class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ __('app.russian') }}</a>
-                        </li>
+                        @foreach (LanguageEnum::getValues() as $value)
+                            <li>
+                                <a href="{{ route('language.locale', ['locale' => $value]) }}"
+                                    class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ __('app.' . $value) }}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </li>
             </ul>
