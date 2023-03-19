@@ -64,6 +64,7 @@
                     @csrf
                     <div
                         class="w-full my-4 border p-4 border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+                        <input type="hidden" name="bomb_id" value="{{ $data['bomb']->getId() }}">
                         <h3 class="mb-4 text-xl font-bold text-center dark:text-white">{{ __('reviews.write_review') }}</h3>
                         <div class="px-4 py-2 mb-4 bg-white rounded-lg dark:bg-gray-800">
                             <input type="text" id="title" name="title"
@@ -92,7 +93,6 @@
                                 <option disabled selected value>{{ __('reviews.enter_rating_placeholder') }}</option>
                                 @foreach (range(1, 5) as $number)
                                     <option value="{{ $number }}">{{ $number }}</option>
-                                    
                                 @endforeach
                             </select>
                         </div>
@@ -192,7 +192,7 @@
                     @foreach ($data['bomb']->getReviews() as $review)
                         <article>
                             <div class="flex items-center mb-4 space-x-4">
-                                <img class="w-10 h-10 rounded-full" src="https://www.lasillavacia.com/media/ivan_duque_presidencia-qyq.jpg" alt="">
+                                <img class="w-10 h-10 rounded-full object-cover" src="{{ URL::asset($review->getUser()->getProfilePicture()) }}" alt="">
                                 <div class="space-y-1 font-medium dark:text-white">
                                     <p>{{ $review->getUser()->getName() }}<p class="block text-sm text-gray-500 dark:text-gray-400">{{ __('users.dictator_of') . ' ' .  __('countries.' . $review->getUser()->getCountry())}}</p></p>
                                 </div>
@@ -209,6 +209,9 @@
                                 <h3 class="ml-2 text-sm font-semibold text-gray-900 dark:text-white">{{ $review->getTitle() }}</h3>
                             </div>
                             <p class="mb-2 font-light text-gray-500 dark:text-gray-400">{{ $review->getDescription() }}</p>
+                            @if ($review->getImage() != '')
+                                <img class="w-full h-full mb-5 object-cover rounded-lg" src="{{ URL::asset($review->getImage()) }}">
+                            @endif
                             <a href="#" class="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Read more</a>
                             <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                         </article>

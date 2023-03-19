@@ -226,6 +226,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'BombTypeEnum' => App\Enums\BombTypeEnum::class,
         'CountriesEnum' => App\Enums\CountriesEnum::class,
+        'UserRoleEnum' => App\Enums\UserRoleEnum::class,
+        'LanguageEnum' => App\Enums\LanguageEnum::class,
     ])->toArray(),
 
 ];

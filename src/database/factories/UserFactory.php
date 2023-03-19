@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\UserRoleEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -23,8 +24,8 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'role' => 'user',
-            'country' => fake()->country(),
+            'role' => UserRoleEnum::CLIENT->value,
+            'country' => fake()->countryCode(),
             'balance' => fake()->numberBetween(0, 1000),
             'profile_picture' => $this->faker->userImage,
         ];

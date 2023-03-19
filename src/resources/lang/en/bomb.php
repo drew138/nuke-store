@@ -7,6 +7,7 @@ return [
     'type' => 'Type',
     'price' => 'Price',
     'bombs' => 'Bombs',
+    'bomb' => 'Bomb',
     'enter_name' => 'Enter name',
     'enter_name_placeholder' => 'Destructor of worlds',
     'enter_type' => 'Enter type',

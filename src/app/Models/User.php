@@ -3,9 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Laravel\Sanctum\HasApiTokens;
@@ -33,6 +37,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role',
         'password',
         'balance',
         'country',
@@ -56,6 +61,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function validate(Request $request): void
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'role' => 'required|string',
+            'balance' => 'required|gte:0',
+            'country' => 'required|string',
+        ]);
+    }
+
+    public static function validateAndPassword(Request $request): void
+    {
+        $request->validate([
+            'password' => 'required|string|min:8',
+            'email' => 'required|email',
+        ]);
+    }
 
     public function getId(): int
     {
@@ -92,6 +115,16 @@ class User extends Authenticatable
         $this->attributes['password'] = $password;
     }
 
+    public function getProfilePicture(): string
+    {
+        return $this->attributes['profile_picture'];
+    }
+
+    public function setProfilePicture(string $profile_picture): void
+    {
+        $this->attributes['profile_picture'] = $profile_picture;
+    }
+
     public function getRole(): string
     {
         return $this->attributes['role'];
@@ -122,15 +155,15 @@ class User extends Authenticatable
         $this->attributes['balance'] = $balance;
     }
 
-    public function bombUsers(): HasMany
-    {
-        return $this->hasMany(BombUser::class);
-    }
-
-    public function getBombUsers(): Collection
-    {
-        return $this->bombUsers;
-    }
+    // public function bombUsers(): HasMany
+    // {
+    //     return $this->hasMany(BombUser::class);
+    // }
+    //
+    // public function getBombUsers(): Collection
+    // {
+    //     return $this->bombUsers;
+    // }
 
     public function setBombUsers(Collection $bombUsers): void
     {
@@ -150,6 +183,21 @@ class User extends Authenticatable
     public function setOrders(Collection $orders): void
     {
         $this->orders = $orders;
+    }
+
+    public function bombs(): BelongsToMany
+    {
+        return $this->belongsToMany(Bomb::class, 'bomb_users')->withPivot('amount');
+    }
+
+    public function getBombs(): Collection
+    {
+        return $this->bombs;
+    }
+
+    public function addBomb(int $bombId, int $amount): void
+    {
+        $this->getBombs()->attach($bombId, ['amount' => $amount]);
     }
 
     public function reviews(): HasMany
@@ -175,5 +223,32 @@ class User extends Authenticatable
     public function getUpdatedAt()
     {
         return $this->attributes['updated_at'];
+    }
+
+    public function getTotalMegatons(): int
+    {
+        $total = 0;
+        foreach ($this->bombs as $bomb) {
+            $amount = $bomb->pivot->amount;
+            $total += $amount * $bomb->getDestructionPower();
+        }
+
+        return $total;
+    }
+
+    public static function getTotalMegatonsByCountry(): array
+    {
+        $data = [];
+        $users = User::all();
+        foreach ($users as $user) {
+            $country = $user->getCountry();
+            if (array_key_exists($country, $data)) {
+                $data[$country] += $user->getTotalMegatons();
+            } else {
+                $data[$country] = $user->getTotalMegatons();
+            }
+        }
+
+        return $data;
     }
 }

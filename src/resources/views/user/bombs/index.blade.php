@@ -20,7 +20,7 @@
                             <div class="flex items-center justify-between">
                                 <span
                                     class="text-2xl font-bold text-gray-900 dark:text-white">{{ "$" . $bomb->getPrice() }}</span>
-                                <form action="{{ route('shopping_cart.add', ['id' => $bomb->getId()]) }}"
+                                <form action="{{ route('shopping_cart.add') }}"
                                     method="POST">
                                     @csrf
                                     <button
