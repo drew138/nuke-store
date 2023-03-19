@@ -52,14 +52,16 @@ class AdminReviewController extends Controller
 
     public function verify(Request $request): RedirectResponse
     {
-        Review::where('id', '=', $request['id'])->update(['is_verified' => true]);
+        $review = Review::findOrFail($request['id']);
+        $review->verify();
 
         return back();
     }
 
     public function unverify(Request $request): RedirectResponse
     {
-        Review::where('id', '=', $request['id'])->update(['is_verified' => false]);
+        $review = Review::findOrFail($request['id']);
+        $review->unverify();
 
         return back();
     }
