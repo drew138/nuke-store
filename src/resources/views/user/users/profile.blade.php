@@ -3,7 +3,7 @@
 @section('content')
     <div class="mx-auto max-w-6xl p-8 mb-24">
         <div
-            class="mx-auto w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+            class="flex justify-center items-center flex-col mx-auto w-full max-w-4xl p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
             <div class="flex flex-col items-center md:flex-row -mx-4 mx-auto">
                 <img class="rounded-full w-36 h-36 aspect-square object-cover "
                     src="{{ URL::asset($data['user']->getProfilePicture()) }}" alt="Extra large avatar">
@@ -52,6 +52,18 @@
                     </ul>
                 </div>
             </div>
+
+            @if ($data['user']->getId() != Auth::id())
+                <a href="{{ route('users.compare', ['id' => $data['user']->getId()]) }}"
+                    class="content-center text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3  text-center inline-flex items-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+
+                    <h4 class="p-2 text-xl font-bold my-4 dark:text-white">
+                        {{ __('users.compare') }}
+                    </h4>
+                 
+                </a>
+            @endif
+
             @if (count($data['user']->getBombs()) > 0)
                 <h4 class="p-2 text-2xl font-bold my-4 dark:text-white">
                     {{ $data['user']->getName() . __('users.user_bombs') }}

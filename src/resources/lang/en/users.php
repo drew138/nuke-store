@@ -30,4 +30,9 @@ return [
     'created_successfully' => 'User created succesfully!',
     'updated_successfully' => 'User updated succesfully!',
     'profile' => 'Profile',
+    'compare' => 'Compare your armament',
+    'vs' => 'VS',
+    'wins' => 'Wins',
+    'loses' => 'Loses',
+    'draw' => 'Draw',
 ];

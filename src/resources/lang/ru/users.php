@@ -19,7 +19,7 @@ return [
     'country' => 'Страна',
     'country_placeholder' => 'Выберите страну',
     'dictator_of' => 'Диктатор',
-    'user_bombs' => ' бомб(ы)',
+    'user_bombs' => "'s бомбы",
     'add_user' => 'Добавить пользователя',
     'show_user' => 'Показать пользователя',
     'update_user' => 'Обновить пользователя',
@@ -30,4 +30,9 @@ return [
     'created_successfully' => 'Пользователь успешно создан!',
     'updated_successfully' => 'Пользователь успешно обновлен!',
     'profile' => 'Профиль',
+    'compare' => 'Сравнить ваше вооружение',
+    'vs' => 'VS',
+    'wins' => 'Победы',
+    'loses' => 'Поражения',
+    'draw' => 'Ничья',
 ];

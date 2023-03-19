@@ -17,4 +17,14 @@ class UserController extends Controller
 
         return view('user.users.profile')->with('data', $data);
     }
+
+    public function compare(string $id): View
+    {
+        $user = User::with('bombs')->findOrFail($id);
+
+        $data = [];
+        $data['user'] = $user;       
+
+        return view('user.users.compare')->with('data', $data);
+    }
 }
