@@ -80,6 +80,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/cart', 'App\Http\Controllers\user\ShoppingCartController@index')->name('shopping_cart.index');
     Route::post('/cart', 'App\Http\Controllers\user\ShoppingCartController@add')->name('shopping_cart.add');
     Route::delete('/cart', 'App\Http\Controllers\user\ShoppingCartController@delete')->name('shopping_cart.delete');
-});
 
-Route::get('/map', 'App\Http\Controllers\user\MapController@index')->name('user.map.index');
+    // Users Controller routes
+    Route::get('/users/profile/{id}', 'App\Http\Controllers\user\UserController@profile')->name('users.profile');
+    Route::get('/users/compare/{id}', 'App\Http\Controllers\user\UserController@compare')->name('users.compare');
+});

@@ -4,10 +4,10 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use COM;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
@@ -190,9 +190,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Bomb::class, 'bomb_users')->withPivot('amount');
     }
 
-    public function getBombs(): BelongsToMany
+    public function getBombs(): Collection
     {
-        return $this->bombs();
+        return $this->bombs;
     }
 
     public function addBomb(int $bombId, int $amount): void
@@ -232,6 +232,7 @@ class User extends Authenticatable
             $amount = $bomb->pivot->amount;
             $total += $amount * $bomb->getDestructionPower();
         }
+
         return $total;
     }
 
@@ -247,6 +248,7 @@ class User extends Authenticatable
                 $data[$country] = $user->getTotalMegatons();
             }
         }
+
         return $data;
     }
 }

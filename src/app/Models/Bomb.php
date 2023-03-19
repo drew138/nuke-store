@@ -5,8 +5,8 @@ namespace App\Models;
 use App\Traits\HasClassicSetter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -147,9 +147,9 @@ class Bomb extends Model
         return $this->belongsToMany(Order::class, 'bomb_orders')->withPivot('amount');
     }
 
-    public function getOrders(): BelongsToMany
+    public function getOrders(): Collection
     {
-        return $this->orders();
+        return $this->orders;
     }
 
     // public function bombUsers(): HasMany
@@ -172,9 +172,9 @@ class Bomb extends Model
         return $this->belongsToMany(User::class, 'bomb_users')->withPivot('amount');
     }
 
-    public function getUsers(): BelongsToMany
+    public function getUsers(): Collection
     {
-        return $this->users();
+        return $this->users;
     }
 
     public function reviews(): HasMany
@@ -222,6 +222,6 @@ class Bomb extends Model
             return Bomb::all();
         }
 
-        return Bomb::where('name', 'LIKE', '%' . $name . '%')->get();
+        return Bomb::where('name', 'LIKE', '%'.$name.'%')->get();
     }
 }
