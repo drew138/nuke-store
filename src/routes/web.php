@@ -89,4 +89,7 @@ Route::middleware('auth')->group(function () {
     // Users Controller routes
     Route::get('/users/profile/{id}', 'App\Http\Controllers\user\UserController@profile')->name('users.profile');
     Route::get('/users/compare/{id}', 'App\Http\Controllers\user\UserController@compare')->name('users.compare');
+
+    // Map Controller route
+    Route::get('/map', 'App\Http\Controllers\user\MapController@index')->name('map.index');
 });
