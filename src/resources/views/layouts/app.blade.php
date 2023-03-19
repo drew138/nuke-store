@@ -126,16 +126,37 @@
                                     clip-rule="evenodd"></path>
                             </svg>
                         </button>
+           
+                        <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
+                            data-dropdown-placement="bottom-start" class="w-10 h-10 ml-4 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                            src="{{ URL::asset(Auth::user()->getProfilePicture()) }}">
 
-                        <form class="ml-2 my-auto" id="logout" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <a role="button"onclick="document.getElementById('logout').submit();"
-                                class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('auth.logout') }}</a>
-                        </form>
+                        <!-- Dropdown menu -->
+                        <div id="userDropdown"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                            <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                                <div>{{ Auth::user()->getName() }}</div>
+                                <div class="font-medium truncate">{{ Auth::user()->getEmail() }}</div>
+                            </div>
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                                <li>
+                                    <a href="{{ route('users.profile', ['id' => Auth::id()]) }}"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('users.profile') }}</a>
+                                </li>
+                                <li>
+                                    <form id="logout" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <a role="button"onclick="document.getElementById('logout').submit();"
+                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('auth.logout') }}</a>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 @endguest
 
-                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+                    id="navbar-search">
                     <form class="relative mt-3 md:hidden">
                         <div class="flex">
                             <div class="relative w-full">
