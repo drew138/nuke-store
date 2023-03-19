@@ -13,7 +13,7 @@ class AdminReviewController extends Controller
     public function index(): View
     {
         $data = [];
-        $data['reviews'] = Review::with('user')->with('bomb')->get();
+        $data['reviews'] = Review::with('user')->with('bomb')->orderBy('updated_at', 'DESC')->get();
 
         return view('admin.reviews.index')->with('data', $data);
     }
@@ -47,6 +47,20 @@ class AdminReviewController extends Controller
     {
         Review::destroy($id);
 
-        return redirect()->route('admin.reviews.index');
+        return back();
+    }
+
+    public function verify(Request $request): RedirectResponse
+    {
+        Review::where('id', '=', $request['id'])->update(['is_verified' => true]);
+
+        return back();
+    }
+
+    public function unverify(Request $request): RedirectResponse
+    {
+        Review::where('id', '=', $request['id'])->update(['is_verified' => false]);
+
+        return back();
     }
 }

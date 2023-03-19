@@ -22,8 +22,12 @@ class BombController extends Controller
 
     public function show(string $id): View
     {
-        $bomb = Bomb::with('reviews', 'reviews.user')->findOrFail($id);
-        $bomb_rating = Review::where('bomb_id', '=', $id)->avg('rating');
+        $bomb = Bomb::with(['reviews' => function($query){
+            // Getting all reviews that are verified and sorting with updated_at
+            $query->where('is_verified', '=',  true)->orderBy('updated_at', 'DESC');
+        },'reviews.user'])->findOrFail($id);
+
+        $bomb_rating = Review::where('bomb_id', '=', $id)->where('is_verified', '=',  true)->avg('rating');
 
         $data = [];
         $data['bomb'] = $bomb;

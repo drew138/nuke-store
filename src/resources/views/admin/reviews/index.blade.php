@@ -34,6 +34,7 @@
                                     <th scope="col" class="px-4 py-3">{{ __('reviews.user') }}</th>
                                     <th scope="col" class="px-4 py-3">{{ __('reviews.bomb') }}</th>
                                     <th scope="col" class="px-4 py-3"></th>
+                                    <th scope="col" class="px-4 py-3"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,35 +70,33 @@
                                         
                                         <td class="px-4 py-3">{{ $review->getUser()->getName() }}</td>
                                         <td class="px-4 py-3">{{ $review->getBomb()->getName() }}</td>
-                                        <td class="px-4 py-3 align-middle justify-end">
-                                            <button id="apple-imac-27-dropdown-button"
-                                                data-dropdown-toggle="apple-imac-27-dropdown"
-                                                class="inline-flex items-center  p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
-                                                type="button">
-                                                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
-                                                    viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                                </svg>
-                                            </button>
-                                            <div id="apple-imac-27-dropdown"
-                                                class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                                                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                                                    aria-labelledby="apple-imac-27-dropdown-button">
-                                                    <li>
-                                                        <a href="#"
-                                                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('reviews.show_review') }}</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"
-                                                            class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('reviews.edit_review') }}</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="py-1">
-                                                    <a href="#"
-                                                        class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">{{ __('reviews.delete_review') }}</a>
-                                                </div>
-                                            </div>
+                                        <td class="px-4 py-3">
+                                            @if ($review->getIsVerified())
+                                                <form action="{{ route('admin.reviews.unverify', ['id' => $review->getId()]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <button
+                                                    class="whitespace-nowrap w-full text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('reviews.unverify') }}</button>
+                                                </form>
+                                            @else
+                                                <form action="{{ route('admin.reviews.verify', ['id' => $review->getId()]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <button
+                                                    class="whitespace-nowrap w-full text-white bg-gradient-to-br from-green-600 to-green-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">{{ __('reviews.verify') }}</button>
+                                                </form>
+                                            @endif
+                                            <!--<a href=" route('admin.bombs.update', ['id' => $bomb->getId()]) "
+                                                class="whitespace-nowrap text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('reviews.edit_review') }}</a>-->
+                                        </td>
+                                        <td class="px-4">
+                                            <form action="{{ route('admin.reviews.destroy', ['id' => $review->getId()]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button
+                                                    class="whitespace-nowrap text-white bg-gradient-to-br from-red-600 to-red-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">{{ __('reviews.delete_review') }}</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

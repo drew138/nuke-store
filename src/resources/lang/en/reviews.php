@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'verify' => 'Verify',
+    'unverify' => 'Unverify',
     'review_list' => 'Reviews',
     'review_create' => 'Create Review',
     'title' => 'Title',

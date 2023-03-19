@@ -42,6 +42,8 @@ Route::middleware('admin')->group(function () {
     Route::get('admin/reviews', 'App\Http\Controllers\admin\AdminReviewController@index')->name('admin.reviews.index');
     Route::get('admin/reviews/create', 'App\Http\Controllers\admin\AdminReviewController@create')->name('admin.reviews.create');
     Route::post('admin/reviews/create', 'App\Http\Controllers\admin\AdminReviewController@save')->name('admin.reviews.save');
+    Route::post('admin/reviews/verify', 'App\Http\Controllers\admin\AdminReviewController@verify')->name('admin.reviews.verify');
+    Route::post('admin/reviews/unverify', 'App\Http\Controllers\admin\AdminReviewController@unverify')->name('admin.reviews.unverify');
     Route::delete('admin/reviews/{id}', 'App\Http\Controllers\admin\AdminReviewController@destroy')->name('admin.reviews.destroy');
     Route::get('admin/reviews/{id}', 'App\Http\Controllers\admin\AdminReviewController@show')->name('admin.reviews.show');
     // Orders Controller routes

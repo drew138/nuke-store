@@ -50,9 +50,8 @@
                                     <th scope="col" class="px-4 py-3">{{ __('bomb.price') }}</th>
                                     <th scope="col" class="px-4 py-3">{{ __('bomb.stocks') }}</th>
                                     <th scope="col" class="px-4 py-3">{{ __('bomb.destruction_power') }}</th>
-                                    <th scope="col" class="px-4 py-3">
-
-                                    </th>
+                                    <th scope="col" class="px-4 py-3"></th>
+                                    <th scope="col" class="px-4 py-3"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -62,7 +61,7 @@
                                             class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {{ $bomb->getId() }}</th>
                                         <td class="px-4 py-3">
-                                            <img class="w-24 h-24 object-cover rounded"
+                                            <img class="w-10 h-10 aspect-square object-cover rounded"
                                                 src="{{ URL::asset($bomb->getImage()) }}">
                                         </td>
                                         <th scope="row"
@@ -75,29 +74,18 @@
                                         <td class="px-4 py-3">${{ $bomb->getPrice() }}</td>
                                         <td class="px-4 py-3">{{ $bomb->getStock() }}</td>
                                         <td class="px-4 py-3">{{ $bomb->getDestructionPower() }} Mt</td>
-                                        <td class="px-4 py-3 justify-end">
-                                            
-                                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                                                aria-labelledby="apple-imac-27-dropdown-button">
-                                                <li>
-                                                    <a href="#"
-                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ route('admin.bombs.update', ['id' => $bomb->getId()]) }}"
-                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('bomb.update_bomb') }}</a>
-                                                </li>
-                                                <li>
-                                                    <form
-                                                        action="{{ route('admin.bombs.destroy', ['id' => $bomb->getId()]) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button
-                                                            class="text-left w-full block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('bomb.delete_bomb') }}</button>
-                                                    </form>
-                                                </li>
-                                            </ul>
+                                        <td class="px-4 py-3">
+                                            <a href="{{ route('admin.bombs.update', ['id' => $bomb->getId()]) }}"
+                                                class="whitespace-nowrap text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('bomb.update_bomb') }}</a>
+                                        </td>
+                                        <td class="px-4">
+                                            <form action="{{ route('admin.bombs.destroy', ['id' => $bomb->getId()]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button
+                                                    class="whitespace-nowrap text-white bg-gradient-to-br from-red-600 to-red-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">{{ __('bomb.delete_bomb') }}</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

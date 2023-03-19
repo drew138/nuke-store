@@ -34,6 +34,7 @@
                                     <th scope="col" class="px-4 py-3">{{ __('users.balance') }}</th>
                                     <th scope="col" class="px-4 py-3">{{ __('users.password') }}</th>
                                     <th scope="col" class="px-4 py-3"></th>
+                                    <th scope="col" class="px-4 py-3"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,7 +44,7 @@
                                             class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {{ $user->getId() }}</th>
                                         <td class="px-4 py-3">
-                                            <img class="w-24 h-24 object-cover rounded-full"
+                                            <img class="w-10 h-10 object-cover rounded-full"
                                                 src="{{ URL::asset($user->getProfilePicture()) }}">
                                         </td>
                                         <th scope="row"
@@ -54,29 +55,18 @@
                                         <td class="px-4 py-3">{{ __('countries.' . $user->getCountry()) }}</td>
                                         <td class="px-4 py-3">${{ $user->getBalance() }}</td>
                                         <td class="px-4 py-3">${{ Str::limit($user->getPassword(), 15) }}</td>
-                                        <td class="px-4 py-3 justify-end">
-                                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                                                aria-labelledby="apple-imac-27-dropdown-button">
-                                                <li>
-                                                    <a href="#"
-                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('users.show_user') }}</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ route('admin.users.update', ['id' => $user->getId()]) }}"
-                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('users.update_user') }}</a>
-                                                </li>
-
-                                                <li>
-                                                    <form
-                                                        action="{{ route('admin.users.destroy', ['id' => $user->getId()]) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button
-                                                            class="text-left w-full block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('users.delete_user') }}</button>
-                                                    </form>
-                                                </li>
-                                            </ul>
+                                        <td class="px-4 py-3">
+                                            <a href="{{ route('admin.users.update', ['id' => $user->getId()]) }}"
+                                                class="whitespace-nowrap text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('users.update_user') }}</a>
+                                        </td>
+                                        <td class="px-4">
+                                            <form action="{{ route('admin.users.destroy', ['id' => $user->getId()]) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button
+                                                    class="whitespace-nowrap text-white bg-gradient-to-br from-red-600 to-red-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">{{ __('users.delete_user') }}</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
