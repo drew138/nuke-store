@@ -190,7 +190,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Bomb::class, 'bomb_users')->withPivot('amount');
     }
 
-    public function getBombs(): EloquentCollection
+    public function getBombs(): Collection
     {
         return $this->bombs;
     }

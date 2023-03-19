@@ -97,9 +97,9 @@ class Order extends Model
         return $this->belongsToMany(Order::class, 'bomb_orders')->withPivot('amount');
     }
 
-    public function getBombs(): BelongsToMany
+    public function getBombs(): Collection
     {
-        return $this->users();
+        return $this->users;
     }
 
     public function setBombOrders(Collection $bombOrders): void
