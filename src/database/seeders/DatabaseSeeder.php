@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
                     'user_id' => $user->getId(),
                 ]);
                 // add user-bomb relations
-                $user->addBomb($bomb->getId(), rand(1, 100));
+                // $user->addBomb($bomb->getId(), rand(1, 100));
             }
         }
     }

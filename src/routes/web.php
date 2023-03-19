@@ -23,7 +23,7 @@ Route::get('/language', 'App\Http\Controllers\LanguageController@locale')->name(
 // Authentication Controllers routes
 Auth::routes();
 
-// admin routes
+// Admin routes
 Route::middleware('admin')->group(function () {
     // Home Controller routes
     Route::get('/admin', 'App\Http\Controllers\admin\AdminHomeController@index')->name('admin.home.index');
@@ -60,6 +60,7 @@ Route::middleware('admin')->group(function () {
     Route::post('/admin/users/update', 'App\Http\Controllers\admin\AdminUserController@saveUpdate')->name('admin.users.save_update');
 });
 
+// User routes
 Route::middleware('auth')->group(function () {
     // Bombs Controller routes
     Route::get('/bombs', 'App\Http\Controllers\user\BombController@index')->name('bombs.index');
@@ -78,7 +79,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/orders/{id}', 'App\Http\Controllers\user\OrderController@destroy')->name('orders.destroy');
     // Shopping Cart Controller routes
     Route::get('/cart', 'App\Http\Controllers\user\ShoppingCartController@index')->name('shopping_cart.index');
-    Route::post('/cart', 'App\Http\Controllers\user\ShoppingCartController@add')->name('shopping_cart.add');
+    Route::get('/confirm/{order_id}', 'App\Http\Controllers\user\ShoppingCartController@confirm')->name('shopping_cart.confirm');
+    Route::post('/cart/{id}', 'App\Http\Controllers\user\ShoppingCartController@add')->name('shopping_cart.add');
+    Route::post('/cart', 'App\Http\Controllers\user\ShoppingCartController@buy')->name('shopping_cart.buy');
     Route::delete('/cart', 'App\Http\Controllers\user\ShoppingCartController@delete')->name('shopping_cart.delete');
 });
 
