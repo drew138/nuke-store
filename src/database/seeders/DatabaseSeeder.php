@@ -15,14 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $bombs = User::factory(10)->create();
-        $users = Bomb::factory(10)->create();
+        $users = User::factory(10)->create();
+        $bombs = Bomb::factory(10)->create();
         foreach ($bombs as $bomb) {
             foreach ($users as $user) {
+                // add reviews
                 Review::factory()->create([
                     'bomb_id' => $bomb->getId(),
                     'user_id' => $user->getId(),
                 ]);
+                // add user-bomb relations
+                $user->addBomb($bomb->getId(), rand(1, 100));
             }
         }
     }

@@ -81,3 +81,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/cart', 'App\Http\Controllers\user\ShoppingCartController@add')->name('shopping_cart.add');
     Route::delete('/cart', 'App\Http\Controllers\user\ShoppingCartController@delete')->name('shopping_cart.delete');
 });
+
+Route::get('/map', 'App\Http\Controllers\user\MapController@index')->name('user.map.index');
