@@ -6,6 +6,7 @@ use App\Traits\HasClassicSetter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -126,34 +127,54 @@ class Bomb extends Model
         $this->attributes['destruction_power'] = $destruction_power;
     }
 
-    public function bombOrders(): HasMany
+    // public function bombOrders(): HasMany
+    // {
+    //     return $this->hasMany(BombOrder::class);
+    // }
+    //
+    // public function getBombOrders(): Collection
+    // {
+    //     return $this->bombOrders;
+    // }
+    //
+    // public function setBombOrders(Collection $bombOrders): void
+    // {
+    //     $this->bombOrders = $bombOrders;
+    // }
+
+    public function orders(): BelongsToMany
     {
-        return $this->hasMany(BombOrder::class);
+        return $this->belongsToMany(Order::class, 'bomb_orders')->withPivot('amount');
     }
 
-    public function getBombOrders(): Collection
+    public function getOrders(): BelongsToMany
     {
-        return $this->bombOrders;
+        return $this->orders();
     }
 
-    public function setBombOrders(Collection $bombOrders): void
+    // public function bombUsers(): HasMany
+    // {
+    //     return $this->hasMany(BombUser::class);
+    // }
+
+    // public function getBombUsers(): Collection
+    // {
+    //     return $this->bombUsers;
+    // }
+
+    // public function setBombUsers(Collection $bombUsers): void
+    // {
+    //     $this->bombUsers = $bombUsers;
+    // }
+
+    public function users(): BelongsToMany
     {
-        $this->bombOrders = $bombOrders;
+        return $this->belongsToMany(User::class, 'bomb_users')->withPivot('amount');
     }
 
-    public function bombUsers(): HasMany
+    public function getUsers(): BelongsToMany
     {
-        return $this->hasMany(BombUser::class);
-    }
-
-    public function getBombUsers(): Collection
-    {
-        return $this->bombUsers;
-    }
-
-    public function setBombUsers(Collection $bombUsers): void
-    {
-        $this->bombUsers = $bombUsers;
+        return $this->users();
     }
 
     public function reviews(): HasMany
@@ -201,6 +222,6 @@ class Bomb extends Model
             return Bomb::all();
         }
 
-        return Bomb::where('name', 'LIKE', '%'.$name.'%')->get();
+        return Bomb::where('name', 'LIKE', '%' . $name . '%')->get();
     }
 }

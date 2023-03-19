@@ -22,11 +22,12 @@ class BombController extends Controller
 
     public function show(string $id): View
     {
-        $bomb = Bomb::findOrFail($id);
+        $bomb = Bomb::with('reviews', 'reviews.user')->findOrFail($id);
         $bomb_rating = Review::where('bomb_id', '=', $id)->avg('rating');
 
         $data = [];
         $data['bomb'] = $bomb;
+
         $data['bomb_rating'] = $bomb_rating;
 
         return view('user.bombs.show')->with('data', $data);
