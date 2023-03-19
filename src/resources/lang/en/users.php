@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'id' => 'User ID',
+    'balance' => 'Balance',
+    'balance_placeholder' => '$14000 USD',
+    'role' => 'Role',
+    'role_placeholder' => 'Select a role',
+    'profile_picture' => 'Profile picture',
     'login' => 'Log in',
     'register' => 'Register',
     'email' => 'Email address',
@@ -14,4 +20,13 @@ return [
     'country_placeholder' => 'Select a country',
     'dictator_of' => 'Dictator of',
     'user_bombs' => "'s bombs",
+    'add_user' => 'Add user',
+    'show_user' => 'Show user',
+    'update_user' => 'Update user',
+    'delete_user' => 'Delete user',
+    'create_user' => 'Create user',
+    'admin' => 'Administrator',
+    'client' => 'Client',
+    'created_successfully' => 'User created succesfully!',
+    'updated_successfully' => 'User updated succesfully!',
 ];
