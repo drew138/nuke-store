@@ -29,4 +29,5 @@ return [
     'client' => 'Клиент',
     'created_successfully' => 'Пользователь успешно создан!',
     'updated_successfully' => 'Пользователь успешно обновлен!',
+    'profile' => 'Профиль',
 ];

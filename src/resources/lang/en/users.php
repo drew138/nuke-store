@@ -29,5 +29,5 @@ return [
     'client' => 'Client',
     'created_successfully' => 'User created succesfully!',
     'updated_successfully' => 'User updated succesfully!',
-    'profile' => 'Profile'
+    'profile' => 'Profile',
 ];

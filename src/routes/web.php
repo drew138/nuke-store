@@ -84,5 +84,3 @@ Route::middleware('auth')->group(function () {
     // Users Controller routes
     Route::get('/users/profile/{id}', 'App\Http\Controllers\user\UserController@profile')->name('users.profile');
 });
-
-Route::get('/map', 'App\Http\Controllers\user\MapController@index')->name('user.map.index');
