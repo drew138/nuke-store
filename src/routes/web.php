@@ -80,8 +80,8 @@ Route::middleware('auth')->group(function () {
     // Shopping Cart Controller routes
     Route::get('/cart', 'App\Http\Controllers\user\ShoppingCartController@index')->name('shopping_cart.index');
     Route::get('/confirm/{order_id}', 'App\Http\Controllers\user\ShoppingCartController@confirm')->name('shopping_cart.confirm');
-    Route::post('/cart/{id}', 'App\Http\Controllers\user\ShoppingCartController@add')->name('shopping_cart.add');
-    Route::post('/cart', 'App\Http\Controllers\user\ShoppingCartController@buy')->name('shopping_cart.buy');
+    Route::post('/cart', 'App\Http\Controllers\user\ShoppingCartController@add')->name('shopping_cart.add');
+    Route::post('/buy', 'App\Http\Controllers\user\ShoppingCartController@buy')->name('shopping_cart.buy');
     Route::delete('/cart', 'App\Http\Controllers\user\ShoppingCartController@delete')->name('shopping_cart.delete');
 });
 
