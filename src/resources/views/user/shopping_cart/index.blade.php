@@ -43,7 +43,7 @@
                                 <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">{{ $bomb->getStock() }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $data['cart_data'][$bomb->getId()] }}
+                                    {{ $data['cartData'][$bomb->getId()] }}
                                 </td>
                                 <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">${{ $bomb->getPrice() }}
                                 </td>

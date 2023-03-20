@@ -41,9 +41,9 @@ class Order extends Model
         return $this->attributes['is_shipped'];
     }
 
-    public function setIsShipped(bool $is_shipped): void
+    public function setIsShipped(bool $isShipped): void
     {
-        $this->attributes['is_shipped'] = $is_shipped;
+        $this->attributes['is_shipped'] = $isShipped;
     }
 
     public function getTotal(): int

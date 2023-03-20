@@ -27,48 +27,14 @@ class BombController extends Controller
             $query->where('is_verified', '=', true)->orderBy('updated_at', 'DESC');
         }, 'reviews.user'])->findOrFail($id);
 
-        $bomb_rating = Review::where('bomb_id', '=', $id)->where('is_verified', '=', true)->avg('rating');
+        $bombRating = $bomb->getReviews()->avg('rating');
 
         $data = [];
         $data['bomb'] = $bomb;
 
-        $data['bomb_rating'] = $bomb_rating;
+        $data['bombRating'] = $bombRating;
 
         return view('user.bombs.show')->with('data', $data);
-    }
-
-    public function create(): View
-    {
-        return view('user.bombs.create');
-    }
-
-    public function save(Request $request): RedirectResponse
-    {
-        Bomb::validate($request);
-
-        // Storing the bomb image and getting its path
-        $storeInterface = app(ImageStorage::class);
-        $image_url = $storeInterface->store($request);
-
-        Bomb::create([
-            'name' => $request['name'],
-            'type' => $request['type'],
-            'price' => $request['price'],
-            'location_country' => $request['location_country'],
-            'manufacturing_country' => $request['manufacturing_country'],
-            'stock' => $request['stock'],
-            'destruction_power' => $request['destruction_power'],
-            'image' => $image_url,
-        ]);
-
-        return back()->withSuccess(__('bomb.successfully'));
-    }
-
-    public function destroy(Request $request): View|RedirectResponse
-    {
-        Bomb::destroy($request->only(['id']));
-
-        return redirect()->route('bomb.index');
     }
 
     public function search(Request $request): View

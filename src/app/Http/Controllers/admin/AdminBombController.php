@@ -50,7 +50,7 @@ class AdminBombController extends Controller
 
         // Storing the bomb image and getting its path
         $storeInterface = app(ImageStorage::class);
-        $image_url = $storeInterface->store($request);
+        $imageUrl = $storeInterface->store($request);
 
         Bomb::create([
             'name' => $request['name'],
@@ -60,7 +60,7 @@ class AdminBombController extends Controller
             'manufacturing_country' => $request['manufacturing_country'],
             'stock' => $request['stock'],
             'destruction_power' => $request['destruction_power'],
-            'image' => $image_url,
+            'image' => $imageUrl,
         ]);
 
         return back()->withSuccess(__('bomb.created_successfully'));

@@ -11,7 +11,7 @@
 
                 <div class="mb-4 justify-center flex items-center">
                     @foreach (range(1, 5) as $number)
-                        @if ($number > $data['bomb_rating'])
+                        @if ($number > $data['bombRating'])
                             <svg aria-hidden="true" class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -27,7 +27,7 @@
                             </svg>
                         @endif
                     @endforeach
-                    <p class="ml-2 text-sm font-bold text-gray-900 dark:text-white">{{ $data['bomb_rating'] }}</p>
+                    <p class="ml-2 text-sm font-bold text-gray-900 dark:text-white">{{ $data['bombRating'] }}</p>
                     <span class="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
                     <p class="text-sm font-medium text-gray-900 dark:text-white">
                         {{ count($data['bomb']->getReviews()) . ' ' . __('app.reviews') }}</p>

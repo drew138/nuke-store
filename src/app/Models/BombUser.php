@@ -103,17 +103,17 @@ class BombUser extends Model
         return $this->attributes['updated_at'];
     }
 
-    public static function findOrCreate(int $user_id, int $bomb_id): BombUser
+    public static function findOrCreate(int $userId, int $bombId): BombUser
     {
         $obj = static::where([
-            'bomb_id' => $bomb_id,
-            'user_id' => $user_id,
+            'bomb_id' => $bombId,
+            'user_id' => $userId,
         ])->first();
 
         return $obj ? $obj : static::create([
             'amount' => 0,
-            'bomb_id' => $bomb_id,
-            'user_id' => $user_id,
+            'bomb_id' => $bombId,
+            'user_id' => $userId,
         ]);
     }
 }
