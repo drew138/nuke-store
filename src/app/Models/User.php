@@ -4,7 +4,6 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -197,7 +196,7 @@ class User extends Authenticatable
 
     public function addBomb(int $bombId, int $amount): void
     {
-        $this->getBombs()->attach($bombId, ['amount' => $amount]);
+        $this->bombs()->attach($bombId, ['amount' => $amount]);
     }
 
     public function reviews(): HasMany

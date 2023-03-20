@@ -49,7 +49,7 @@
                                         </td>
                                         <th scope="row"
                                             class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            {{ $user->getRole() }}</th>
+                                            {{ __('users.' . $user->getRole()) }}</th>
                                         <td class="px-4 py-3">{{ $user->getName() }}</td>
                                         <td class="px-4 py-3">{{ $user->getEmail() }}</td>
                                         <td class="px-4 py-3">{{ __('countries.' . $user->getCountry()) }}</td>

@@ -106,8 +106,9 @@ class BombUser extends Model
     {
         $obj = static::find([
             'bomb_id' => $bomb_id,
-            'user_id' => $user_id
+            'user_id' => $user_id,
         ]);
+
         return count($obj) > 0 ? $obj[0] : static::create([
             'amount' => 0,
             'bomb_id' => $bomb_id,

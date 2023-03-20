@@ -13,7 +13,7 @@ class AdminOrderController extends Controller
     public function index(): View
     {
         $data = [];
-        $data['orders'] = Order::all();
+        $data['orders'] = Order::with('user')->get();
 
         return view('admin.orders.index')->with('data', $data);
     }
@@ -34,19 +34,19 @@ class AdminOrderController extends Controller
         return back()->withSuccess(__('orders.created_successfully'));
     }
 
-    public function show(string $id): View
+    public function ship(Request $request): RedirectResponse
     {
-        $data = [];
-        $order = Order::findOrFail($id);
-        $data['order'] = $order;
+        $order = Order::findOrFail($request['id']);
+        $order->ship();
 
-        return view('admin.orders.show')->with('data', $data);
+        return back();
     }
 
-    public function destroy(string $id): RedirectResponse
+    public function cancelShip(Request $request): RedirectResponse
     {
-        Order::destroy($id);
+        $order = Order::findOrFail($request['id']);
+        $order->cancelShip();
 
-        return redirect()->route('admin.orders.index');
+        return back();
     }
 }

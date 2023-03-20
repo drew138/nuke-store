@@ -20,10 +20,9 @@
             <div class="container flex flex-wrap items-center justify-between mx-auto">
                 <a href="{{ route('home.index') }}" class="flex items-center">
                     <img src="{{ asset('/images/app_logo_white.png') }}" class="h-6 mr-3
-						sm:h-9"
-                        />
+						sm:h-9" />
                     <span
-                        class="self-center text-xl font-semibold whitespace-nowrap hidden md:block
+                        class="self-center text-xl font-semibold whitespace-nowrap hidden lg:block
 						dark:text-white">{{ __('app.app_name') }}</span>
                 </a>
 
@@ -77,12 +76,12 @@
                         <form class="w-full relative hidden md:block" action="{{ route('bombs.search') }}" method="POST">
                             @csrf
                             <div class="flex">
-                                <div class="relative w-full">
+                                <div class="relative h-full w-full">
                                     <input type="search" id="query" name="query"
-                                        class="block p-2 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                                        class="block p-3 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
                                         placeholder="{{ __('app.search_placeholder') }}" required>
                                     <button type="submit"
-                                        class="absolute top-0 right-0 p-2 text-sm font-medium text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl rounded-r-lg border border-blue-700  focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        class="absolute top-0 right-0 p-3 text-sm font-medium text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl rounded-r-lg border border-blue-700  focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                         <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -109,9 +108,27 @@
                                     clip-rule="evenodd"></path>
                             </svg>
                         </button>
-           
+
+                        @if (Auth::user()->getBalance() > 2000)
+                            <div
+                                class="flex flex-col justify-center ml-2 text-white bg-gradient-to-br from-green-600 to-green-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3  text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                <p class="text-center">${{ Auth::user()->getBalance() }}</p>
+                            </div>
+                        @elseif (Auth::user()->getBalance() > 1000)
+                            <div
+                                class="flex flex-col justify-center ml-2 text-white bg-gradient-to-br from-yellow-600 to-yellow-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
+                                ${{ Auth::user()->getBalance() }}
+                            </div>
+                        @else
+                            <div
+                                class="flex flex-col justify-center ml-2 text-white bg-gradient-to-br from-red-600 to-red-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                ${{ Auth::user()->getBalance() }}
+                            </div>
+                        @endif
+
                         <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
-                            data-dropdown-placement="bottom-start" class="w-10 h-10 ml-2 md:ml-4 p-1 object-cover aspect-square rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                            data-dropdown-placement="bottom-start"
+                            class="w-11 h-11 ml-2  p-1 object-cover aspect-square rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
                             src="{{ URL::asset(Auth::user()->getProfilePicture()) }}">
 
                         <!-- Dropdown menu -->
@@ -127,6 +144,10 @@
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('users.profile') }}</a>
                                 </li>
                                 <li>
+                                    <a href="{{ route('orders.index') }}"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('orders.orders') }}</a>
+                                </li>
+                                <li>
                                     <form id="logout" action="{{ route('logout') }}" method="POST">
                                         @csrf
                                         <a role="button"onclick="document.getElementById('logout').submit();"
@@ -138,8 +159,7 @@
                     </div>
                 @endguest
 
-                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-                    id="navbar-search">
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
                     <form class="relative mt-3 md:hidden">
                         <div class="flex">
                             <div class="relative w-full">

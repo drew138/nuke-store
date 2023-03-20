@@ -26,4 +26,6 @@ return [
     'enter_total' => 'Enter total',
     'enter_total_placeholder' => '$256000 USD',
     'created_successfully' => 'Order created sucessfully!',
+    'ship' => 'Ship',
+    'cancel_ship' => 'Cancel ship',
 ];

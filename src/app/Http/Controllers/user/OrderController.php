@@ -12,10 +12,7 @@ class OrderController extends Controller
 {
     public function index(): View
     {
-        $data = [];
-        $data['orders'] = Order::all();
-
-        return view('user.orders.index')->with('data', $data);
+        return view('user.orders.index');
     }
 
     public function create(): View

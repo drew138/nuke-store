@@ -23,7 +23,7 @@ class UserController extends Controller
         $user = User::with('bombs')->findOrFail($id);
 
         $data = [];
-        $data['user'] = $user;       
+        $data['user'] = $user;
 
         return view('user.users.compare')->with('data', $data);
     }

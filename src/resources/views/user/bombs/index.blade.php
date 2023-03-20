@@ -22,6 +22,7 @@
                                     class="text-2xl font-bold text-gray-900 dark:text-white">{{ "$" . $bomb->getPrice() }}</span>
                                 <form action="{{ route('shopping_cart.add') }}"
                                     method="POST">
+                                    <input type="hidden" name="id" value="{{ $bomb->getId() }}">
                                     @csrf
                                     <button
                                         class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
