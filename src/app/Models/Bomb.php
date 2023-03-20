@@ -161,6 +161,7 @@ class Bomb extends Model
     {
         return $this->bombUsers;
     }
+
     public function setBombUsers(Collection $bombUsers): void
     {
         $this->bombUsers = $bombUsers;
@@ -211,6 +212,6 @@ class Bomb extends Model
             return Bomb::all();
         }
 
-        return Bomb::where('name', 'LIKE', '%' . $name . '%')->get();
+        return Bomb::where('name', 'LIKE', '%'.$name.'%')->get();
     }
 }

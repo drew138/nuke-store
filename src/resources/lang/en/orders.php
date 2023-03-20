@@ -34,7 +34,6 @@ return [
     'no_stock' => 'You cannot complete the order, the bomb does\' have enough stock',
     'completed' => 'Order completed succesfully',
 
-
     'bill_bomb' => 'Bomb',
     'bill_amount' => 'Amount',
     'bill_unit_price' => 'Unit Price',

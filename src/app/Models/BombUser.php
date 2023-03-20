@@ -110,7 +110,7 @@ class BombUser extends Model
             'user_id' => $user_id,
         ])->first();
 
-        return $obj ? $obj: static::create([
+        return $obj ? $obj : static::create([
             'amount' => 0,
             'bomb_id' => $bomb_id,
             'user_id' => $user_id,

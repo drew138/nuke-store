@@ -3,28 +3,26 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
-use App\Models\BombOrder;
 use App\Models\Order;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use Illuminate\Http\Request;
-use Illuminate\View\View;
-use Illuminate\Support\Facades\Auth;
-use PDF;
 use Carbon\Carbon;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
+use PDF;
 
 class OrderController extends Controller
 {
     public function index(): View
     {
         $orders = Order::with('bombOrders.bomb')->where('user_id', '=', Auth::id())->get();
-        
+
         $data = [];
         $data['orders'] = $orders;
 
         return view('user.orders.index')->with('data', $data);
     }
-
 
     public function save(Request $request): RedirectResponse
     {
@@ -49,8 +47,8 @@ class OrderController extends Controller
         $data['total'] = $total;
         $data['date'] = Carbon::now();
 
-
         $pdf = PDF::loadView('user.orders.bill', $data);
+
         return $pdf->download('bill.pdf');
     }
 }

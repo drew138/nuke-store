@@ -55,6 +55,7 @@ class ShoppingCartController extends Controller
         switch ($payment_message) {
             case PaymentMessagesEnum::SUCCESS->value:
                 session()->put('shopping_cart', []);
+
                 return redirect()->route('orders.index')->withSuccess(__('orders.completed'));
 
             case PaymentMessagesEnum::ERROR_NO_FUNDS->value:

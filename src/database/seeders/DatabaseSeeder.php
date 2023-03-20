@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
                     'bomb_id' => $bomb->getId(),
                     'user_id' => $user->getId(),
                 ]);
-                   
+
                 // add bombuser relations
                 BombUser::factory()->create([
                     'bomb_id' => $bomb->getId(),

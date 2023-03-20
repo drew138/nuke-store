@@ -17,7 +17,7 @@ class BombUserFactory extends Factory
     public function definition(): array
     {
         return [
-            'amount' => fake()->numberBetween(1, 10)
+            'amount' => fake()->numberBetween(1, 10),
         ];
     }
 }
