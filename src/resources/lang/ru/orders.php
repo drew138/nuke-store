@@ -28,4 +28,12 @@ return [
     'created_successfully' => 'Заказ успешно создан!',
     'ship' => 'Доставка',
     'cancel_ship' => 'Отменить доставку',
+
+    'bill_bomb' => 'Бомба',
+    'bill_amount' => 'Сумма',
+    'bill_unit_price' => 'Цена за единицу',
+    'bill_total' => 'Всего',
+    'download_bill' => 'Счет за скачивание',
+    'bill_title' => 'Счет заказа',
+    'date' => 'Дата',
 ];
