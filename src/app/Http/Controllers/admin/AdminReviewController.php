@@ -13,7 +13,7 @@ class AdminReviewController extends Controller
     public function index(): View
     {
         $data = [];
-        $data['reviews'] = Review::all();
+        $data['reviews'] = Review::with('user')->with('bomb')->get();
 
         return view('admin.reviews.index')->with('data', $data);
     }
@@ -27,7 +27,7 @@ class AdminReviewController extends Controller
 
     public function save(Request $request): RedirectResponse
     {
-        Review::validateRequest($request);
+        Review::validate($request);
         $creationData = $request->only(['title', 'rating', 'image', 'description', 'is_verified']);
         Review::create($creationData);
 

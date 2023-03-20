@@ -209,7 +209,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ImageServiceProvider::class,
         App\Providers\FakerServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
+
     ],
 
     /*
@@ -228,6 +228,7 @@ return [
         'CountriesEnum' => App\Enums\CountriesEnum::class,
         'LanguageEnum' => App\Enums\LanguageEnum::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'UserRoleEnum' => App\Enums\UserRoleEnum::class,
     ])->toArray(),
 
 ];

@@ -15,15 +15,15 @@
 <body class="bg-gray-900">
     <!-- header -->
     <header>
-        <nav class="sticky w-full top-0 bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded
+        <nav class="sticky w-full top-0 z-50 bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded
 			dark:bg-gray-800">
             <div class="container flex flex-wrap items-center justify-between mx-auto">
                 <a href="{{ route('home.index') }}" class="flex items-center">
                     <img src="{{ asset('/images/app_logo_white.png') }}" class="h-6 mr-3
 						sm:h-9"
-                        alt="Nukestore Logo" />
+                        />
                     <span
-                        class="self-center text-xl font-semibold whitespace-nowrap
+                        class="self-center text-xl font-semibold whitespace-nowrap hidden md:block
 						dark:text-white">{{ __('app.app_name') }}</span>
                 </a>
 
@@ -56,7 +56,7 @@
                         </ul>
                     </div>
                 @else
-                    <div class="flex md:order-2 w-1/3">
+                    <div class="flex md:order-2">
                         <a href="{{ route('shopping_cart.index') }}"
                             class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             <svg aria-hidden="true" class="w-5 h-5 " fill="currentColor" viewBox="0 0 20 20"
@@ -109,33 +109,37 @@
                                     clip-rule="evenodd"></path>
                             </svg>
                         </button>
+           
+                        <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown"
+                            data-dropdown-placement="bottom-start" class="w-10 h-10 ml-2 md:ml-4 p-1 object-cover aspect-square rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                            src="{{ URL::asset(Auth::user()->getProfilePicture()) }}">
 
-                        <button data-collapse-toggle="navbar-search" type="button"
-                            class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg
-						md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2
-						focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700
-						dark:focus:ring-gray-600"
-                            aria-controls="navbar-search" aria-expanded="false">
-                            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0
-							20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M3
-								5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0
-								110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </button>
-
-                        <form class="ml-2 my-auto" id="logout" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <a role="button"onclick="document.getElementById('logout').submit();"
-                                class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('auth.logout') }}</a>
-                        </form>
+                        <!-- Dropdown menu -->
+                        <div id="userDropdown"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                            <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                                <div>{{ Auth::user()->getName() }}</div>
+                                <div class="font-medium truncate">{{ Auth::user()->getEmail() }}</div>
+                            </div>
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                                <li>
+                                    <a href="{{ route('users.profile', ['id' => Auth::id()]) }}"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('users.profile') }}</a>
+                                </li>
+                                <li>
+                                    <form id="logout" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <a role="button"onclick="document.getElementById('logout').submit();"
+                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('auth.logout') }}</a>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 @endguest
 
-                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
+                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+                    id="navbar-search">
                     <form class="relative mt-3 md:hidden">
                         <div class="flex">
                             <div class="relative w-full">

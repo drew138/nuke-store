@@ -20,9 +20,10 @@ Route::get('/', 'App\Http\Controllers\user\HomeController@index')->name('home.in
 // Language Controller routes
 Route::get('/language', 'App\Http\Controllers\LanguageController@locale')->name('language.locale');
 
+// Authentication Controllers routes
 Auth::routes();
 
-// admin routes
+// Admin routes
 Route::middleware('admin')->group(function () {
     // Home Controller routes
     Route::get('/admin', 'App\Http\Controllers\admin\AdminHomeController@index')->name('admin.home.index');
@@ -49,8 +50,17 @@ Route::middleware('admin')->group(function () {
     Route::post('admin/orders/create', 'App\Http\Controllers\admin\AdminOrderController@save')->name('admin.orders.save');
     Route::get('admin/orders/{id}', 'App\Http\Controllers\admin\AdminOrderController@show')->name('admin.orders.show');
     Route::delete('admin/orders/{id}', 'App\Http\Controllers\admin\AdminOrderController@destroy')->name('admin.orders.destroy');
+
+    // Users Controller routes
+    Route::get('admin/users', 'App\Http\Controllers\admin\AdminUserController@index')->name('admin.users.index');
+    Route::get('/admin/users/create', 'App\Http\Controllers\admin\AdminUserController@create')->name('admin.users.create');
+    Route::post('/admin/users/create', 'App\Http\Controllers\admin\AdminUserController@save')->name('admin.users.save');
+    Route::delete('/admin/users/{id}', 'App\Http\Controllers\admin\AdminUserController@destroy')->name('admin.users.destroy');
+    Route::get('/admin/users/update/{id}', 'App\Http\Controllers\admin\AdminUserController@update')->name('admin.users.update');
+    Route::post('/admin/users/update', 'App\Http\Controllers\admin\AdminUserController@saveUpdate')->name('admin.users.save_update');
 });
 
+// User routes
 Route::middleware('auth')->group(function () {
     // Bombs Controller routes
     Route::get('/bombs', 'App\Http\Controllers\user\BombController@index')->name('bombs.index');
@@ -70,6 +80,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/orders/{id}', 'App\Http\Controllers\user\OrderController@destroy')->name('orders.destroy');
     // Shopping Cart Controller routes
     Route::get('/cart', 'App\Http\Controllers\user\ShoppingCartController@index')->name('shopping_cart.index');
+    Route::get('/confirm/{order_id}', 'App\Http\Controllers\user\ShoppingCartController@confirm')->name('shopping_cart.confirm');
     Route::post('/cart', 'App\Http\Controllers\user\ShoppingCartController@add')->name('shopping_cart.add');
+    Route::post('/buy', 'App\Http\Controllers\user\ShoppingCartController@buy')->name('shopping_cart.buy');
     Route::delete('/cart', 'App\Http\Controllers\user\ShoppingCartController@delete')->name('shopping_cart.delete');
+
+    // Users Controller routes
+    Route::get('/users/profile/{id}', 'App\Http\Controllers\user\UserController@profile')->name('users.profile');
+    Route::get('/users/compare/{id}', 'App\Http\Controllers\user\UserController@compare')->name('users.compare');
 });

@@ -10,7 +10,7 @@ return [
     'is_verified' => 'Is Verified',
     'true' => 'True',
     'false' => 'False',
-    'succesfully' => 'Review created succesfully! An admin will verify your review in some minutes.',
+    'created_succesfully' => 'Review created succesfully! An admin will verify your review in some minutes.',
     'enter_title' => 'Enter title',
     'enter_title_placeholder' => 'I loved this bomb a lot!',
     'enter_rating' => 'Enter rating',

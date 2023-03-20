@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\UserRoleEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +15,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('role')->default('client');
+            $table->string('role')->default(UserRoleEnum::CLIENT->value);
             $table->string('country');
             $table->float('balance', 10, 2)->default(0);
             $table->string('profile_picture')->default('/storage/user.png');
