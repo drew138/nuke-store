@@ -76,10 +76,10 @@ Route::middleware('auth')->group(function () {
 
     // Orders Controller routes
     Route::get('/orders', 'App\Http\Controllers\user\OrderController@index')->name('orders.index');
-    Route::post('/orders/download', 'App\Http\Controllers\user\OrderController@download')->name('orders.download');
+    //Route::post('/orders/download', 'App\Http\Controllers\user\OrderController@download')->name('orders.download');
 
     Route::get('/orders/create', 'App\Http\Controllers\user\OrderController@create')->name('orders.create');
-    Route::get('/orders/generate-pdf/{id}',  'App\Http\Controllers\user\OrderController@bill')->name('orders.bill');
+    Route::get('/orders/generate-pdf/{id}',  'App\Http\Controllers\user\OrderController@bill')->name('orders.download');
     Route::post('/orders/create', 'App\Http\Controllers\user\OrderController@save')->name('orders.save');
     Route::get('/orders/{id}', 'App\Http\Controllers\user\OrderController@show')->name('orders.show');
     Route::delete('/orders/{id}', 'App\Http\Controllers\user\OrderController@destroy')->name('orders.destroy');

@@ -8,7 +8,6 @@ use App\Models\Order;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 use PDF;
@@ -43,12 +42,13 @@ class OrderController extends Controller
 
     public function bill(string $orderId): Response
     {
-        $bombOrders = BombOrder::with('bombs')->where('order_id', $orderId)->get();
+        $order = Order::with('bombOrders.bomb')->findOrFail($orderId);
         $data = [];
-        $total = 0;
-        $data['bombOrders'] = $bombOrders;
+        $total = $order->getTotal();
+        $data['bombOrders'] = $order->getBombOrders();
         $data['total'] = $total;
         $data['date'] = Carbon::now();
+
 
         $pdf = PDF::loadView('user.orders.bill', $data);
         return $pdf->download('bill.pdf');
