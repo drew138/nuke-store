@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'verify' => 'Подтвердить',
+    'unverify' => 'Отменить подтверждение',
     'review_list' => 'Отзывы',
     'review_create' => 'Создать отзыв',
     'title' => 'Заголовок',

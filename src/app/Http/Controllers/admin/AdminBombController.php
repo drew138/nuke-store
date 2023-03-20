@@ -93,9 +93,9 @@ class AdminBombController extends Controller
         return back()->withSuccess(__('bomb.updated_successfully'));
     }
 
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(string $id): RedirectResponse
     {
-        Bomb::destroy($request->only(['id']));
+        Bomb::destroy($id);
 
         return redirect()->back();
     }

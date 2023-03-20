@@ -43,10 +43,10 @@
                                     d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            @if (count($data['user']->getBombs()) == 1)
-                                <span>{{ count($data['user']->getBombs()) . ' ' . __('bomb.bomb') }}</span>
+                            @if (count($data['user']->getBombUsers()) == 1)
+                                <span>{{ count($data['user']->getBombUsers()) . ' ' . __('bomb.different_bomb') }}</span>
                             @else
-                                <span>{{ count($data['user']->getBombs()) . ' ' . __('bomb.bombs') }}</span>
+                                <span>{{ count($data['user']->getBombUsers()) . ' ' . __('bomb.different_bombs') }}</span>
                             @endif
                         </li>
                     </ul>
@@ -64,27 +64,27 @@
                 </a>
             @endif
 
-            @if (count($data['user']->getBombs()) > 0)
+            @if (count($data['user']->getBombUsers()) > 0)
                 <h4 class="p-2 text-2xl font-bold my-4 dark:text-white">
                     {{ $data['user']->getName() . __('users.user_bombs') }}
                 </h4>
             @endif
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-                @foreach ($data['user']->getBombs() as $bomb)
+                @foreach ($data['user']->getBombUsers() as $bomb_user)
                     <div class="p-2">
                         <div
                             class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                            <img class="object-cover h-72 w-full rounded-t-lg" src="{{ URL::asset($bomb->getImage()) }}" />
+                            <img class="object-cover h-72 w-full rounded-t-lg" src="{{ URL::asset($bomb_user->getBomb()->getImage()) }}" />
                             <div class="p-4">
                                 <h1
                                     class="text-xl mb-2 font-extrabold text-center text-gray-900 dark:text-white md:text-xl lg:text-2xl">
                                     <span
-                                        class="text-transparent bg-clip-text bg-gradient-to-r to-blue-600 from-sky-400">{{ $bomb->getName() }}</span>
+                                        class="text-transparent bg-clip-text bg-gradient-to-r to-blue-600 from-sky-400">{{ $bomb_user->getBomb()->getName() . ' (x' . $bomb_user->getAmount() . ')' }}</span>
                                 </h1>
                                 <h5 class="text-xl text-center font-bold tracking-tight text-gray-900 dark:text-white">
-                                    {{ $bomb->getDestructionPower() }}
+                                    {{ $bomb_user->getBomb()->getDestructionPower() }}
                                 </h5>
-                                @if ($bomb->getDestructionPower() > 1)
+                                @if ($bomb_user->getBomb()->getDestructionPower() > 1)
                                     <p class="text-center text-gray-500 dark:text-gray-400">{{ __('bomb.megatons') }}</p>
                                 @else
                                     <p class="text-center text-gray-500 dark:text-gray-400">{{ __('bomb.megaton') }}</p>

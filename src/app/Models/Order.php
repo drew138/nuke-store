@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Traits\HasClassicSetter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -81,24 +81,14 @@ class Order extends Model
         $this->user = $user;
     }
 
-    // public function bombOrders(): HasMany
-    // {
-    //     return $this->hasMany(BombOrder::class);
-    // }
-    //
-    // public function getBombOrders(): Collection
-    // {
-    //     return $this->bombOrders;
-    // }
-
-    public function bombs(): BelongsToMany
+    public function bombOrders(): HasMany
     {
-        return $this->belongsToMany(Order::class, 'bomb_orders')->withPivot('amount');
+        return $this->hasMany(BombOrder::class);
     }
 
-    public function getBombs(): Collection
+    public function getBombOrders(): Collection
     {
-        return $this->users;
+        return $this->bombOrders;
     }
 
     public function setBombOrders(Collection $bombOrders): void
@@ -121,5 +111,17 @@ class Order extends Model
         $request->validate([
             'total' => ['required', 'integer', 'min:0'],
         ]);
+    }
+
+    public function ship(): void
+    {
+        $this->setIsShipped(true);
+        $this->save();
+    }
+
+    public function cancelShip(): void
+    {
+        $this->setIsShipped(false);
+        $this->save();
     }
 }

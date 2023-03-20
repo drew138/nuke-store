@@ -26,7 +26,13 @@ return [
     'enter_total' => 'Enter total',
     'enter_total_placeholder' => '$256000 USD',
     'created_successfully' => 'Order created sucessfully!',
-
+    'ship' => 'Ship',
+    'cancel_ship' => 'Cancel ship',
+    'download_pdf' => 'Download PDF',
+    'your_orders' => 'Your orders',
+    'no_funds' => 'You cannot complete the order, you don\' have enough funds',
+    'no_stock' => 'You cannot complete the order, the bomb does\' have enough stock',
+    'completed' => 'Order completed succesfully',
 
     'bill_bomb' => 'Bomb',
     'bill_amount' => 'Amount',

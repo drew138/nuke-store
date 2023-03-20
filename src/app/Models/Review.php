@@ -167,4 +167,16 @@ class Review extends Model
             'is_verified' => 'boolean',
         ]);
     }
+
+    public function verify(): void
+    {
+        $this->setIsVerified(true);
+        $this->save();
+    }
+
+    public function unverify(): void
+    {
+        $this->setIsVerified(false);
+        $this->save();
+    }
 }

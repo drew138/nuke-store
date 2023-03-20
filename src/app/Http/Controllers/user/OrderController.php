@@ -3,31 +3,25 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
-use App\Models\BombOrder;
 use App\Models\Order;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use Illuminate\Http\Request;
-use Illuminate\View\View;
-use Illuminate\Support\Facades\Auth;
-use PDF;
 use Carbon\Carbon;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
+use PDF;
 
 class OrderController extends Controller
 {
     public function index(): View
     {
+        $orders = Order::with('bombOrders.bomb')->where('user_id', '=', Auth::id())->get();
+
         $data = [];
-        $data['orders'] = Order::all();
+        $data['orders'] = $orders;
 
         return view('user.orders.index')->with('data', $data);
-    }
-
-    public function create(): View
-    {
-        $data = [];
-
-        return view('user.orders.create')->with('data', $data);
     }
 
     public function save(Request $request): RedirectResponse
@@ -39,32 +33,22 @@ class OrderController extends Controller
         return back()->withSuccess(__('orders.created_successfully'));
     }
 
-    public function show(string $id): View
+    public function download(Request $request): RedirectResponse
     {
-        $data = [];
-        $order = Order::findOrFail($id);
-        $data['order'] = $order;
-
-        return view('user.orders.show')->with('data', $data);
-    }
-
-    public function destroy(string $id): RedirectResponse
-    {
-        Order::destroy($id);
-
-        return redirect()->route('user.orders.index');
+        return back();
     }
 
     public function bill(string $orderId): Response
     {
-        $bombOrders = BombOrder::with('bombs')->where('order_id', $orderId)->get();
+        $order = Order::with('bombOrders.bomb')->findOrFail($orderId);
         $data = [];
-        $total = 0;
-        $data['bombOrders'] = $bombOrders;
+        $total = $order->getTotal();
+        $data['bombOrders'] = $order->getBombOrders();
         $data['total'] = $total;
         $data['date'] = Carbon::now();
 
         $pdf = PDF::loadView('user.orders.bill', $data);
+
         return $pdf->download('bill.pdf');
     }
 }

@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Traits\HasClassicSetter;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BombUser extends Model
 {
-    use HasClassicSetter;
+    use HasClassicSetter, HasFactory;
 
     /**
      * BOMBORDER ATTRIBUTES
@@ -104,11 +105,12 @@ class BombUser extends Model
 
     public static function findOrCreate(int $user_id, int $bomb_id): BombUser
     {
-        $obj = static::find([
+        $obj = static::where([
             'bomb_id' => $bomb_id,
-            'user_id' => $user_id
-        ]);
-        return count($obj) > 0 ? $obj[0] : static::create([
+            'user_id' => $user_id,
+        ])->first();
+
+        return $obj ? $obj : static::create([
             'amount' => 0,
             'bomb_id' => $bomb_id,
             'user_id' => $user_id,

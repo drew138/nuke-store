@@ -1,8 +1,7 @@
-<html>
-
-<head>
+@extends('layouts.app')
+@section('import')
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
+    <script>
         google.charts.load('current', {
             'packages': ['geochart'],
             'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
@@ -11,8 +10,8 @@
 
         function drawRegionsMap() {
             var countries = [
-                @foreach($data as $country => $destructionPower)
-                ['{{ $country }}', parseInt('{{ $destructionPower }}')],
+                @foreach ($data as $country => $destructionPower)
+                    ['{{ $country }}', parseInt('{{ $destructionPower }}')],
                 @endforeach
             ];
             console.log(countries);
@@ -27,19 +26,20 @@
                     maxValue: 100
                 },
                 colorAxis: {
-                    colors: ['blue', 'red']
-                }
+                    colors: ['#bef264', '#365314']
+                },
+                backgroundColor: '#111827',
+                datalessRegionColor: '#334155',
+
             };
 
             var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-
             chart.draw(data, options);
         }
     </script>
-</head>
+@endsection
+@section('title', ' - ' . __('app.app_name'))
+@section('content')
 
-<body>
-    <div id="regions_div" style="width: 900px; height: 500px;"></div>
-</body>
-
-</html>
+    <div id="regions_div" class="w-full h-[calc(100vh-140px)] py-4"></div>
+@endsection

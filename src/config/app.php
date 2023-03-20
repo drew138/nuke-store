@@ -209,6 +209,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ImageServiceProvider::class,
         App\Providers\FakerServiceProvider::class,
+        App\Providers\PaymentServiceProvider::class,
+
         Barryvdh\DomPDF\ServiceProvider::class,
     ],
 

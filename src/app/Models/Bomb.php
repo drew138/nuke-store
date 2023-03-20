@@ -152,29 +152,19 @@ class Bomb extends Model
         return $this->orders;
     }
 
-    // public function bombUsers(): HasMany
-    // {
-    //     return $this->hasMany(BombUser::class);
-    // }
-
-    // public function getBombUsers(): Collection
-    // {
-    //     return $this->bombUsers;
-    // }
-
-    // public function setBombUsers(Collection $bombUsers): void
-    // {
-    //     $this->bombUsers = $bombUsers;
-    // }
-
-    public function users(): BelongsToMany
+    public function bombUsers(): HasMany
     {
-        return $this->belongsToMany(User::class, 'bomb_users')->withPivot('amount');
+        return $this->hasMany(BombUser::class);
     }
 
-    public function getUsers(): Collection
+    public function getBombUsers(): Collection
     {
-        return $this->users;
+        return $this->bombUsers;
+    }
+
+    public function setBombUsers(Collection $bombUsers): void
+    {
+        $this->bombUsers = $bombUsers;
     }
 
     public function reviews(): HasMany

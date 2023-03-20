@@ -4,9 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Request;
@@ -155,15 +153,15 @@ class User extends Authenticatable
         $this->attributes['balance'] = $balance;
     }
 
-    // public function bombUsers(): HasMany
-    // {
-    //     return $this->hasMany(BombUser::class);
-    // }
-    //
-    // public function getBombUsers(): Collection
-    // {
-    //     return $this->bombUsers;
-    // }
+    public function bombUsers(): HasMany
+    {
+        return $this->hasMany(BombUser::class);
+    }
+
+    public function getBombUsers(): Collection
+    {
+        return $this->bombUsers;
+    }
 
     public function setBombUsers(Collection $bombUsers): void
     {
@@ -183,21 +181,6 @@ class User extends Authenticatable
     public function setOrders(Collection $orders): void
     {
         $this->orders = $orders;
-    }
-
-    public function bombs(): BelongsToMany
-    {
-        return $this->belongsToMany(Bomb::class, 'bomb_users')->withPivot('amount');
-    }
-
-    public function getBombs(): Collection
-    {
-        return $this->bombs;
-    }
-
-    public function addBomb(int $bombId, int $amount): void
-    {
-        $this->getBombs()->attach($bombId, ['amount' => $amount]);
     }
 
     public function reviews(): HasMany
@@ -228,9 +211,8 @@ class User extends Authenticatable
     public function getTotalMegatons(): int
     {
         $total = 0;
-        foreach ($this->bombs as $bomb) {
-            $amount = $bomb->pivot->amount;
-            $total += $amount * $bomb->getDestructionPower();
+        foreach ($this->bombUsers as $bomb_user) {
+            $total += $bomb_user->getAmount() * $bomb_user->getBomb()->getDestructionPower();
         }
 
         return $total;

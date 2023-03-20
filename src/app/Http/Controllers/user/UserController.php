@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function profile(string $id): View
     {
-        $user = User::with('bombs')->findOrFail($id);
+        $user = User::with('bombUsers.bomb')->findOrFail($id);
 
         $data = [];
         $data['user'] = $user;
@@ -20,10 +20,10 @@ class UserController extends Controller
 
     public function compare(string $id): View
     {
-        $user = User::with('bombs')->findOrFail($id);
+        $user = User::with('bombUsers.bomb')->findOrFail($id);
 
         $data = [];
-        $data['user'] = $user;       
+        $data['user'] = $user;
 
         return view('user.users.compare')->with('data', $data);
     }

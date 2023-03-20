@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Bomb;
+use App\Models\BombUser;
 use App\Models\Review;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -15,8 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = User::factory(10)->create();
-        $bombs = Bomb::factory(10)->create();
+        $users = User::factory(15)->create();
+        $bombs = Bomb::factory(15)->create();
         foreach ($bombs as $bomb) {
             foreach ($users as $user) {
                 // add reviews
@@ -24,8 +25,12 @@ class DatabaseSeeder extends Seeder
                     'bomb_id' => $bomb->getId(),
                     'user_id' => $user->getId(),
                 ]);
-                // add user-bomb relations
-                $user->addBomb($bomb->getId(), rand(1, 100));
+
+                // add bombuser relations
+                BombUser::factory()->create([
+                    'bomb_id' => $bomb->getId(),
+                    'user_id' => $user->getId(),
+                ]);
             }
         }
     }
