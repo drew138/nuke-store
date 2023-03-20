@@ -6,21 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class OrderController extends Controller
 {
     public function index(): View
     {
-        return view('user.orders.index');
-    }
-
-    public function create(): View
-    {
+        $orders = Order::with('bombOrders.bomb')->where('user_id', '=', Auth::id())->get();
+        
         $data = [];
+        $data['orders'] = $orders;
 
-        return view('user.orders.create')->with('data', $data);
+        return view('user.orders.index')->with('data', $data);
     }
+
 
     public function save(Request $request): RedirectResponse
     {
@@ -31,19 +31,8 @@ class OrderController extends Controller
         return back()->withSuccess(__('orders.created_successfully'));
     }
 
-    public function show(string $id): View
+    public function download(Request $request): RedirectResponse
     {
-        $data = [];
-        $order = Order::findOrFail($id);
-        $data['order'] = $order;
-
-        return view('user.orders.show')->with('data', $data);
-    }
-
-    public function destroy(string $id): RedirectResponse
-    {
-        Order::destroy($id);
-
-        return redirect()->route('user.orders.index');
+        return back();
     }
 }

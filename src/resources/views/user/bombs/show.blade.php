@@ -191,12 +191,12 @@
 
                     @foreach ($data['bomb']->getReviews() as $review)
                         <article>
-                            <div class="flex items-center mb-4 space-x-4">
+                            <a href="{{ route('users.profile', ['id' => $review->getUser()->getId()]) }}" class="flex items-center mb-4 space-x-4">
                                 <img class="w-10 h-10 rounded-full object-cover" src="{{ URL::asset($review->getUser()->getProfilePicture()) }}" alt="">
                                 <div class="space-y-1 font-medium dark:text-white">
                                     <p>{{ $review->getUser()->getName() }}<p class="block text-sm text-gray-500 dark:text-gray-400">{{ __('users.dictator_of') . ' ' .  __('countries.' . $review->getUser()->getCountry())}}</p></p>
                                 </div>
-                            </div>
+                            </a>
                             <div class="flex items-center mb-1">
                                 @foreach (range(1, 5) as $number)
                                     @if ($number > $review->getRating())

@@ -28,4 +28,6 @@ return [
     'created_successfully' => 'Order created sucessfully!',
     'ship' => 'Ship',
     'cancel_ship' => 'Cancel ship',
+    'download_pdf' => 'Download PDF',
+    'your_orders' => 'Your orders'
 ];

@@ -44,6 +44,7 @@ Route::middleware('admin')->group(function () {
     Route::post('admin/reviews/unverify', 'App\Http\Controllers\admin\AdminReviewController@unverify')->name('admin.reviews.unverify');
     Route::delete('admin/reviews/{id}', 'App\Http\Controllers\admin\AdminReviewController@destroy')->name('admin.reviews.destroy');
     Route::get('admin/reviews/{id}', 'App\Http\Controllers\admin\AdminReviewController@show')->name('admin.reviews.show');
+
     // Orders Controller routes
     Route::get('admin/orders', 'App\Http\Controllers\admin\AdminOrderController@index')->name('admin.orders.index');
     Route::get('admin/orders/{id}', 'App\Http\Controllers\admin\AdminOrderController@show')->name('admin.orders.show');
@@ -66,17 +67,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/bombs', 'App\Http\Controllers\user\BombController@index')->name('bombs.index');
     Route::post('/bombs', 'App\Http\Controllers\user\BombController@search')->name('bombs.search');
     Route::get('/bombs/{id}', 'App\Http\Controllers\user\BombController@show')->name('bombs.show');
+
     // Reviews Controller routes
     Route::get('/reviews', 'App\Http\Controllers\user\ReviewController@index')->name('reviews.index');
     Route::post('/reviews/create', 'App\Http\Controllers\user\ReviewController@save')->name('reviews.save');
     Route::delete('/reviews/{id}', 'App\Http\Controllers\user\ReviewController@destroy')->name('reviews.destroy');
     Route::get('/reviews/{id}', 'App\Http\Controllers\user\ReviewController@show')->name('reviews.show');
+
     // Orders Controller routes
     Route::get('/orders', 'App\Http\Controllers\user\OrderController@index')->name('orders.index');
-    Route::get('/orders/create', 'App\Http\Controllers\user\OrderController@create')->name('orders.create');
-    Route::post('/orders/create', 'App\Http\Controllers\user\OrderController@save')->name('orders.save');
-    Route::get('/orders/{id}', 'App\Http\Controllers\user\OrderController@show')->name('orders.show');
-    Route::delete('/orders/{id}', 'App\Http\Controllers\user\OrderController@destroy')->name('orders.destroy');
+    Route::post('/orders/download', 'App\Http\Controllers\user\OrderController@download')->name('orders.download');
+
     // Shopping Cart Controller routes
     Route::get('/cart', 'App\Http\Controllers\user\ShoppingCartController@index')->name('shopping_cart.index');
     Route::post('/cart', 'App\Http\Controllers\user\ShoppingCartController@add')->name('shopping_cart.add');

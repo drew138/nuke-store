@@ -13,7 +13,7 @@ class AdminOrderController extends Controller
     public function index(): View
     {
         $data = [];
-        $data['orders'] = Order::with('user')->get();
+        $data['orders'] = Order::with('user', 'bombOrders.bomb')->get();
 
         return view('admin.orders.index')->with('data', $data);
     }
