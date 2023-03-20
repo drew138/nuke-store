@@ -29,6 +29,7 @@ return [
     'ship' => 'Доставка',
     'cancel_ship' => 'Отменить доставку',
 
+
     'bill_bomb' => 'Бомба',
     'bill_amount' => 'Сумма',
     'bill_unit_price' => 'Цена за единицу',

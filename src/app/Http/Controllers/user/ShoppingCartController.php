@@ -14,7 +14,7 @@ class ShoppingCartController extends Controller
 {
     public function index(): View
     {
-        $cartData = session()->get('shopping_cart');
+        $cartData = session()->get('shopping_cart') ?? [];
         $bombs = Bomb::findMany(array_keys($cartData));
 
         $data = [];
@@ -63,6 +63,9 @@ class ShoppingCartController extends Controller
 
             case PaymentMessagesEnum::ERROR_NO_STOCK->value:
                 return redirect()->back()->withErrors(__('orders.no_stock'));
+
+            case PaymentMessagesEnum::EMPTY_ORDER->value:
+                return redirect()->back()->withErrors(__('orders.empty_order'));
 
             default:
                 return redirect()->back();

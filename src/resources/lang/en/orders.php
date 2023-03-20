@@ -32,6 +32,7 @@ return [
     'your_orders' => 'Your orders',
     'no_funds' => 'You cannot complete the order, you don\' have enough funds',
     'no_stock' => 'You cannot complete the order, the bomb does\' have enough stock',
+    'empty_order' => 'You cannot complete the order, the order is empty',
     'completed' => 'Order completed succesfully',
 
     'bill_bomb' => 'Bomb',

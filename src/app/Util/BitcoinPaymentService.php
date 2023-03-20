@@ -16,6 +16,9 @@ class BitcoinPaymentService implements PaymentService
     public function pay(Request $request): int
     {
         $shoppingData = $request->session()->get('shopping_cart');
+        if ($shoppingData == null) {
+            return PaymentMessagesEnum::EMPTY_ORDER->value;
+        }
 
         $user = Auth::user();
         $bombs = Bomb::findMany(array_keys($shoppingData));
