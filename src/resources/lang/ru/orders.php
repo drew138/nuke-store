@@ -26,4 +26,12 @@ return [
     'enter_total' => 'Введите итоговую сумму',
     'enter_total_placeholder' => '$256000 USD',
     'created_successfully' => 'Заказ успешно создан!',
+
+    'bill_bomb' => 'Бомба',
+    'bill_amount' => 'Сумма',
+    'bill_unit_price' => 'Цена за единицу',
+    'bill_total' => 'Всего',
+    'download_bill' => 'Счет за скачивание',
+    'bill_title' => 'Счет заказа',
+    'date' => 'Дата',
 ];

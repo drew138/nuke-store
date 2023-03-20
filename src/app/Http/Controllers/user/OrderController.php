@@ -5,8 +5,12 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
+use PDF;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -48,5 +52,24 @@ class OrderController extends Controller
         Order::destroy($id);
 
         return redirect()->route('user.orders.index');
+    }
+
+    public function bill(string $orderId): Response
+    {
+        // $user_id = Auth::id();
+        // $bombs = Order::where('id', $orderId)
+        //     ->where('user_id', $user_id)
+        //     ->firstOrFail()
+        //     ->bombs();
+        $bombs = [];
+        $data = [];
+        $total = 0;
+        $data['bombs'] = $bombs;
+        $data['total'] = $total;
+        $data['date'] = Carbon::now();
+        $data['title'] = 'hola';
+
+        $pdf = PDF::loadView('user.orders.bill', $data);
+        return $pdf->download('bill.pdf');
     }
 }
