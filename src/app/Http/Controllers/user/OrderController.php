@@ -33,12 +33,7 @@ class OrderController extends Controller
         return back()->withSuccess(__('orders.created_successfully'));
     }
 
-    public function download(Request $request): RedirectResponse
-    {
-        return back();
-    }
-
-    public function bill(string $orderId): Response
+    public function download(string $orderId): Response
     {
         $order = Order::with('bombOrders.bomb')->findOrFail($orderId);
         $data = [];

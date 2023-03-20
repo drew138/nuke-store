@@ -17,14 +17,14 @@ class ReviewController extends Controller
 
         // Storing the review image and getting its path
         $storeInterface = app(ImageStorage::class);
-        $image_url = $storeInterface->store($request);
+        $imageUrl = $storeInterface->store($request);
 
         Review::create([
             'title' => $request['title'],
             'rating' => $request['rating'],
             'description' => $request['description'],
             'is_verified' => false,
-            'image' => $image_url,
+            'image' => $imageUrl,
             'bomb_id' => $request['bomb_id'],
             'user_id' => Auth::id(),
         ]);
