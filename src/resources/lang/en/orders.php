@@ -26,4 +26,13 @@ return [
     'enter_total' => 'Enter total',
     'enter_total_placeholder' => '$256000 USD',
     'created_successfully' => 'Order created sucessfully!',
+
+
+    'bill_bomb' => 'Bomb',
+    'bill_amount' => 'Amount',
+    'bill_unit_price' => 'Unit Price',
+    'bill_total' => 'Total',
+    'download_bill' => 'Download Bill',
+    'bill_title' => 'Order Bill',
+    'date' => 'Date',
 ];

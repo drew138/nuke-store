@@ -209,7 +209,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ImageServiceProvider::class,
         App\Providers\FakerServiceProvider::class,
-
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -226,8 +226,9 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'BombTypeEnum' => App\Enums\BombTypeEnum::class,
         'CountriesEnum' => App\Enums\CountriesEnum::class,
-        'UserRoleEnum' => App\Enums\UserRoleEnum::class,
         'LanguageEnum' => App\Enums\LanguageEnum::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'UserRoleEnum' => App\Enums\UserRoleEnum::class,
     ])->toArray(),
 
 ];
