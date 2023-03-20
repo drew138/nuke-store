@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\View\View;
 
+
 class MapController extends Controller
 {
     public function index(): View
