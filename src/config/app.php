@@ -209,7 +209,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ImageServiceProvider::class,
         App\Providers\FakerServiceProvider::class,
-
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*

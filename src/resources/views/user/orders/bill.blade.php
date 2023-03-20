@@ -21,12 +21,12 @@
                 <th>{{ __('orders.bill_unit_price') }}</th>
                 <th>{{ __('orders.bill_total') }}</th>
             </tr>
-            @foreach ($bombs as $bomb)
+            @foreach ($bombOrders as $bombOrder)
             <tr>
-                <td class="text-center">{{ $bomb->getName() }}</td>
-                <td class="text-center">{{ $bomb->pivot->amount }}</td>
-                <td class="text-center">{{ $bomb->getPrice() }}</td>
-                <td class="text-center">{{ $bomb->pivot->amount * $bomb->getPrice() }}</td>
+                <td class="text-center">{{ $bombOrder->getBomb()->getName() }}</td>
+                <td class="text-center">{{ $bombOrder->getAmount() }}</td>
+                <td class="text-center">{{ $bombOrder->getBomb()->getPrice() }}</td>
+                <td class="text-center">{{ $bombOrder->getAmount() * $bombOrder->getBomb()->getPrice() }}</td>
             </tr>
             @endforeach
             <tr>

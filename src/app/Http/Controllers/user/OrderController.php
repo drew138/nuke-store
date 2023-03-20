@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\BombOrder;
 use App\Models\Order;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
@@ -56,18 +57,12 @@ class OrderController extends Controller
 
     public function bill(string $orderId): Response
     {
-        // $user_id = Auth::id();
-        // $bombs = Order::where('id', $orderId)
-        //     ->where('user_id', $user_id)
-        //     ->firstOrFail()
-        //     ->bombs();
-        $bombs = [];
+        $bombOrders = BombOrder::with('bombs')->where('order_id', $orderId)->get();
         $data = [];
         $total = 0;
-        $data['bombs'] = $bombs;
+        $data['bombOrders'] = $bombOrders;
         $data['total'] = $total;
         $data['date'] = Carbon::now();
-        $data['title'] = 'hola';
 
         $pdf = PDF::loadView('user.orders.bill', $data);
         return $pdf->download('bill.pdf');
