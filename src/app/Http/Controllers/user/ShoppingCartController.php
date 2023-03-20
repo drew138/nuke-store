@@ -14,11 +14,12 @@ class ShoppingCartController extends Controller
 {
     public function index(): View
     {
-        $cart_data = session()->get('shopping_cart');
-        $bombs = Bomb::findMany($cart_data);
+        $cartData = session()->get('shopping_cart');
+        $bombs = Bomb::findMany(array_keys($cartData));
 
         $data = [];
         $data['bombs'] = $bombs;
+        $data['cart_data'] = $cartData;
 
         return view('user.shopping_cart.index')->with('data', $data);
     }
@@ -37,9 +38,10 @@ class ShoppingCartController extends Controller
     public function add(Request $request): RedirectResponse
     {
         $id = $request['id'];
+        $amount = $request['amount'];
 
         $cart_data = $request->session()->get('shopping_cart');
-        $cart_data[$id] = $id;
+        $cart_data[$id] = $amount;
         $request->session()->put('shopping_cart', $cart_data);
 
         return redirect()->back();
@@ -53,14 +55,13 @@ class ShoppingCartController extends Controller
         switch ($payment_message) {
             case PaymentMessagesEnum::SUCCESS->value:
                 session()->put('shopping_cart', []);
-                // Return to user orders with a success message
-                return redirect()->route('orders.index')->withSuccess('adsadadasdda');
+                return redirect()->route('orders.index')->withSuccess(__('orders.completed'));
 
             case PaymentMessagesEnum::ERROR_NO_FUNDS->value:
-                return redirect()->back()->withErrors('nofunds');
+                return redirect()->back()->withErrors(__('orders.no_funds'));
 
             case PaymentMessagesEnum::ERROR_NO_STOCK->value:
-                return redirect()->back()->withErrors('nostock');
+                return redirect()->back()->withErrors(__('orders.no_stock'));
 
             default:
                 return redirect()->back();

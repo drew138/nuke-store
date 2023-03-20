@@ -33,7 +33,7 @@
                 <hr class="h-px m-8 bg-gray-200 border-0 dark:bg-gray-700">
 
                 <ul class="mx-8 space-y-4 text-left text-gray-500 dark:text-gray-400">
-                    @foreach (Auth::user()->getBombUsers() as $bomb_users)
+                    @foreach (Auth::user()->getBombUsers() as $bomb_user)
                         <li class="flex items-center space-x-3">
                             <svg class="flex-shrink-0 w-5 h-5 text-blue-700 dark:text-blue-600" fill="currentColor"
                                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

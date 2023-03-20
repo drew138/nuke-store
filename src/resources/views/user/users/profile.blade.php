@@ -44,9 +44,9 @@
                                     clip-rule="evenodd"></path>
                             </svg>
                             @if (count($data['user']->getBombUsers()) == 1)
-                                <span>{{ count($data['user']->getBombUsers()) . ' ' . __('bomb.bomb') }}</span>
+                                <span>{{ count($data['user']->getBombUsers()) . ' ' . __('bomb.different_bomb') }}</span>
                             @else
-                                <span>{{ count($data['user']->getBombUsers()) . ' ' . __('bomb.bombs') }}</span>
+                                <span>{{ count($data['user']->getBombUsers()) . ' ' . __('bomb.different_bombs') }}</span>
                             @endif
                         </li>
                     </ul>
@@ -79,7 +79,7 @@
                                 <h1
                                     class="text-xl mb-2 font-extrabold text-center text-gray-900 dark:text-white md:text-xl lg:text-2xl">
                                     <span
-                                        class="text-transparent bg-clip-text bg-gradient-to-r to-blue-600 from-sky-400">{{ $bomb_user->getBomb()->getName() }}</span>
+                                        class="text-transparent bg-clip-text bg-gradient-to-r to-blue-600 from-sky-400">{{ $bomb_user->getBomb()->getName() . ' (x' . $bomb_user->getAmount() . ')' }}</span>
                                 </h1>
                                 <h5 class="text-xl text-center font-bold tracking-tight text-gray-900 dark:text-white">
                                     {{ $bomb_user->getBomb()->getDestructionPower() }}

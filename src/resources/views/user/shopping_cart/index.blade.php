@@ -5,7 +5,7 @@
         <h1 class="mt-8 mb-8 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span
                 class="text-transparent bg-clip-text bg-gradient-to-r to-blue-600 from-sky-400">{{ __('shopping_cart.shopping_cart') }}</span>
         </h1>
-        <form action="{{ route('shopping_cart.buy') }}" method="POST">
+     
             <div class="mb-8 relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -43,12 +43,7 @@
                                 <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">{{ $bomb->getStock() }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    <div>
-                                        <input type="number" id="amount" name="{{$bomb->getId()}}" min="1" value="{{ old($bomb->getId()) }}"
-                                            max="{{ $bomb->getStock() }}"
-                                            class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="1" required>
-                                    </div>
+                                    {{ $data['cart_data'][$bomb->getId()] }}
                                 </td>
                                 <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">${{ $bomb->getPrice() }}
                                 </td>
@@ -67,6 +62,8 @@
                     </tbody>
                 </table>
             </div>
+
+        <form action="{{ route('shopping_cart.buy') }}" method="POST">
             @csrf
             @method('POST')
             <button type="submit"

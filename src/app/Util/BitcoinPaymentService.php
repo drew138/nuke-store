@@ -15,22 +15,24 @@ class BitcoinPaymentService implements PaymentService
 {
     public function pay(Request $request): int
     {
-        $shopping_data = $request->except('_token', '_method');
+
+        $shoppingData =  $request->session()->get('shopping_cart'); 
+
         $user = Auth::user();
-        $bombs = Bomb::findMany(array_keys($shopping_data));
+        $bombs = Bomb::findMany(array_keys($shoppingData));
 
         $total = 0;
         foreach ($bombs as $bomb) {
-            $amount = $shopping_data[$bomb->getId()];
+            $amount = $shoppingData[$bomb->getId()];
             if ($bomb->getStock() - $amount < 0) {
                 return PaymentMessagesEnum::ERROR_NO_STOCK->value;
             }
             $total += $amount * $bomb->getPrice();
         }
 
-        $new_balance = $user->getBalance() - $total;
+        $newBalance = $user->getBalance() - $total;
 
-        if ($new_balance < 0) {
+        if ($newBalance < 0) {
             return PaymentMessagesEnum::ERROR_NO_FUNDS->value;
         }
 
@@ -40,7 +42,7 @@ class BitcoinPaymentService implements PaymentService
         ]);
 
         foreach ($bombs as $bomb) {
-            $amount = $shopping_data[$bomb->getId()];
+            $amount = $shoppingData[$bomb->getId()];
 
             BombOrder::create([
                 'amount' => $amount,
@@ -48,15 +50,14 @@ class BitcoinPaymentService implements PaymentService
                 'order_id' => $order->getId(),
             ]);
 
-            $bomb_user = BombUser::findOrCreate($user->getId(), $bomb->getId());
-            $bomb_user->save();
-            $bomb_user->setAmount($bomb_user->getAmount() + $amount);
-            $bomb_user->save();
+            $bombUser = BombUser::findOrCreate($user->getId(), $bomb->getId());
+            $bombUser->setAmount($bombUser->getAmount() + $amount);
+            $bombUser->save();
             $bomb->setStock($bomb->getStock() - $amount);
             $bomb->save();
         }
 
-        $user->setBalance($new_balance);
+        $user->setBalance($newBalance);
         $user->save();
 
         return PaymentMessagesEnum::SUCCESS->value;

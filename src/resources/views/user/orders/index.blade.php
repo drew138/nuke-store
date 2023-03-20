@@ -2,7 +2,7 @@
 @section('title', __('orders.your_orders') . ' - ' . __('app.app_name'))
 @section('content')
     <div class="p-4">
-        <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
+        <section class="bg-gray-50 mb-24 dark:bg-gray-900 p-3 sm:p-5">
             <div class="mx-auto max-w-7xl px-2 lg:px-4">
                 <h1 class="mb-12 text-4xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"><span
                         class="text-transparent bg-clip-text bg-gradient-to-r to-blue-600 from-sky-400">{{ __('orders.your_orders') }}</span>

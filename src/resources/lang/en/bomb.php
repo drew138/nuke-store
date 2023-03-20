@@ -43,4 +43,6 @@ return [
     'megaton' => 'megaton',
     'megatons' => 'megatons',
     'add_bomb' => 'Add bomb',
+    'different_bomb' => 'different bomb',
+    'different_bombs' => 'different bombs',
 ];

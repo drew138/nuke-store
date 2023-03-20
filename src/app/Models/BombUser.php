@@ -105,12 +105,12 @@ class BombUser extends Model
 
     public static function findOrCreate(int $user_id, int $bomb_id): BombUser
     {
-        $obj = static::find([
+        $obj = static::where([
             'bomb_id' => $bomb_id,
             'user_id' => $user_id,
-        ]);
+        ])->first();
 
-        return count($obj) > 0 ? $obj[0] : static::create([
+        return $obj ? $obj: static::create([
             'amount' => 0,
             'bomb_id' => $bomb_id,
             'user_id' => $user_id,
