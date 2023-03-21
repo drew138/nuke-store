@@ -8,6 +8,18 @@ runtime_config:
 skip_files: 
     - .env
 
+env_variables:
+    APP_NAME: NukeStore
+    APP_ENV: production
+    APP_DEBUG: false
+    DB_CONNECTION: mysql
+    DB_DATABASE: $DB_DATABASE 
+    DB_USERNAME: $DB_USERNAME 
+    DB_PORT: $DB_PORT
+    DB_HOST: $DB_HOST
+    APP_KEY: $APP_KEY
+    DB_PASSWORD: $DB_PASSWORD
+
 automatic_scaling:
     min_num_instances: 1
     max_num_instances: 1
@@ -16,12 +28,3 @@ resources:
     cpu: 2
     memory_gb: 4
     disk_size_gb: 20
-
-# env_variables:
-#     # Put production environment variables here.
-#     APP_DEBUG: true
-#     APP_ENV: production
-#     APP_KEY: YOUR_APP_KEY
-#     APP_NAME: "GCP App - CODE"
-
-    # LOG_LEVEL: debug
