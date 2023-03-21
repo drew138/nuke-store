@@ -221,7 +221,7 @@ class User extends Authenticatable
     public static function getTotalMegatonsByCountry(): array
     {
         $data = [];
-        $users = User::all();
+        $users = User::with('bombUsers.bomb')->get();
         foreach ($users as $user) {
             $country = $user->getCountry();
             if (array_key_exists($country, $data)) {
