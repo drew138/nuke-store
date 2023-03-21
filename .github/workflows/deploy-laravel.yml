@@ -49,7 +49,6 @@ jobs:
       - name: "deploy to gae"
         uses: google-github-actions/deploy-appengine@main
         with:
-          credentials: ${{ secrets.GCP_CREDENTIALS }}
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           env_vars: |-
             - APP_NAME=NukeStore
