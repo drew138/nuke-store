@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasClassicSetter;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,7 +12,7 @@ use Illuminate\Support\Collection;
 
 class Order extends Model
 {
-    use HasClassicSetter;
+    use HasClassicSetter, HasFactory;
 
     /** ORDER ATTRIBUTES
      * $this-> attributes['id'] -int - contains the order primary key (id)

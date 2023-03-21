@@ -30,8 +30,24 @@ class ReviewProvider extends Base
     ];
 
     protected static $images = [
-        '/storage/mush1.png',
-        '/storage/mush2.jpg',
+        '/storage/faker/mush1.png',
+        '/storage/faker/mush2.jpg',
+        '/storage/faker/faker_reviews (1).jpeg',
+        '/storage/faker/faker_reviews (1).jpg',
+        '/storage/faker/faker_reviews (1).webp',
+        '/storage/faker/faker_reviews (2).jpeg',
+        '/storage/faker/faker_reviews (2).jpg',
+        '/storage/faker/faker_reviews (2).webp',
+        '/storage/faker/faker_reviews (3).jpg',
+        '/storage/faker/faker_reviews (4).jpg',
+        '/storage/faker/faker_reviews (5).jpg',
+        '/storage/faker/faker_reviews (6).jpg',
+        '/storage/faker/faker_reviews (7).jpg',
+        '/storage/faker/faker_reviews (8).jpg',
+        '/storage/faker/faker_reviews (9).jpg',
+        '/storage/faker/faker_reviews (10).jpg',
+        '/storage/faker/faker_reviews (11).jpg',
+        '/storage/faker/faker_reviews (12).jpg',
     ];
 
     public function reviews(): string

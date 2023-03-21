@@ -19,12 +19,12 @@ class BombFactory extends Factory
         return [
             'name' => $this->faker->bombName,
             'type' => $this->faker->bombType,
-            'price' => fake()->numberBetween(1, 1000),
+            'price' => fake()->numberBetween(1, 25000),
             'location_country' => fake()->countryCode(),
             'manufacturing_country' => fake()->countryCode(),
-            'stock' => fake()->numberBetween(1, 10),
+            'stock' => fake()->numberBetween(10, 250),
             'image' => $this->faker->bombImage,
-            'destruction_power' => fake()->numberBetween(1, 1000),
+            'destruction_power' => fake()->numberBetween(1, 7500),
         ];
     }
 }
