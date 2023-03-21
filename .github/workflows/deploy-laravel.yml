@@ -53,6 +53,7 @@ jobs:
         with:
           project_id: "${{ secrets.GCP_PROJECT_ID }}"
           working_directory: .
+          flags: '--appyaml=./app.yaml'
           env_vars: |-
             APP_NAME=NukeStore
             APP_ENV=production
