@@ -56,8 +56,8 @@ jobs:
           sed -i 's/$DB_HOST/'${{secrets.DB_HOST}}'/g' app.yaml
           sed -i 's/$DB_PASSWORD/'${{secrets.DB_PASSWORD}}'/g' app.yaml
 
-      # - name: deploy to gae
-      #   run: gcloud app deploy app.yaml -q
+      - name: deploy to gae
+        run: gcloud app deploy app.yaml -q
 
       # - name: "deploy to gae"
       #   uses: google-github-actions/deploy-appengine@v1
