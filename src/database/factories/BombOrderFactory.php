@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\BombUser>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\BombOrder>
  */
-class BombUserFactory extends Factory
+class BombOrderFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class BombUserFactory extends Factory
     public function definition(): array
     {
         return [
-            'amount' => fake()->numberBetween(1, 30),
+            'amount' => fake()->numberBetween(2, 10),
         ];
     }
 }

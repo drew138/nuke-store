@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'role' => UserRoleEnum::CLIENT->value,
             'country' => fake()->countryCode(),
-            'balance' => fake()->numberBetween(0, 1000),
+            'balance' => fake()->numberBetween(0, 500000),
             'profile_picture' => $this->faker->userImage,
         ];
     }
