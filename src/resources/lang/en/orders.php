@@ -30,10 +30,9 @@ return [
     'cancel_ship' => 'Cancel ship',
     'download_pdf' => 'Download PDF',
     'your_orders' => 'Your orders',
-    'no_funds' => 'You cannot complete the order, you don\' have enough funds',
-    'no_stock' => 'You cannot complete the order, the bomb does\' have enough stock',
+    'no_funds' => 'You cannot complete the order, you don\'t have enough funds',
+    'no_stock' => 'You cannot complete the order, the bomb doesn\'t have enough stock',
     'completed' => 'Order completed succesfully',
-
     'bill_bomb' => 'Bomb',
     'bill_amount' => 'Amount',
     'bill_unit_price' => 'Unit Price',
