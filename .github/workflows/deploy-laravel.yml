@@ -43,8 +43,8 @@ jobs:
           version: 2.x
           working_dir: ./src
 
-      # - name: "run migrations"
-      #   run: ./cloud_sql_proxy -instances=${{ secrets.GCP_PROJECT_ID }}:${{ secrets.GCP_REGION }}:${{ secrets.GCP_DB_INSTANCE }}=tcp:${{ secrets.DB_PORT }} & php ./src/artisan migrate
+      - name: "run migrations"
+        run: ./cloud_sql_proxy -instances=${{ secrets.GCP_PROJECT_ID }}:${{ secrets.GCP_REGION }}:${{ secrets.GCP_DB_INSTANCE }}=tcp:${{ secrets.DB_PORT }} & php ./src/artisan migrate
 
 
       - name: "deploy to gae"
