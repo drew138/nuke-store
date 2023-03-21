@@ -51,7 +51,7 @@ jobs:
         with:
           project_id: "${{ secrets.GCP_PROJECT_ID }}"
           working_directory: .
-        - env: 
+          env_vars: |-
             APP_NAME: NukeStore
             APP_ENV: production
             APP_DEBUG: false
