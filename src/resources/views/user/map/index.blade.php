@@ -38,7 +38,7 @@
         }
     </script>
 @endsection
-@section('title', ' - ' . __('app.app_name'))
+@section('title', __('home.home_header_map'). ' - ' . __('app.app_name'))
 @section('content')
 
     <div id="regions_div" class="w-full h-[calc(100vh-140px)] py-4"></div>
