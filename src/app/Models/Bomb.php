@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Traits\HasClassicSetter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -16,15 +15,15 @@ class Bomb extends Model
 
     /**
      * BOMB ATTRIBUTES
-     * $this->attributes['id']                    - int       - contains the bomb primary key (id)
-     * $this->attributes['name']                  - string    - contains the name of the bomb
-     * $this->attributes['type']                  - string    - contains the type of the bomb. Ex: Hydrogen, Uranium, Plutonium, Neutron, etc.
-     * $this->attributes['price']                 - float     - contains the price of the bomb in dollars ($USD)
-     * $this->attributes['location_country']      - string    - contains the country where the bomb is located
-     * $this->attributes['manufacturing_country'] - string    - contains the country where the bomb was created
-     * $this->attributes['stock']                 - int       - contains the quantity of bombs available
-     * $this->attributes['image']                - string     - contains the links of the image related to the bomb
-     * $this->attributes['destruction_power']     - float    - contains the megatons (Mt) of the bomb
+     * $this->attributes['id'] - int - contains the bomb primary key (id)
+     * $this->attributes['name'] - string - contains the name of the bomb
+     * $this->attributes['type'] - string - contains the type of the bomb. Ex: Hydrogen, Uranium, Plutonium, Neutron, etc.
+     * $this->attributes['price'] - float - contains the price of the bomb in dollars ($USD)
+     * $this->attributes['location_country'] - string - contains the country where the bomb is located
+     * $this->attributes['manufacturing_country'] - string - contains the country where the bomb was created
+     * $this->attributes['stock'] - int - contains the quantity of bombs available
+     * $this->attributes['image'] - string - contains the links of the image related to the bomb
+     * $this->attributes['destruction_power'] - float - contains the megatons (Mt) of the bomb
      * $this->bombOrders - Collection - contains the bomb bombOrders
      * $this->bombUsers - Collection - contains the bomb bombUsers
      * $this->reviews - Collection - contains the bomb reviews
@@ -82,9 +81,9 @@ class Bomb extends Model
         return $this->attributes['location_country'];
     }
 
-    public function setLocationCountry(string $location_country): void
+    public function setLocationCountry(string $locationCountry): void
     {
-        $this->attributes['location_country'] = $location_country;
+        $this->attributes['location_country'] = $locationCountry;
     }
 
     public function getManufacturingCountry(): string
@@ -92,9 +91,9 @@ class Bomb extends Model
         return $this->attributes['manufacturing_country'];
     }
 
-    public function setManufacturingCountry(string $manufacturing_country): void
+    public function setManufacturingCountry(string $manufacturingCountry): void
     {
-        $this->attributes['manufacturing_country'] = $manufacturing_country;
+        $this->attributes['manufacturing_country'] = $manufacturingCountry;
     }
 
     public function getStock(): int
@@ -122,34 +121,24 @@ class Bomb extends Model
         return $this->attributes['destruction_power'];
     }
 
-    public function setDestructionPower(float $destruction_power): void
+    public function setDestructionPower(float $destructionPower): void
     {
-        $this->attributes['destruction_power'] = $destruction_power;
+        $this->attributes['destruction_power'] = $destructionPower;
     }
 
-    // public function bombOrders(): HasMany
-    // {
-    //     return $this->hasMany(BombOrder::class);
-    // }
-    //
-    // public function getBombOrders(): Collection
-    // {
-    //     return $this->bombOrders;
-    // }
-    //
-    // public function setBombOrders(Collection $bombOrders): void
-    // {
-    //     $this->bombOrders = $bombOrders;
-    // }
-
-    public function orders(): BelongsToMany
+    public function bombOrders(): HasMany
     {
-        return $this->belongsToMany(Order::class, 'bomb_orders')->withPivot('amount');
+        return $this->hasMany(BombOrder::class);
     }
-
-    public function getOrders(): Collection
+    
+    public function getBombOrders(): Collection
     {
-        return $this->orders;
+        return $this->bombOrders;
+    }
+    
+    public function setBombOrders(Collection $bombOrders): void
+    {
+        $this->bombOrders = $bombOrders;
     }
 
     public function bombUsers(): HasMany

@@ -118,9 +118,9 @@ class User extends Authenticatable
         return $this->attributes['profile_picture'];
     }
 
-    public function setProfilePicture(string $profile_picture): void
+    public function setProfilePicture(string $profilePicture): void
     {
-        $this->attributes['profile_picture'] = $profile_picture;
+        $this->attributes['profile_picture'] = $profilePicture;
     }
 
     public function getRole(): string
@@ -211,8 +211,8 @@ class User extends Authenticatable
     public function getTotalMegatons(): int
     {
         $total = 0;
-        foreach ($this->bombUsers as $bomb_user) {
-            $total += $bomb_user->getAmount() * $bomb_user->getBomb()->getDestructionPower();
+        foreach ($this->bombUsers as $bombUser) {
+            $total += $bombUser->getAmount() * $bombUser->getBomb()->getDestructionPower();
         }
 
         return $total;

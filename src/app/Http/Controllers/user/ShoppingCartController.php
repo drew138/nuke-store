@@ -23,7 +23,7 @@ class ShoppingCartController extends Controller
 
         $data = [];
         $data['bombs'] = $bombs;
-        $data['cart_data'] = $cartData;
+        $data['cartData'] = $cartData;
 
         return view('user.shopping_cart.index')->with('data', $data);
     }
@@ -32,9 +32,9 @@ class ShoppingCartController extends Controller
     {
         $id = $request['id'];
 
-        $cart_data = $request->session()->get('shopping_cart');
-        unset($cart_data[$id]);
-        $request->session()->put('shopping_cart', $cart_data);
+        $cartData = $request->session()->get('shopping_cart');
+        unset($cartData[$id]);
+        $request->session()->put('shopping_cart', $cartData);
 
         return redirect()->back();
     }
@@ -44,19 +44,19 @@ class ShoppingCartController extends Controller
         $id = $request['id'];
         $amount = $request['amount'];
 
-        $cart_data = $request->session()->get('shopping_cart');
-        $cart_data[$id] = $amount;
-        $request->session()->put('shopping_cart', $cart_data);
+        $cartData = $request->session()->get('shopping_cart');
+        $cartData[$id] = $amount;
+        $request->session()->put('shopping_cart', $cartData);
 
         return redirect()->back();
     }
 
     public function buy(Request $request): RedirectResponse
     {
-        $payment_interface = app(PaymentService::class);
-        $payment_message = $payment_interface->pay($request);
+        $paymentInterface = app(PaymentService::class);
+        $paymentMessage = $paymentInterface->pay($request);
 
-        switch ($payment_message) {
+        switch ($paymentMessage) {
             case PaymentMessagesEnum::SUCCESS->value:
                 session()->put('shopping_cart', []);
 
