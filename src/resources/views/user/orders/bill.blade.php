@@ -2,9 +2,27 @@
 <html>
 
 <head>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @font-face {
+            font-family: "DejaVu Sans";
+            font-style: normal;
+            font-weight: 400;
+            src: url("/fonts/dejavu-sans/DejaVuSans.ttf");
+            /* IE9 Compat Modes */
+            src:
+                local("DejaVu Sans"),
+                local("DejaVu Sans"),
+                url("/fonts/dejavu-sans/DejaVuSans.ttf") format("truetype");
+        }
+
+        body {
+            font-family: "DejaVu Sans";
+            font-size: 12px;
+        }
+    </style>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
     <title>{{ __('orders.download_bill') }}</title>
 </head>
 
@@ -22,12 +40,12 @@
                 <th>{{ __('orders.bill_total') }}</th>
             </tr>
             @foreach ($bombOrders as $bombOrder)
-            <tr>
-                <td class="text-center">{{ $bombOrder->getBomb()->getName() }}</td>
-                <td class="text-center">{{ $bombOrder->getAmount() }}</td>
-                <td class="text-center">{{ $bombOrder->getBomb()->getPrice() }}</td>
-                <td class="text-center">{{ $bombOrder->getAmount() * $bombOrder->getBomb()->getPrice() }}</td>
-            </tr>
+                <tr>
+                    <td class="text-center">{{ $bombOrder->getBomb()->getName() }}</td>
+                    <td class="text-center">{{ $bombOrder->getAmount() }}</td>
+                    <td class="text-center">{{ $bombOrder->getBomb()->getPrice() }}</td>
+                    <td class="text-center">{{ $bombOrder->getAmount() * $bombOrder->getBomb()->getPrice() }}</td>
+                </tr>
             @endforeach
             <tr>
                 <td class="text-center">-</td>
