@@ -56,8 +56,8 @@ jobs:
             APP_DEBUG=false
             DB_CONNECTION=mysql
             # APP_KEY="${{ secrets.APP_KEY }}"
-            # DB_HOST="${{ secrets.DB_HOST }}"
-            # DB_PORT="${{ secrets.DB_PORT }}"
-            # DB_DATABASE="${{ secrets.DB_DATABASE }}"
-            # DB_USERNAME="${{ secrets.DB_USERNAME }}"
+            DB_HOST="${{ secrets.DB_HOST }}"
+            DB_PORT="${{ secrets.DB_PORT }}"
+            DB_DATABASE="${{ secrets.DB_DATABASE }}"
+            DB_USERNAME="${{ secrets.DB_USERNAME }}"
             # DB_PASSWORD="${{ secrets.DB_PASSWORD }}"
