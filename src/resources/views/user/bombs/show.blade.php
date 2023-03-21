@@ -250,10 +250,6 @@
                                 <img class="w-full h-full mb-5 object-cover rounded-lg"
                                     src="{{ URL::asset($review->getImage()) }}">
                             @endif
-                            <a href="#"
-                                class="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Read
-                                more</a>
-                            <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
                         </article>
                     @endforeach
                 @endif
