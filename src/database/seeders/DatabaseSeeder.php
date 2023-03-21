@@ -36,7 +36,6 @@ class DatabaseSeeder extends Seeder
                 'user_id' => $user->getId(),
             ]);
 
-
             $randomBombs = $bombs->random(10);
             foreach ($randomBombs as $bomb) {
                 // add bombuser relations
@@ -45,7 +44,6 @@ class DatabaseSeeder extends Seeder
                     'user_id' => $user->getId(),
                 ]);
 
-                
                 // add bombOrder
                 BombOrder::factory()->create([
                     'order_id' => $order->getId(),
