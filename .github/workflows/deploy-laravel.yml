@@ -8,16 +8,16 @@ jobs:
   deploy:
     runs-on: ubuntu-20.04
     env: 
+      DB_DATABASE:"${{ secrets.DB_DATABASE }}"
+      DB_HOST:"${{ secrets.DB_HOST }}"
+      DB_PORT:"${{ secrets.DB_PORT }}"
+      DB_USERNAME:"${{ secrets.DB_USERNAME }}"
+      DB_PASSWORD:"${{ secrets.DB_PASSWORD }}"
       APP_NAME:"NukeStore"
       APP_ENV:"local"
       APP_KEY:"${{ secrets.APP_KEY }}"
       APP_DEBUG:true
       DB_CONNECTION:"mysql"
-      DB_HOST:"${{ secrets.DB_HOST }}"
-      DB_PORT:"${{ secrets.DB_PORT }}"
-      DB_DATABASE:"${{ secrets.DB_DATABASE }}"
-      DB_USERNAME:"${{ secrets.DB_USERNAME }}"
-      DB_PASSWORD:"${{ secrets.DB_PASSWORD }}"
 
     steps:
       - uses: actions/checkout@v2
