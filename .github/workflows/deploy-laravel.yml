@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - id: "authenticate with google cloud"
+      - id: "auth"
         uses: "google-github-actions/auth@v0"
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
