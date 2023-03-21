@@ -49,8 +49,8 @@ jobs:
       - name: "deploy to gae"
         uses: google-github-actions/deploy-appengine@v1
         with:
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
-          env_vars: |-
+          project_id: "${{ secrets.GCP_PROJECT_ID }}"
+          env_vars: |
             APP_NAME=NukeStore
             APP_ENV=production
             APP_DEBUG=false
