@@ -14,10 +14,11 @@ class ShoppingCartController extends Controller
 {
     public function index(): View
     {
-        
         $cartData = session()->get('shopping_cart');
-        if(is_null($cartData)) $cartData = [];
-       
+        if (is_null($cartData)) {
+            $cartData = [];
+        }
+
         $bombs = Bomb::findMany(array_keys($cartData));
 
         $data = [];
