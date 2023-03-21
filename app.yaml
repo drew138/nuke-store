@@ -1,7 +1,8 @@
 runtime: php81
 env: flex
 
-runtime_config: document_root: public
+runtime_config: 
+  document_root: public
 
 # Ensure we skip ".env", which is only for local development
 skip_files: 
