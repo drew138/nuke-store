@@ -42,7 +42,7 @@
                             <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">{{ $bomb->getStock() }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $data['cart_data'][$bomb->getId()] }}
+                                {{ $data['cartData'][$bomb->getId()] }}
                             </td>
                             <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">${{ $bomb->getPrice() }}
                             </td>
@@ -65,7 +65,7 @@
         <form action="{{ route('shopping_cart.buy') }}" method="POST">
             @csrf
             @method('POST')
-            @if (count($data['cart_data']) > 0)
+            @if (count($data['cartData']) > 0)
                 <button type="submit"
                     class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">{{ __('shopping_cart.purchase_order') }}</button>
             @endif
