@@ -1,9 +1,22 @@
 <?php
 
 return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Authentication Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | The following language lines are used during authentication for various
+    | messages that we need to display to the user. You are free to modify
+    | these language lines according to your application's requirements.
+    |
+    */
+
+
     'login' => 'Войти',
     'email' => 'Электронная почта',
-    'password' => 'Пароль',
+    'passwordName' => 'Пароль',
     'remember_me' => 'Запомнить меня',
     'forgot_password' => 'Забыли пароль?',
     'sign_up' => 'Зарегистрироваться',
@@ -20,4 +33,9 @@ return [
     'reset_password' => 'Сбросить пароль',
     'send_password_reset_link' => 'Отправить ссылку для сброса пароля',
     'logout' => 'Выйти',
+
+    'failed' => 'Эти учетные данные не соответствуют нашим записям.',
+    'password' => 'Предоставленный пароль неверен.',
+    'throttle' => 'Слишком много попыток входа. Пожалуйста, попробуйте еще раз через :seconds секунд.',
+
 ];
