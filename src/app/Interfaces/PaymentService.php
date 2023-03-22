@@ -2,9 +2,9 @@
 
 namespace App\Interfaces;
 
-use Illuminate\Http\Request;
+use App\Models\User;
 
 interface PaymentService
 {
-    public function pay(Request $request): int;
+    public function pay(User $user, int $total): int;
 }
