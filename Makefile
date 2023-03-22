@@ -89,3 +89,5 @@ ide-helper:
 pint:
 	docker compose exec app ./vendor/bin/pint
 
+chmod:
+	docker compose exec app chmod -R 777 storage
