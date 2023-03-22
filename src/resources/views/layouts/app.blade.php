@@ -26,38 +26,25 @@
 						dark:text-white">{{ __('app.app_name') }}</span>
                 </a>
 
-                @guest
-                    <div class="flex md:order-2">
-                        <ul
-                            class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg
-						bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium
-						md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-800
-						dark:border-gray-700">
 
-                            <li>
-                                <a class="block py-2 pl-3 pr-4 text-gray-700 rounded
-							hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0
-							md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700
-							dark:hover:text-white md:dark:hover:bg-transparent
-							dark:border-gray-700"
-                                    href="{{ route('login') }}">{{ __('auth.login') }}</a>
-                            </li>
-                            <li>
-                                <a class="block py-2 pl-3 pr-4 text-gray-700 rounded
-							hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0
-							md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700
-							dark:hover:text-white md:dark:hover:bg-transparent
-							dark:border-gray-700"
-                                    href="{{ route('register') }}">{{ __('auth.register') }}</a>
-                            </li>
+                <div class="flex md:order-2">
+                    <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search"
+                        aria-expanded="false"
+                        class="md:hidden
+                                text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700
+                                focus:outline-none focus:ring-4 focus:ring-gray-200
+                                dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1">
 
-
-                        </ul>
-                    </div>
-                @else
-                    <div class="flex md:order-2">
+                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" stroke="currentColor"
+                            stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+                        </svg>
+                    </button>
+                    @auth
                         <a href="{{ route('shopping_cart.index') }}"
-                            class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            class="hidden md:flex text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             <svg aria-hidden="true" class="w-5 h-5 " fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -73,7 +60,7 @@
                             @endif
                         </a>
 
-                        <form class="w-full relative hidden md:block" action="{{ route('bombs.search') }}" method="POST">
+                        <form class="w-full relative hidden md:flex" action="{{ route('bombs.search') }}" method="POST">
                             @csrf
                             <div class="flex">
                                 <div class="relative h-full w-full">
@@ -92,36 +79,21 @@
                             </div>
                         </form>
 
-                        <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search"
-                            aria-expanded="false"
-                            class="md:hidden
-						text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700
-						focus:outline-none focus:ring-4 focus:ring-gray-200
-						dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1">
-                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0
-							20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M8
-								4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0
-								01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </button>
+
 
                         @if (Auth::user()->getBalance() > 2000)
                             <div
-                                class="flex flex-col justify-center ml-2 text-white bg-gradient-to-br from-green-600 to-green-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3  text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                class="hidden md:flex flex-col justify-center ml-2 text-white bg-gradient-to-br from-green-600 to-green-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-3  text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                 <p class="text-center">${{ Auth::user()->getBalance() }}</p>
                             </div>
                         @elseif (Auth::user()->getBalance() > 1000)
                             <div
-                                class="flex flex-col justify-center ml-2 text-white bg-gradient-to-br from-yellow-600 to-yellow-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
+                                class="hidden md:flex flex-col justify-center ml-2 text-white bg-gradient-to-br from-yellow-600 to-yellow-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                                 ${{ Auth::user()->getBalance() }}
                             </div>
                         @else
                             <div
-                                class="flex flex-col justify-center ml-2 text-white bg-gradient-to-br from-red-600 to-red-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                class="hidden md:flex flex-col justify-center ml-2 text-white bg-gradient-to-br from-red-600 to-red-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                                 ${{ Auth::user()->getBalance() }}
                             </div>
                         @endif
@@ -156,57 +128,103 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                @endguest
+                    @endauth
+                </div>
+
+
+
 
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
-                    <form class="relative mt-3 md:hidden">
-                        <div class="flex">
-                            <div class="relative w-full">
-                                <input type="search" id="search-dropdown"
-                                    class="block p-2 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                                    placeholder="{{ __('app.search_placeholder') }}" required>
-                                <button type="submit"
-                                    class="absolute top-0 right-0 p-2 text-sm font-medium text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl rounded-r-lg border border-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                    </svg>
-                                </button>
+                    @auth
+                        <form class="relative mt-3 md:hidden">
+                            <div class="flex">
+                                <div class="relative w-full">
+                                    <input type="search" id="search-dropdown"
+                                        class="block p-2 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                                        placeholder="{{ __('app.search_placeholder') }}" required>
+                                    <button type="submit"
+                                        class="absolute top-0 right-0 p-2 text-sm font-medium text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl rounded-r-lg border border-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+
+                    @endauth
 
                     <ul
                         class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg
 						bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium
 						md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-800
 						dark:border-gray-700">
-                        <li>
-                            <a href="{{ route('home.index') }}"
-                                class="block py-2 pl-3 pr-4 text-gray-700 rounded
+
+                        @guest
+                            <li>
+                                <a class="block py-2 pl-3 pr-4 text-gray-700 rounded
+                        hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0
+                        md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700
+                        dark:hover:text-white md:dark:hover:bg-transparent
+                        dark:border-gray-700"
+                                    href="{{ route('login') }}">{{ __('auth.login') }}</a>
+                            </li>
+                            <li>
+                                <a class="block py-2 pl-3 pr-4 text-gray-700 rounded
+                        hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0
+                        md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700
+                        dark:hover:text-white md:dark:hover:bg-transparent
+                        dark:border-gray-700"
+                                    href="{{ route('register') }}">{{ __('auth.register') }}</a>
+                            </li>
+
+                        @endguest
+
+                        @auth
+                            <li>
+                                <a href="{{ route('home.index') }}"
+                                    class="block py-2 pl-3 pr-4 text-gray-700 rounded
 							hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0
 							md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700
 							dark:hover:text-white md:dark:hover:bg-transparent
 							dark:border-gray-700">{{ __('home.home') }}</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('bombs.index') }}"
-                                class="block py-2 pl-3 pr-4 text-gray-700 rounded
+                            </li>
+                            <li>
+                                <a href="{{ route('bombs.index') }}"
+                                    class="block py-2 pl-3 pr-4 text-gray-700 rounded
 								hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0
 								md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700
 								dark:hover:text-white md:dark:hover:bg-transparent
 								dark:border-gray-700">{{ __('home.home_header_bomb') }}</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('map.index') }}"
-                                class="block py-2 pl-3 pr-4 text-gray-700 rounded
+                            </li>
+                            <li>
+                                <a href="{{ route('map.index') }}"
+                                    class="block py-2 pl-3 pr-4 text-gray-700 rounded
 								hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0
 								md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700
 								dark:hover:text-white md:dark:hover:bg-transparent
 								dark:border-gray-700">{{ __('home.home_header_map') }}</a>
-                        </li>
+                            </li>
+                            <li>
+                                <a href="{{ route('shopping_cart.index') }}"
+                                    class=" block md:hidden  block py-2 pl-3 pr-4 text-gray-700 rounded
+								hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0
+								md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700
+								dark:hover:text-white md:dark:hover:bg-transparent
+								dark:border-gray-700">{{ __('shopping_cart.shopping_cart') }}</a>
+                            </li>
+                            <li>
+                                <p
+                                    class=" block md:hidden  block py-2 pl-3 pr-4 text-gray-700 rounded
+								hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0
+								md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700
+								dark:hover:text-white md:dark:hover:bg-transparent
+								dark:border-gray-700">
+                                    ${{ Auth::user()->getBalance() }}</p>
+                            </li>
+                        @endauth
                     </ul>
                 </div>
             </div>
