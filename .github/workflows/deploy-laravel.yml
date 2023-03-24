@@ -33,6 +33,9 @@ jobs:
       - name: "set up google cloud sdk"
         uses: "google-github-actions/setup-gcloud@v0"
 
+      - name: "grant permissions to docker"
+        run: gcloud auth configure-docker
+
       # - name: "install dependencies"
       #   uses: php-actions/composer@v6
       #   with:
