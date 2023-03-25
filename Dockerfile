@@ -38,6 +38,11 @@ COPY ./docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 EXPOSE 80
 
 RUN mkdir -p /var/log/nginx
+RUN mkdir -p /var/www/html/storage
+RUN mkdir -p /var/www/html/bootstrap/cache
+
+RUN sudo chmod -R 775 /var/www/html/storage
+RUN sudo chmod -R 775 /var/www/html/bootstrap/cache
 
 # Start supervisord to manage Nginx and PHP-FPM processes
 CMD ["supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
