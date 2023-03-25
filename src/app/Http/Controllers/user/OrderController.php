@@ -44,6 +44,6 @@ class OrderController extends Controller
 
         $pdf = PDF::loadView('user.orders.bill', $data);
 
-        return $pdf->download('bill.pdf');
+        return $pdf->download($order->getId().'_'.$order->getUser()->getName().'.pdf');
     }
 }
