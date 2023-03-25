@@ -44,7 +44,6 @@ RUN mkdir -p /var/www/html/bootstrap/cache
 RUN chmod -R 777 /var/www/html/storage
 RUN chmod -R 777 /var/www/html/storage/*
 RUN chmod -R 777 /var/www/html/bootstrap/cache
-RUN chmod -R 777 /var/www/html/bootstrap/cache/*
 
 # Start supervisord to manage Nginx and PHP-FPM processes
 CMD ["supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
