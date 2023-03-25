@@ -64,7 +64,4 @@ jobs:
 
       - name: Deploy Docker image
         # gcloud run deploy nuke-store --project nuke-store-381301 --image gcr.io/nuke-store-381301/nuke-store --platform managed --region us-east1
-        run: gcloud run deploy ${{ secrets.GOOGLE_CLOUD_RUN_SERVICE }} \
-          --project ${{ secrets.GCP_PROJECT_ID }} \
-          --image $IMAGE_NAME \
-          --region ${{ secrets.GCP_REGION }} --platform managed
+        run: gcloud run deploy ${{ secrets.GOOGLE_CLOUD_RUN_SERVICE }} --project ${{ secrets.GCP_PROJECT_ID }} --image $IMAGE_NAME -region ${{ secrets.GCP_REGION }} --platform managed
