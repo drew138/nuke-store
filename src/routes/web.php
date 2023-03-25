@@ -93,5 +93,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/compare/{id}', 'App\Http\Controllers\user\UserController@compare')->name('users.compare');
 
     // Map Controller route
-    Route::get('/map', 'App\Http\Controllers\user\MapController@index')->name('map.index');
 });
+Route::get('/map', 'App\Http\Controllers\user\MapController@index')->name('map.index');
