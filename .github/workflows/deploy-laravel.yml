@@ -41,8 +41,8 @@ jobs:
       - name: "grant permissions to docker"
         run: gcloud auth configure-docker --quiet
 
-      # - name: "pass credentials for google cloud storage"
-      #   run: echo ${{ secrets.GCP_CREDENTIALS }} >> ./src/service-account.json
+      - name: "pass credentials for google cloud storage"
+        run: echo ${{ secrets.GCP_CREDENTIALS }} > ./src/service-account.json
 
       - name: Build Docker image
         run: docker build . -t $IMAGE_NAME
