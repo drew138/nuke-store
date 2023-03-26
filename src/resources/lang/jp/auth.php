@@ -3,7 +3,7 @@
 return [
     'login' => 'ログイン',
     'email' => 'メールアドレス',
-    'passwordName' => 'パスワード',
+    'password_name' => 'パスワード',
     'remember_me' => 'ログイン状態を保持する',
     'forgot_password' => 'パスワードを忘れた場合',
     'sign_up' => 'サインアップ',

@@ -3,7 +3,7 @@
 return [
     'login' => '登录',
     'email' => '电子邮件',
-    'passwordName' => '密码',
+    'password_name' => '密码',
     'remember_me' => '记住我',
     'forgot_password' => '忘记密码？',
     'sign_up' => '注册',
