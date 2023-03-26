@@ -8,6 +8,6 @@ enum PaymentMessagesEnum: int
 {
     use EnumToArray;
     case ERROR_NO_FUNDS = 1;
-    case ERROR_NO_STOCK = 2;
+    case ERROR_NO_STOCK = -1;
     case SUCCESS = 3;
 };
