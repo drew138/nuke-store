@@ -16,7 +16,7 @@ return [
 
     'login' => 'Войти',
     'email' => 'Электронная почта',
-    'passwordName' => 'Пароль',
+    'password_name' => 'Пароль',
     'remember_me' => 'Запомнить меня',
     'forgot_password' => 'Забыли пароль?',
     'sign_up' => 'Зарегистрироваться',

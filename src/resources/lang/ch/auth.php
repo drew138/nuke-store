@@ -3,7 +3,7 @@
 return [
     'login' => '登录',
     'email' => '电子邮件',
-    'password' => '密码',
+    'passwordName' => '密码',
     'remember_me' => '记住我',
     'forgot_password' => '忘记密码？',
     'sign_up' => '注册',
@@ -20,4 +20,8 @@ return [
     'reset_password' => '重置密码',
     'send_password_reset_link' => '发送密码重置链接',
     'logout' => '登出',
+
+    'failed' => '这些凭据与我们的记录不符。',
+    'password' => '提供的密码不正确。',
+    'throttle' => '登录尝试过多。 请在 :seconds 秒后再试。'
 ];
