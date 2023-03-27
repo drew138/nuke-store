@@ -44,10 +44,16 @@ jobs:
       - name: Build Docker image
         run: docker build . -t $IMAGE_NAME
 
-      # - name: "run migrations"
-      #   env:
-      #     DB_HOST: "127.0.0.1"
-      #   run: ./cloud_sql_proxy -instances=${{ secrets.GCP_PROJECT_ID }}:${{ secrets.GCP_REGION }}:${{ secrets.GCP_DB_INSTANCE }}=tcp:${{ secrets.DB_PORT }} & (sleep 5s && php ./src/artisan migrate)
+      - name: "install dependencies"
+        uses: php-actions/composer@v6
+        with:
+          php_version: "8.1"
+          version: 2.x
+
+      - name: "run migrations"
+        env:
+          DB_HOST: "127.0.0.1"
+        run: ./cloud_sql_proxy -instances=${{ secrets.GCP_PROJECT_ID }}:${{ secrets.GCP_REGION }}:${{ secrets.GCP_DB_INSTANCE }}=tcp:${{ secrets.DB_PORT }} & (sleep 5s && php ./src/artisan migrate)
 
       - name: Push Docker image
         run: docker push $IMAGE_NAME
