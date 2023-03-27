@@ -15,7 +15,6 @@ jobs:
       DB_PORT: ${{ secrets.DB_PORT }}
       DB_USERNAME: ${{ secrets.DB_USERNAME }}
       DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      DB_SOCKET: "cloudsql"
       APP_NAME: "NukeStore"
       APP_ENV: "local"
       APP_KEY: ${{ secrets.APP_KEY }}
