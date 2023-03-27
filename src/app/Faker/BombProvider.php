@@ -64,9 +64,34 @@ class BombProvider extends Base
     ];
 
     protected static $images = [
-        '/storage/641124e367d94faker_image_1.jpg',
-        '/storage/641125c4e9fb6faker_image_3.jpg',
-        '/storage/6411253b9040efaker_image_2.gif',
+        '/storage/faker/641124e367d94faker_image_1.jpg',
+        '/storage/faker/641125c4e9fb6faker_image_3.jpg',
+        '/storage/faker/6411253b9040efaker_image_2.gif',
+        '/storage/faker/faker_image (16).jpg',
+        '/storage/faker/faker_image (1).jpg',
+        '/storage/faker/faker_image (1).png',
+        '/storage/faker/faker_image (1).jpeg',
+        '/storage/faker/faker_image (1).webp',
+        '/storage/faker/faker_image (2).jpeg',
+        '/storage/faker/faker_image (2).jpg',
+        '/storage/faker/faker_image (2).png',
+        '/storage/faker/faker_image (2).webp',
+        '/storage/faker/faker_image (3).jpeg',
+        '/storage/faker/faker_image (3).jpg',
+        '/storage/faker/faker_image (3).webp',
+        '/storage/faker/faker_image (4).jpg',
+        '/storage/faker/faker_image (5).jpg',
+        '/storage/faker/faker_image (6).jpg',
+        '/storage/faker/faker_image (7).jpg',
+        '/storage/faker/faker_image (8).jpg',
+        '/storage/faker/faker_image (9).jpg',
+        '/storage/faker/faker_image (10).jpg',
+        '/storage/faker/faker_image (11).jpg',
+        '/storage/faker/faker_image (12).jpg',
+        '/storage/faker/faker_image (13).jpg',
+        '/storage/faker/faker_image (14).jpg',
+        '/storage/faker/faker_image (15).jpg',
+        '/storage/faker/faker_image (16).jpg',
     ];
 
     public function bombName(): string

@@ -60,11 +60,32 @@ class UserProvider extends Base
     ];
 
     protected static $userImages = [
-        '/storage/biden.jpg',
-        '/storage/hirohito.jpg',
-        '/storage/hitler.jpg',
-        '/storage/kim.jpg',
-        '/storage/putin.jpg',
+        '/storage/faker/biden.jpg',
+        '/storage/faker/hirohito.jpg',
+        '/storage/faker/hitler.jpg',
+        '/storage/faker/kim.jpg',
+        '/storage/faker/putin.jpg',
+        '/storage/faker/faker_user (1).avif',
+        '/storage/faker/faker_user (1).jpeg',
+        '/storage/faker/faker_user (1).jpg',
+        '/storage/faker/faker_user (1).png',
+        '/storage/faker/faker_user (1).webp',
+        '/storage/faker/faker_user (2).avif',
+        '/storage/faker/faker_user (2).jpeg',
+        '/storage/faker/faker_user (2).jpg',
+        '/storage/faker/faker_user (2).webp',
+        '/storage/faker/faker_user (3).avif',
+        '/storage/faker/faker_user (3).jpg',
+        '/storage/faker/faker_user (3).webp',
+        '/storage/faker/faker_user (4).avif',
+        '/storage/faker/faker_user (4).jpg',
+        '/storage/faker/faker_user (5).jpg',
+        '/storage/faker/faker_user (6).jpg',
+        '/storage/faker/faker_user (7).jpg',
+        '/storage/faker/faker_user (8).jpg',
+        '/storage/faker/faker_user (9).jpg',
+        '/storage/faker/faker_user (10).jpg',
+        '/storage/faker/faker_user (11).jpg',
     ];
 
     public function dictatorName(): string

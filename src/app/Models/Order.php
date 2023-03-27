@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Enums\PaymentMessagesEnum;
 use App\Traits\HasClassicSetter;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,7 +13,7 @@ use Illuminate\Support\Collection;
 
 class Order extends Model
 {
-    use HasClassicSetter;
+    use HasClassicSetter, HasFactory;
 
     /** ORDER ATTRIBUTES
      * $this-> attributes['id'] -int - contains the order primary key (id)
@@ -111,6 +113,20 @@ class Order extends Model
         $request->validate([
             'total' => ['required', 'integer', 'min:0'],
         ]);
+    }
+
+    public static function calculateTotal(Collection $bombs, array $shoppingData): int
+    {
+        $total = 0;
+
+        foreach ($bombs as $bomb) {
+            $amount = $shoppingData[$bomb->getId()];
+            if ($bomb->getStock() - $amount < 0) {
+                return PaymentMessagesEnum::ERROR_NO_STOCK->value;
+            }
+            $total += $amount * $bomb->getPrice();
+        }
+        return $total;
     }
 
     public function ship(): void
