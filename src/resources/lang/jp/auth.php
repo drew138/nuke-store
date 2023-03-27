@@ -3,7 +3,7 @@
 return [
     'login' => 'ログイン',
     'email' => 'メールアドレス',
-    'password' => 'パスワード',
+    'password_name' => 'パスワード',
     'remember_me' => 'ログイン状態を保持する',
     'forgot_password' => 'パスワードを忘れた場合',
     'sign_up' => 'サインアップ',
@@ -20,4 +20,8 @@ return [
     'reset_password' => 'パスワードのリセット',
     'send_password_reset_link' => 'パスワードリセットリンクを送信する',
     'logout' => 'ログアウト',
+
+    'failed' => 'これらの資格情報は私たちの記録と一致しません。',
+    'password' => '提供されたパスワードが間違っています。',
+    'throttle' => 'ログイン試行が多すぎます。 :seconds 秒後にもう一度お試しください。'
 ];

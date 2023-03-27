@@ -3,7 +3,7 @@
 return [
     'login' => 'Connexion',
     'email' => 'E-mail',
-    'password' => 'Mot de passe',
+    'password_name' => 'Mot de passe',
     'remember_me' => 'Se souvenir de moi',
     'forgot_password' => 'Mot de passe oublié ?',
     'sign_up' => 'S\'inscrire',
@@ -20,4 +20,8 @@ return [
     'reset_password' => 'Réinitialiser le mot de passe',
     'send_password_reset_link' => 'Envoyer le lien de réinitialisation du mot de passe',
     'logout' => 'Déconnexion',
+
+    'failed' => 'Ces informations d\'identification ne correspondent pas à nos dossiers.',
+    'password' => 'Le mot de passe fourni est incorrect.',
+    'throttle' => 'Trop de tentatives de connexion. Veuillez réessayer dans :seconds secondes.'
 ];
