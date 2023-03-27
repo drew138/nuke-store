@@ -6,7 +6,6 @@ use App\Enums\PaymentMessagesEnum;
 use App\Interfaces\PaymentService;
 use App\Models\User;
 
-
 class BitcoinPaymentService implements PaymentService
 {
     public function pay(User $user, int $total): int
@@ -17,6 +16,7 @@ class BitcoinPaymentService implements PaymentService
         }
         $user->setBalance($newBalance);
         $user->save();
+
         return PaymentMessagesEnum::SUCCESS->value;
     }
 }

@@ -92,6 +92,7 @@ class ShoppingCartController extends Controller
             $bomb->setStock($bomb->getStock() - $amount);
             $bomb->save();
         }
+
         return redirect()->route('orders.index')->withSuccess(__('orders.completed'));
     }
 }

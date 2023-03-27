@@ -126,6 +126,7 @@ class Order extends Model
             }
             $total += $amount * $bomb->getPrice();
         }
+
         return $total;
     }
 
