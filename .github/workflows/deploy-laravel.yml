@@ -2,7 +2,7 @@ name: deploy laravel
 
 on:
   push:
-    branches: [andres/deploy]
+    branches: [main]
 
 jobs:
   deploy:
