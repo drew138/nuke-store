@@ -130,12 +130,12 @@ class Bomb extends Model
     {
         return $this->hasMany(BombOrder::class);
     }
-    
+
     public function getBombOrders(): Collection
     {
         return $this->bombOrders;
     }
-    
+
     public function setBombOrders(Collection $bombOrders): void
     {
         $this->bombOrders = $bombOrders;
