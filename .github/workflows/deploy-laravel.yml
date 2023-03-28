@@ -39,6 +39,9 @@ jobs:
       - name: "grant permissions to docker"
         run: gcloud auth configure-docker --quiet
 
+      - name: "create credentials file"
+        run: echo "${{ secrets.GCP_CREDENTIALS }}" > ./service-account.json
+
       - name: Build Docker image
         run: docker build --build-arg credentials="${{ secrets.GCP_CREDENTIALS }}" \ -t "$IMAGE_NAME" .
 
