@@ -18,22 +18,6 @@ class AdminReviewController extends Controller
         return view('admin.reviews.index')->with('data', $data);
     }
 
-    public function create(): View
-    {
-        $data = [];
-
-        return view('admin.reviews.create')->with('data', $data);
-    }
-
-    public function save(Request $request): RedirectResponse
-    {
-        Review::validate($request);
-        $creationData = $request->only(['title', 'rating', 'image', 'description', 'is_verified']);
-        Review::create($creationData);
-
-        return back()->withSuccess(__('reviews.created_succesfully'));
-    }
-
     public function show(string $id): View
     {
         $data = [];

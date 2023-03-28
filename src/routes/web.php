@@ -30,7 +30,7 @@ Route::middleware('admin')->group(function () {
 
     // Bombs Controller routes
     Route::get('/admin/bombs/', 'App\Http\Controllers\admin\AdminBombController@index')->name('admin.bombs.index');
-    Route::post('/admin/bombs/', 'App\Http\Controllers\admin\AdminBombController@search')->name('admin.bombs.search');
+    Route::get('/admin/bombs/search/{query}', 'App\Http\Controllers\admin\AdminBombController@search')->name('admin.bombs.search');
     Route::get('/admin/bombs/create', 'App\Http\Controllers\admin\AdminBombController@create')->name('admin.bombs.create');
     Route::post('/admin/bombs/create', 'App\Http\Controllers\admin\AdminBombController@save')->name('admin.bombs.save');
     Route::get('/admin/bombs/{id}', 'App\Http\Controllers\admin\AdminBombController@show')->name('admin.bombs.show');
@@ -65,33 +65,27 @@ Route::middleware('admin')->group(function () {
 Route::middleware('auth')->group(function () {
     // Bombs Controller routes
     Route::get('/bombs', 'App\Http\Controllers\user\BombController@index')->name('bombs.index');
-    Route::post('/bombs', 'App\Http\Controllers\user\BombController@search')->name('bombs.search');
+    Route::get('/bombs/search/{query}', 'App\Http\Controllers\user\BombController@search')->name('bombs.search');
     Route::get('/bombs/{id}', 'App\Http\Controllers\user\BombController@show')->name('bombs.show');
 
     // Reviews Controller routes
-    Route::get('/reviews', 'App\Http\Controllers\user\ReviewController@index')->name('reviews.index');
     Route::post('/reviews/create', 'App\Http\Controllers\user\ReviewController@save')->name('reviews.save');
-    Route::delete('/reviews/{id}', 'App\Http\Controllers\user\ReviewController@destroy')->name('reviews.destroy');
-    Route::get('/reviews/{id}', 'App\Http\Controllers\user\ReviewController@show')->name('reviews.show');
-
-    // Orders Controller routes
-    Route::get('/orders', 'App\Http\Controllers\user\OrderController@index')->name('orders.index');
-
-    Route::get('/orders/create', 'App\Http\Controllers\user\OrderController@create')->name('orders.create');
-    Route::get('/orders/download/{id}', 'App\Http\Controllers\user\OrderController@download')->name('orders.download');
-    Route::post('/orders/create', 'App\Http\Controllers\user\OrderController@save')->name('orders.save');
-    Route::get('/orders/{id}', 'App\Http\Controllers\user\OrderController@show')->name('orders.show');
-    Route::delete('/orders/{id}', 'App\Http\Controllers\user\OrderController@destroy')->name('orders.destroy');
-    // Shopping Cart Controller routes
-    Route::get('/cart', 'App\Http\Controllers\user\ShoppingCartController@index')->name('shopping_cart.index');
-    Route::post('/cart', 'App\Http\Controllers\user\ShoppingCartController@add')->name('shopping_cart.add');
-    Route::post('/buy', 'App\Http\Controllers\user\ShoppingCartController@buy')->name('shopping_cart.buy');
-    Route::delete('/cart', 'App\Http\Controllers\user\ShoppingCartController@delete')->name('shopping_cart.delete');
 
     // Users Controller routes
-    Route::get('/users/profile/{id}', 'App\Http\Controllers\user\UserController@profile')->name('users.profile');
-    Route::get('/users/compare/{id}', 'App\Http\Controllers\user\UserController@compare')->name('users.compare');
-
+    Route::get('/users', 'App\Http\Controllers\user\UserController@index')->name('users.index');
+    
     // Map Controller route
     Route::get('/map', 'App\Http\Controllers\user\MapController@index')->name('map.index');
+
+    // Account routes
+    Route::get('/account/profile/{id}', 'App\Http\Controllers\user\UserController@profile')->name('users.profile');
+    Route::get('/account/compare/{id}', 'App\Http\Controllers\user\UserController@compare')->name('users.compare');
+    Route::get('/account/cart', 'App\Http\Controllers\user\ShoppingCartController@index')->name('shopping_cart.index');
+    Route::post('/account/cart', 'App\Http\Controllers\user\ShoppingCartController@add')->name('shopping_cart.add');
+    Route::post('/account/buy', 'App\Http\Controllers\user\ShoppingCartController@buy')->name('shopping_cart.buy');
+    Route::delete('/account/cart', 'App\Http\Controllers\user\ShoppingCartController@delete')->name('shopping_cart.delete');
+    Route::get('/account/orders', 'App\Http\Controllers\user\OrderController@index')->name('orders.index');
+    Route::get('/account/orders/download/{id}', 'App\Http\Controllers\user\OrderController@download')->name('orders.download');
+    Route::post('/account/orders/create', 'App\Http\Controllers\user\OrderController@save')->name('orders.save');
+    
 });

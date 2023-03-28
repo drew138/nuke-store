@@ -42,6 +42,7 @@ class BombController extends Controller
         $query = $request['query'];
 
         $data = [];
+        $data['query'] = $query;
         $data['bombs'] = Bomb::searchByName($query);
 
         return view('user.bombs.index')->with('data', $data);

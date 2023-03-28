@@ -9,6 +9,14 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
+    public function index(): View
+    {
+        $data = [];
+        $data['users'] = User::all();
+
+        return view('user.users.index')->with('data', $data);
+    }
+
     public function profile(string $id): View
     {
         $user = User::with('bombUsers.bomb')->findOrFail($id);

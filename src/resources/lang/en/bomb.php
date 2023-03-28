@@ -45,4 +45,5 @@ return [
     'add_bomb' => 'Add bomb',
     'different_bomb' => 'different bomb',
     'different_bombs' => 'different bombs',
+    'results_for' => 'Results for:'
 ];
