@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\ImageStorage;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Interfaces\ImageStorage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
@@ -56,10 +56,10 @@ class UserController extends Controller
 
         // Storing the user image and getting its path
         $imageUrl = Auth::user()->getProfilePicture();
-        if($request->hasFile('profile_picture')) {
+        if ($request->hasFile('profile_picture')) {
             $storeInterface = app(ImageStorage::class);
             $imageUrl = $storeInterface->store($request->file('profile_picture'));
-        } 
+        }
 
         User::where('id', Auth::id())->update([
             'name' => $request['name'],

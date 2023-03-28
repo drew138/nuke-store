@@ -17,10 +17,10 @@ class ReviewController extends Controller
 
         // Storing the review image and getting its path
         $imageUrl = '';
-        if($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             $storeInterface = app(ImageStorage::class);
             $imageUrl = $storeInterface->store($request->file('image'));
-        } 
+        }
 
         Review::create([
             'title' => $request['title'],

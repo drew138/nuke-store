@@ -11,7 +11,7 @@ class ImageLocalStorage implements ImageStorage
     public function store(UploadedFile $image): string
     {
         // Creating an uniq path for the image
-        $imageUrl = uniqid() . $image->getClientOriginalName();
+        $imageUrl = uniqid().$image->getClientOriginalName();
 
         Storage::disk('public')->put(
             $imageUrl,
@@ -19,6 +19,6 @@ class ImageLocalStorage implements ImageStorage
         );
 
         // Returning the image's path
-        return 'storage/' . $imageUrl;
+        return 'storage/'.$imageUrl;
     }
 }

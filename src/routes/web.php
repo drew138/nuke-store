@@ -73,7 +73,7 @@ Route::middleware('auth')->group(function () {
 
     // Users Controller routes
     Route::get('/users', 'App\Http\Controllers\user\UserController@index')->name('users.index');
-    
+
     // Map Controller route
     Route::get('/map', 'App\Http\Controllers\user\MapController@index')->name('map.index');
 
@@ -89,5 +89,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/account/orders', 'App\Http\Controllers\user\OrderController@index')->name('orders.index');
     Route::get('/account/orders/download/{id}', 'App\Http\Controllers\user\OrderController@download')->name('orders.download');
     Route::post('/account/orders/create', 'App\Http\Controllers\user\OrderController@save')->name('orders.save');
-    
 });

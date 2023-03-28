@@ -50,10 +50,10 @@ class AdminBombController extends Controller
 
         // Storing the bomb image and getting its path
         $imageUrl = '';
-        if($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             $storeInterface = app(ImageStorage::class);
             $imageUrl = $storeInterface->store($request->file('image'));
-        } 
+        }
 
         Bomb::create([
             'name' => $request['name'],

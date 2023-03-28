@@ -39,7 +39,7 @@ class User extends Authenticatable
         'password',
         'balance',
         'country',
-        'profile_picture'
+        'profile_picture',
     ];
 
     /**
