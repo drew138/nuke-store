@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\ImageStorage;
@@ -16,8 +16,11 @@ class ReviewController extends Controller
         Review::validate($request);
 
         // Storing the review image and getting its path
-        $storeInterface = app(ImageStorage::class);
-        $imageUrl = $storeInterface->store($request);
+        $imageUrl = '';
+        if ($request->hasFile('image')) {
+            $storeInterface = app(ImageStorage::class);
+            $imageUrl = $storeInterface->store($request->file('image'));
+        }
 
         Review::create([
             'title' => $request['title'],

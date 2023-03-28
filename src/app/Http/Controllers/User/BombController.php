@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bomb;
@@ -39,6 +39,7 @@ class BombController extends Controller
         $query = $request['query'];
 
         $data = [];
+        $data['query'] = $query;
         $data['bombs'] = Bomb::searchByName($query);
 
         return view('user.bombs.index')->with('data', $data);

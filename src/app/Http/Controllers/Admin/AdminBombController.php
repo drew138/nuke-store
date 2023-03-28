@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\ImageStorage;
@@ -49,8 +49,11 @@ class AdminBombController extends Controller
         Bomb::validate($request);
 
         // Storing the bomb image and getting its path
-        $storeInterface = app(ImageStorage::class);
-        $imageUrl = $storeInterface->store($request);
+        $imageUrl = '';
+        if ($request->hasFile('image')) {
+            $storeInterface = app(ImageStorage::class);
+            $imageUrl = $storeInterface->store($request->file('image'));
+        }
 
         Bomb::create([
             'name' => $request['name'],

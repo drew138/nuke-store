@@ -45,4 +45,5 @@ return [
     'add_bomb' => '添加炸弹',
     'different_bomb' => '不同的炸弹',
     'different_bombs' => '不同的炸弹',
+    'results_for' => '结果为：',
 ];
