@@ -45,4 +45,5 @@ return [
     'add_bomb' => '爆弾を追加',
     'different_bomb' => '異なる爆弾',
     'different_bombs' => '異なる爆弾',
+    'results_for' => 'の結果:',
 ];

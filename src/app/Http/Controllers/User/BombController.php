@@ -1,12 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\ImageStorage;
 use App\Models\Bomb;
-use App\Models\Review;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -27,7 +24,7 @@ class BombController extends Controller
             $query->where('is_verified', '=', true)->orderBy('updated_at', 'DESC');
         }, 'reviews.user'])->findOrFail($id);
 
-        $bombRating = sprintf("%.2f", $bomb->getReviews()->avg('rating'));
+        $bombRating = sprintf('%.2f', $bomb->getReviews()->avg('rating'));
 
         $data = [];
         $data['bomb'] = $bomb;
@@ -42,6 +39,7 @@ class BombController extends Controller
         $query = $request['query'];
 
         $data = [];
+        $data['query'] = $query;
         $data['bombs'] = Bomb::searchByName($query);
 
         return view('user.bombs.index')->with('data', $data);

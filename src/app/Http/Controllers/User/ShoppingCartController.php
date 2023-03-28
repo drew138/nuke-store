@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\user;
+namespace App\Http\Controllers\User;
 
 use App\Enums\PaymentMessagesEnum;
 use App\Http\Controllers\Controller;
@@ -92,6 +92,7 @@ class ShoppingCartController extends Controller
             $bomb->setStock($bomb->getStock() - $amount);
             $bomb->save();
         }
+
         return redirect()->route('orders.index')->withSuccess(__('orders.completed'));
     }
 }

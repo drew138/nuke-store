@@ -2,6 +2,12 @@
 @section('title', __('bomb.bombs') . ' - ' . __('app.app_name'))
 @section('content')
     <div class="container mx-auto mb-[70px]">
+        @if (array_key_exists('query', $data))
+            <h1 class="mx-4 my-8 text-1xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl">{{ __('bomb.results_for') }} <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r to-blue-600 from-sky-400">{{ $data['query'] }}</span>
+            </h1>
+        @endif
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             @foreach ($data['bombs'] as $bomb)
                 <div class="p-4 flex justify-center">

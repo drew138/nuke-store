@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Review;
@@ -16,22 +16,6 @@ class AdminReviewController extends Controller
         $data['reviews'] = Review::with('user')->with('bomb')->orderBy('updated_at', 'DESC')->get();
 
         return view('admin.reviews.index')->with('data', $data);
-    }
-
-    public function create(): View
-    {
-        $data = [];
-
-        return view('admin.reviews.create')->with('data', $data);
-    }
-
-    public function save(Request $request): RedirectResponse
-    {
-        Review::validate($request);
-        $creationData = $request->only(['title', 'rating', 'image', 'description', 'is_verified']);
-        Review::create($creationData);
-
-        return back()->withSuccess(__('reviews.created_succesfully'));
     }
 
     public function show(string $id): View
