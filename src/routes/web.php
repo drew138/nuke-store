@@ -80,6 +80,8 @@ Route::middleware('auth')->group(function () {
     // Account routes
     Route::get('/account/profile/{id}', 'App\Http\Controllers\user\UserController@profile')->name('users.profile');
     Route::get('/account/compare/{id}', 'App\Http\Controllers\user\UserController@compare')->name('users.compare');
+    Route::get('/account/update', 'App\Http\Controllers\user\UserController@update')->name('users.update');
+    Route::post('/account/update', 'App\Http\Controllers\user\UserController@saveUpdate')->name('users.save_update');
     Route::get('/account/cart', 'App\Http\Controllers\user\ShoppingCartController@index')->name('shopping_cart.index');
     Route::post('/account/cart', 'App\Http\Controllers\user\ShoppingCartController@add')->name('shopping_cart.add');
     Route::post('/account/buy', 'App\Http\Controllers\user\ShoppingCartController@buy')->name('shopping_cart.buy');

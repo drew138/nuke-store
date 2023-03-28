@@ -39,6 +39,7 @@ class User extends Authenticatable
         'password',
         'balance',
         'country',
+        'profile_picture'
     ];
 
     /**
@@ -63,10 +64,11 @@ class User extends Authenticatable
     public static function validate(Request $request): void
     {
         $request->validate([
-            'name' => 'required|string',
-            'role' => 'required|string',
-            'balance' => 'required|gte:0',
-            'country' => 'required|string',
+            'name' => 'string|min:3|max:255',
+            'role' => 'string',
+            'balance' => 'gte:0',
+            'country' => 'string',
+            'profile_picture' => 'image',
         ]);
     }
 
