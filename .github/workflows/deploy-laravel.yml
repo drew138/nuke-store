@@ -43,7 +43,7 @@ jobs:
         run: echo "${{ secrets.GCP_CREDENTIALS }}" > ./service-account.json
 
       - name: Build Docker image
-        run: docker build --build-arg credentials="${{ secrets.GCP_CREDENTIALS }}" \ -t "$IMAGE_NAME" .
+        run: docker build -t "$IMAGE_NAME" .
 
       - name: "install dependencies"
         uses: php-actions/composer@v6
