@@ -8,7 +8,7 @@ Instala [Docker](https://docs.docker.com/engine/install/) en tu maquina y ponlo 
 
 bash
 ```
-make build
+make install
 ```
 
 En el Makefile hay otros commandos buenos para ayudarte a usar el proyecto.
