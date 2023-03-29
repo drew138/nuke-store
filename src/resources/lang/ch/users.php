@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'users' => '用户',
     'id' => '用户ID',
     'balance' => '余额',
     'balance_placeholder' => '$14000美元',

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'users' => 'Utilisateurs',
     'id' => 'ID utilisateur',
     'balance' => 'Solde',
     'balance_placeholder' => '14000 $ US',

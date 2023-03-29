@@ -12,10 +12,10 @@
     <title>@yield('title', __('app.app_name'))</title>
 </head>
 
-<body class="bg-gray-900">
+<body class="flex flex-col h-screen overflow-hidden bg-gray-900">
     <!-- header -->
     <header>
-        <nav class="sticky w-full top-0 z-50 bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded
+        <nav class="border-b border-gray-200 dark:border-gray-600 sticky w-full top-0 z-50 bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded
 			dark:bg-gray-800">
             <div class="container flex flex-wrap items-center justify-between mx-auto">
                 <a href="{{ route('home.index') }}" class="flex items-center">
@@ -60,11 +60,11 @@
                             @endif
                         </a>
 
-                        <form class="w-full relative hidden md:flex" action="{{ route('bombs.search') }}" method="POST">
+                        <form class="w-full relative hidden md:flex" action="{{ route('bombs.search', ['query' => ' ']) }}" method="GET">
                             @csrf
                             <div class="flex">
                                 <div class="relative h-full w-full">
-                                    <input type="search" id="query" name="query"
+                                    <input type="search" id="query" name="query" value="{{ old('query') }}"
                                         class="block p-3 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
                                         placeholder="{{ __('app.search_placeholder') }}" required>
                                     <button type="submit"
@@ -118,6 +118,10 @@
                                 <li>
                                     <a href="{{ route('orders.index') }}"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('orders.orders') }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('users.update') }}"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('users.update_user') }}</a>
                                 </li>
                                 <li>
                                     <form id="logout" action="{{ route('logout') }}" method="POST">
@@ -200,6 +204,14 @@
 								dark:border-gray-700">{{ __('home.home_header_bomb') }}</a>
                             </li>
                             <li>
+                                <a href="{{ route('users.index') }}"
+                                    class="block py-2 pl-3 pr-4 text-gray-700 rounded
+								hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0
+								md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700
+								dark:hover:text-white md:dark:hover:bg-transparent
+								dark:border-gray-700">{{ __('users.users') }}</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('map.index') }}"
                                     class="block py-2 pl-3 pr-4 text-gray-700 rounded
 								hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0
@@ -231,7 +243,7 @@
         </nav>
     </header>
 
-    <div>
+    <div class="flex-1 overflow-y-auto">
         @yield('content')
     </div>
 

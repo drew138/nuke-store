@@ -2,60 +2,61 @@ name: deploy laravel
 
 on:
   push:
-    branches: [andres/deploy]
+    branches: [main]
 
 jobs:
   deploy:
     runs-on: ubuntu-20.04
-    env: APP_NAME=NukeStore
-      APP_ENV=local
-      APP_KEY=${{ secrets.APP_KEY }}
-      APP_DEBUG=true
-      DB_CONNECTION=mysql
-      DB_HOST=${{ secrets.DB_HOST }}
-      DB_PORT=${{ secrets.DB_PORT }}
-      DB_DATABASE=${{ secrets.DB_DATABASE }}
-      DB_USERNAME=${{ secrets.DB_USERNAME }}
-      DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+    env:
+      IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}${{ github.sha }}
+      DB_DATABASE: ${{ secrets.DB_DATABASE }}
+      DB_HOST: 127.0.0.1
+      DB_PORT: ${{ secrets.DB_PORT }}
+      DB_USERNAME: ${{ secrets.DB_USERNAME }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      APP_NAME: "NukeStore"
+      APP_ENV: "local"
+      APP_KEY: ${{ secrets.APP_KEY }}
+      APP_DEBUG: true
+      DB_CONNECTION: "mysql"
 
     steps:
       - uses: actions/checkout@v2
 
-      - id: authenticate with google cloud
+      - id: "auth"
         uses: "google-github-actions/auth@v0"
         with:
-          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+          credentials_json: "${{ secrets.GCP_CREDENTIALS }}"
 
-      - name: set up google cloud sdk
+      - name: "set up google cloud sdk"
         uses: "google-github-actions/setup-gcloud@v0"
 
-      - name: install google cloud sql auth proxy
+      - name: "install google cloud sql auth proxy"
         run: |
           wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy &&
           chmod +x cloud_sql_proxy
 
-      - name: install dependencies
+      - name: "grant permissions to docker"
+        run: gcloud auth configure-docker --quiet
+
+      - name: "create credentials file"
+        run: echo "${{ secrets.GCP_CREDENTIALS }}" > ./src/service-account.json
+
+      - name: Build Docker image
+        run: docker build -t "$IMAGE_NAME" .
+
+      - name: "install dependencies"
         uses: php-actions/composer@v6
         with:
           php_version: "8.1"
           version: 2.x
+          working_dir: ./src
 
-      - name: run migrations
-        run: ./cloud_sql_proxy -instances=${{ secrets.GCP_PROJECT_ID }}:${{ secrets.GCP_REGION }}:${{ secrets.GCP_DB_INSTANCE }}=tcp:${{ secrets.DB_PORT }} && php artisan migrate
+      - name: "run migrations"
+        run: ./cloud_sql_proxy -instances="${{ secrets.GCP_PROJECT_ID }}:${{ secrets.GCP_REGION }}:${{ secrets.GCP_DB_INSTANCE }}=tcp:${{ secrets.DB_PORT }}" & (sleep 5s && php ./src/artisan migrate)
 
-      - name: deploy to gae
-        uses: google-github-actions/deploy-appengine@main
-        with:
-          credentials: ${{ secrets.GCP_CREDENTIALS }}
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
-          env_vars: |-
-            - APP_NAME=NukeStore
-            - APP_ENV=production
-            - APP_KEY=${{ secrets.APP_KEY }}
-            - APP_DEBUG=false
-            - DB_CONNECTION=mysql
-            - DB_HOST=${{ secrets.DB_HOST }}
-            - DB_PORT=${{ secrets.DB_PORT }}
-            - DB_DATABASE=${{ secrets.DB_DATABASE }}
-            - DB_USERNAME=${{ secrets.DB_USERNAME }}
-            - DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+      - name: "push Docker image"
+        run: docker push $IMAGE_NAME
+
+      - name: "deploy Docker image"
+        run: gcloud run deploy ${{ secrets.GOOGLE_CLOUD_RUN_SERVICE }} --project ${{ secrets.GCP_PROJECT_ID }} --image $IMAGE_NAME --region ${{ secrets.GCP_REGION }} --platform managed

@@ -1,6 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', __('reviews.review_list'))
-@section('subtitle', __('reviews.review_list'))
+@section('title', __('users.users') . ' - ' . __('app.app_name'))
 @section('content')
     <div class="p-4">
         <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">

@@ -7,7 +7,7 @@
                 <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                     <div class="flex p-4">
                         <div class="w-full">
-                            <form class="flex items-center" action="{{ route('admin.bombs.search') }}" method="POST"
+                            <form class="flex items-center" action="{{ route('admin.bombs.search', ['query' => ' ']) }}" method="GET"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="relative w-full">
