@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Bomb;
 use App\Http\Resources\BombResource;
+use App\Models\Bomb;
 use Illuminate\Http\JsonResponse;
 
 class BombApiController extends Controller
