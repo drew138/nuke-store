@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/bombs', 'App\Http\Controllers\api\BombApiController@index')->name('api.bomb.index');
+Route::get('/bombs/{id}', 'App\Http\Controllers\api\BombApiController@show')->name('api.bomb.show');

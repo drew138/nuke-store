@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Validates\UserValidate;
 use App\Interfaces\ImageStorage;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -52,7 +53,7 @@ class UserController extends Controller
 
     public function saveUpdate(Request $request): RedirectResponse
     {
-        User::validate($request);
+        UserValidate::validate($request);
 
         // Storing the user image and getting its path
         $imageUrl = Auth::user()->getProfilePicture();

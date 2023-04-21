@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Validates\OrderValidate;
 use App\Models\Order;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class AdminOrderController extends Controller
 
     public function save(Request $request): RedirectResponse
     {
-        Order::validateRequest($request);
+        OrderValidate::validateRequest($request);
         $creationData = $request->only(['is_shipped', 'total']);
         Order::create($creationData);
 

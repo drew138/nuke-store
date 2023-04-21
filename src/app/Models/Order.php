@@ -108,13 +108,6 @@ class Order extends Model
         return $this->attributes['updated_at'];
     }
 
-    public static function validateRequest(Request $request): void
-    {
-        $request->validate([
-            'total' => ['required', 'integer', 'min:0'],
-        ]);
-    }
-
     public static function calculateTotal(Collection $bombs, array $shoppingData): int
     {
         $total = 0;

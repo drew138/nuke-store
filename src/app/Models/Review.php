@@ -157,17 +157,6 @@ class Review extends Model
         return $this->attributes['updated_at'];
     }
 
-    public static function validate(Request $request): void
-    {
-        $request->validate([
-            'title' => 'required | string',
-            'rating' => 'required | gte:1 | lte:5',
-            'image' => 'image',
-            'description' => 'required | string',
-            'is_verified' => 'boolean',
-        ]);
-    }
-
     public function verify(): void
     {
         $this->setIsVerified(true);
