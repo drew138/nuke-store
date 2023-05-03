@@ -15,7 +15,8 @@
 <body class="flex flex-col h-screen overflow-hidden bg-gray-900">
     <!-- header -->
     <header>
-        <nav class="border-b border-gray-200 dark:border-gray-600 sticky w-full top-0 z-50 bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded
+        <nav
+            class="border-b border-gray-200 dark:border-gray-600 sticky w-full top-0 z-50 bg-white border-gray-200 px-2 sm:px-4 py-2.5
 			dark:bg-gray-800">
             <div class="container flex flex-wrap items-center justify-between mx-auto">
                 <a href="{{ route('home.index') }}" class="flex items-center">
@@ -60,7 +61,8 @@
                             @endif
                         </a>
 
-                        <form class="w-full relative hidden md:flex" action="{{ route('bombs.search', ['query' => ' ']) }}" method="GET">
+                        <form class="w-full relative hidden md:flex" action="{{ route('bombs.search', ['query' => ' ']) }}"
+                            method="GET">
                             @csrf
                             <div class="flex">
                                 <div class="relative h-full w-full">
@@ -240,6 +242,70 @@
                     </ul>
                 </div>
             </div>
+        </nav>
+        <nav
+            class="border-b border-gray-200 justify-center flex items-center dark:border-gray-600  sticky w-full top-0 z-10  bg-white border-gray-200 px-2 sm:px-4 py-1 rounded
+			dark:bg-gray-800">
+            <ol class="inline-flex w-full max-w-screen-2xl items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                    <a href="{{ route('home.index') }}"
+                        class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                        <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                            </path>
+                        </svg>
+                        Home
+                    </a>
+                </li>
+
+                @if (count(request()->segments()) > 1)
+                    @foreach (array_slice(request()->segments(), 0, -1) as $segment)
+                        @if (!$loop->last)
+                            <li>
+                                <div class="flex items-center">
+                                    <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor"
+                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    <a href="{{ url(implode('/', array_slice(request()->segments(), 0, $loop->index + 1))) }}"
+                                        class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">{{ ucfirst($segment) }}</a>
+
+                                </div>
+                            </li>
+                        @else
+                            <li aria-current="page">
+                                <div class="flex items-center">
+                                    <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor"
+                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span
+                                        class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">{{ ucfirst($segment) }}</span>
+                                </div>
+                            </li>
+                        @endif
+                    @endforeach
+                @else
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor"
+                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span
+                                class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">{{ ucfirst(request()->segment(1)) }}</span>
+                        </div>
+                    </li>
+                @endif
+            </ol>
         </nav>
     </header>
 
