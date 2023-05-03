@@ -1,8 +1,8 @@
 @extends('layouts.dashboard')
 @section('title', __('bomb.bombs') . ' - ' . __('app.app_name'))
 @section('content')
-    <div class="p-4">
-        <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5">
+    <div class="pb-4">
+        <section class="bg-gray-50 dark:bg-gray-900">
             <div class="mx-auto max-w-screen px-2 lg:px-4">
                 <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                     <div class="flex p-4">

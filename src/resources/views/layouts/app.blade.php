@@ -114,7 +114,7 @@
                             </div>
                             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
                                 <li>
-                                    <a href="{{ route('users.profile', ['id' => Auth::id()]) }}"
+                                    <a href="{{ route('users.account') }}"
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ __('users.profile') }}</a>
                                 </li>
                                 <li>
@@ -136,9 +136,6 @@
                         </div>
                     @endauth
                 </div>
-
-
-
 
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
                     @auth
@@ -221,6 +218,16 @@
 								dark:hover:text-white md:dark:hover:bg-transparent
 								dark:border-gray-700">{{ __('home.home_header_map') }}</a>
                             </li>
+                            @if (Auth::user()->getRole() === 'admin')
+                                <li>
+                                    <a href="{{ route('admin.home.index') }}"
+                                        class="block py-2 pl-3 pr-4 text-gray-700 rounded
+                            hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0
+                            md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700
+                            dark:hover:text-white md:dark:hover:bg-transparent
+                            dark:border-gray-700">{{ __('home.admin') }}</a>
+                                </li>
+                            @endif
                             <li>
                                 <a href="{{ route('shopping_cart.index') }}"
                                     class=" block md:hidden  block py-2 pl-3 pr-4 text-gray-700 rounded
@@ -256,55 +263,42 @@
                                 d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
                             </path>
                         </svg>
-                        Home
+                        {{ __('home.home') }}
                     </a>
                 </li>
 
-                @if (count(request()->segments()) > 1)
-                    @foreach (array_slice(request()->segments(), 0, -1) as $segment)
-                        @if (!$loop->last)
-                            <li>
-                                <div class="flex items-center">
-                                    <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor"
-                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                    <a href="{{ url(implode('/', array_slice(request()->segments(), 0, $loop->index + 1))) }}"
-                                        class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">{{ ucfirst($segment) }}</a>
+                @foreach (array_filter(request()->segments(), function ($segment) {
+        return !is_numeric($segment) && trim($segment) !== '';
+    }) as $segment)
+                    @if (!$loop->last)
+                        <li>
+                            <div class="flex items-center">
+                                <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <a href="{{ url(implode('/', array_slice(request()->segments(), 0, $loop->index + 1))) }}"
+                                    class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">{{ __('home.' . $segment) }}</a>
 
-                                </div>
-                            </li>
-                        @else
-                            <li aria-current="page">
-                                <div class="flex items-center">
-                                    <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor"
-                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                    <span
-                                        class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">{{ ucfirst($segment) }}</span>
-                                </div>
-                            </li>
-                        @endif
-                    @endforeach
-                @else
-                    <li aria-current="page">
-                        <div class="flex items-center">
-                            <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor"
-                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            <span
-                                class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">{{ ucfirst(request()->segment(1)) }}</span>
-                        </div>
-                    </li>
-                @endif
+                            </div>
+                        </li>
+                    @else
+                        <li aria-current="page">
+                            <div class="flex items-center">
+                                <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span
+                                    class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">{{ __('home.' . $segment) }}</span>
+                            </div>
+                        </li>
+                    @endif
+                @endforeach
             </ol>
         </nav>
     </header>

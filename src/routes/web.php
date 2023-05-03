@@ -73,12 +73,13 @@ Route::middleware('auth')->group(function () {
 
     // Users Controller routes
     Route::get('/users', 'App\Http\Controllers\User\UserController@index')->name('users.index');
+    Route::get('/users/{id}', 'App\Http\Controllers\User\UserController@profile')->name('users.profile');
 
     // Map Controller route
     Route::get('/map', 'App\Http\Controllers\User\MapController@index')->name('map.index');
 
     // Account routes
-    Route::get('/account/profile/{id}', 'App\Http\Controllers\User\UserController@profile')->name('users.profile');
+    Route::get('/account', 'App\Http\Controllers\User\UserController@account')->name('users.account');
     Route::get('/account/compare/{id}', 'App\Http\Controllers\User\UserController@compare')->name('users.compare');
     Route::get('/account/update', 'App\Http\Controllers\User\UserController@update')->name('users.update');
     Route::post('/account/update', 'App\Http\Controllers\User\UserController@saveUpdate')->name('users.save_update');

@@ -11,10 +11,10 @@
     <title>@yield('title', __('app.app_name'))</title>
 </head>
 
-<body class="bg-gray-900">
+<body class="flex h-screen bg-gray-900 overflow-hidden">
     <!-- aside navbar -->
     <aside id="logo-sidebar"
-        class="fixed top-0 left-0 z-40 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        class="fixed sm:relative flex flex-col top-0 left-0 z-40 h-screen transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
             <a href="{{ route('admin.home.index') }}" class="flex items-center pl-2.5 mb-5">
@@ -130,19 +130,72 @@
         </div>
     </aside>
 
-    <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
-        type="button"
-        class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg">
-            <path clip-rule="evenodd" fill-rule="evenodd"
-                d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
-            </path>
-        </svg>
-    </button>
+    <div class="flex flex-col  w-full flex-1 bg-gray-900 overflow-y-auto">
+        <div class="flex ">
+            <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
+                type="button"
+                class="inline-flex items-center p-2 ml-2 my-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" fill-rule="evenodd"
+                        d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+                    </path>
+                </svg>
+            </button>
+            <nav class="flex w-full px-5 m-2 lg:m-4 py-1.5 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                    <li class="inline-flex items-center">
+                        <a href="{{ route('home.index') }}"
+                            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                            <svg aria-hidden="true" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+                                </path>
+                            </svg>
+                            {{ __('home.home') }}
+                        </a>
+                    </li>
+                    @foreach (array_filter(request()->segments(), function ($segment) {
+                        return !is_numeric($segment) && trim($segment) !== '';
+                    }) as $segment)
+                        @if (!$loop->last)
+                            <li>
+                                <div class="flex items-center">
+                                    <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor"
+                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    <a href="{{ url(implode('/', array_slice(request()->segments(), 0, $loop->index + 1))) }}"
+                                        class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">{{ __('home.' . $segment) }}</a>
 
-    <div class="sm:ml-64">
-        @yield('content')
+                                </div>
+                            </li>
+                        @else
+                            <li aria-current="page">
+                                <div class="flex items-center">
+                                    <svg aria-hidden="true" class="w-6 h-6 text-gray-400" fill="currentColor"
+                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span
+                                        class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">{{ __('home.' . $segment) }}</span>
+                                </div>
+                            </li>
+                        @endif
+                    @endforeach
+                </ol>
+            </nav>
+
+        </div>
+
+        <div class="h-screen">
+            @yield('content')
+        </div>
     </div>
 </body>
 
