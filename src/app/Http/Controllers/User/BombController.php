@@ -12,7 +12,7 @@ class BombController extends Controller
     public function index(): View
     {
         $data = [];
-        $data['bombs'] = Bomb::paginate(16);
+        $data['bombs'] = Bomb::paginate(10);
 
         return view('user.bombs.index')->with('data', $data);
     }

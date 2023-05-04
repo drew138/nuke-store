@@ -198,9 +198,9 @@ class Bomb extends Model
     public static function searchByName(string $name)
     {
         if ($name == '') {
-            return Bomb::all();
+            return Bomb::paginate(10);
         }
 
-        return Bomb::where('name', 'LIKE', '%'.$name.'%')->get();
+        return Bomb::where('name', 'LIKE', '%'.$name.'%')->paginate(10);
     }
 }
