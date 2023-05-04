@@ -14,7 +14,7 @@ class AdminBombController extends Controller
     public function index(): View
     {
         $data = [];
-        $data['bombs'] = Bomb::paginate(10);
+        $data['bombs'] = Bomb::paginate(12);
 
         return view('admin.bombs.index')->with('data', $data);
     }
