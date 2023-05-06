@@ -39,7 +39,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -56,15 +56,24 @@ return [
             'throw' => false,
         ],
 
-        'gcs' => [
-            'driver' => 'gcs',
-            'project_id' => env('GOOGLE_CLOUD_PROJECT_ID', 'your-project-id'),
-            'key_file' => env('GOOGLE_CLOUD_KEY_FILE', base_path('service-account.json')), // optional: /path/to/service-account.json
-            'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'your-bucket'),
-            'path_prefix' => env('GOOGLE_CLOUD_STORAGE_PATH_PREFIX', null), // optional: /default/path/to/apply/in/bucket
-            'storage_api_uri' => env('GOOGLE_CLOUD_STORAGE_API_URI', null), // see: Public URLs below
-            'visibility' => 'public',
+        // 'gcs' => [
+        //     'driver' => 'gcs',
+        //     'project_id' => env('GOOGLE_CLOUD_PROJECT_ID', 'your-project-id'),
+        //     'key_file' => env('GOOGLE_CLOUD_KEY_FILE', base_path('service-account.json')), // optional: /path/to/service-account.json
+        //     'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'your-bucket'),
+        //     'path_prefix' => env('GOOGLE_CLOUD_STORAGE_PATH_PREFIX', null), // optional: /default/path/to/apply/in/bucket
+        //     'storage_api_uri' => env('GOOGLE_CLOUD_STORAGE_API_URI', null), // see: Public URLs below
+        //     'visibility' => 'public',
+        // ],
+
+        'gcp' => [
+            'driver' => 'gcp',
+            'project_id' => env('GOOGLE_CLOUD_PROJECT_ID'),
+            'key_file' => env('SERVICE_ACCOUNT_PATH'),
+            'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET'),
         ],
+
+
 
     ],
 
