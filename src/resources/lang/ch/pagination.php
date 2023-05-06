@@ -15,5 +15,8 @@ return [
 
     'previous' => '&laquo; 上一页',
     'next' => '下一页 &raquo;',
-
+    'showing' => '显示',
+    'to' => '到',
+    'of' => '的',
+    'results' => '结果',
 ];

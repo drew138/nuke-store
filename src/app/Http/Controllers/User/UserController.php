@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index(): View
     {
         $data = [];
-        $data['users'] = User::all();
+        $data['users'] = User::paginate(12);
 
         return view('user.users.index')->with('data', $data);
     }
@@ -26,6 +26,16 @@ class UserController extends Controller
 
         $data = [];
         $data['user'] = $user;
+
+        return view('user.users.profile')->with('data', $data);
+    }
+
+    public function account(): View
+    {
+        $userSession = User::with('bombUsers.bomb')->findOrFail(Auth::id());
+
+        $data = [];
+        $data['user'] = $userSession;
 
         return view('user.users.profile')->with('data', $data);
     }

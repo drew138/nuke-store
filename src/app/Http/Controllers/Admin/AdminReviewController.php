@@ -13,7 +13,7 @@ class AdminReviewController extends Controller
     public function index(): View
     {
         $data = [];
-        $data['reviews'] = Review::with('user')->with('bomb')->orderBy('updated_at', 'DESC')->get();
+        $data['reviews'] = Review::with('user')->with('bomb')->orderBy('updated_at', 'DESC')->paginate(25);
 
         return view('admin.reviews.index')->with('data', $data);
     }
