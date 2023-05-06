@@ -12,7 +12,12 @@ class BombResource extends JsonResource
         return [
             'id' => $this->getId(),
             'name' => $this->getName(),
+            'type' => $this->getType(),
             'price' => $this->getPrice(),
+            'location_country' => $this->getLocationCountry(),
+            'manufacturing_country' => $this->getManufacturingCountry(),
+            'stock' => $this->getStock(),
+            'destruction_power' => $this->getDestructionPower(),
         ];
     }
 }
