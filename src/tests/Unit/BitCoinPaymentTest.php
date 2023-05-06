@@ -2,16 +2,16 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-use App\Util\BitcoinPaymentService;
 use App\Enums\PaymentMessagesEnum;
 use App\Models\User;
+use App\Util\BitcoinPaymentService;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class BitCoinPaymentTest extends TestCase
 {
     use RefreshDatabase;
+
     public function testPaymentSuccess(): void
     {
         $user = User::factory()->create();
