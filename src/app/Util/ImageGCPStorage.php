@@ -16,7 +16,7 @@ class ImageGCPStorage implements ImageStorage
         $bucket = $storage->bucket(env('GOOGLE_CLOUD_STORAGE_BUCKET'));
         $timestamp = time(); // get current timestamp
         $extension = $image->getClientOriginalExtension();
-        $imageName = $timestamp . '_' . uniqid() . '.' . $extension;
+        $imageName = $timestamp.'_'.uniqid().'.'.$extension;
 
         $storedImage = $bucket->upload(
             file_get_contents($image),
@@ -26,7 +26,8 @@ class ImageGCPStorage implements ImageStorage
         );
 
         $objectName = $storedImage->name();
-        $objectPublicUrl = "https://storage.googleapis.com/" . env('GOOGLE_CLOUD_STORAGE_BUCKET') . "/" . $objectName;
+        $objectPublicUrl = 'https://storage.googleapis.com/'.env('GOOGLE_CLOUD_STORAGE_BUCKET').'/'.$objectName;
+
         return $objectPublicUrl;
     }
 }
