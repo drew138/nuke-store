@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('country');
             $table->float('balance', 10, 2)->default(0);
             $table->string('profile_picture')->default('https://storage.googleapis.com/nuke-store-bucket/user.png');
-        })
+        });
     }
 
     /**
