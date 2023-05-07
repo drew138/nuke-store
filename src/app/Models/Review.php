@@ -6,7 +6,6 @@ use App\Traits\HasClassicSetter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Http\Request;
 
 class Review extends Model
 {
@@ -155,17 +154,6 @@ class Review extends Model
     public function getUpdatedAt(): int
     {
         return $this->attributes['updated_at'];
-    }
-
-    public static function validate(Request $request): void
-    {
-        $request->validate([
-            'title' => 'required | string',
-            'rating' => 'required | gte:1 | lte:5',
-            'image' => 'image',
-            'description' => 'required | string',
-            'is_verified' => 'boolean',
-        ]);
     }
 
     public function verify(): void

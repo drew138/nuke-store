@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Validates\BombValidate;
 use App\Interfaces\ImageStorage;
 use App\Models\Bomb;
 use Illuminate\Http\RedirectResponse;
@@ -46,7 +47,7 @@ class AdminBombController extends Controller
 
     public function save(Request $request): RedirectResponse
     {
-        Bomb::validate($request);
+        BombValidate::validate($request);
 
         // Storing the bomb image and getting its path
         $imageUrl = '';
@@ -82,7 +83,7 @@ class AdminBombController extends Controller
 
     public function saveUpdate(Request $request): RedirectResponse
     {
-        Bomb::validate($request);
+        BombValidate::validate($request);
         Bomb::where('id', $request['id'])->update($request->only([
             'name',
             'type',

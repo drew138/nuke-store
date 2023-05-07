@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Validates\ReviewValidate;
 use App\Interfaces\ImageStorage;
 use App\Models\Review;
 use Illuminate\Http\RedirectResponse;
@@ -13,7 +14,7 @@ class ReviewController extends Controller
 {
     public function save(Request $request): RedirectResponse
     {
-        Review::validate($request);
+        ReviewValidate::validate($request);
 
         // Storing the review image and getting its path
         $imageUrl = '';
