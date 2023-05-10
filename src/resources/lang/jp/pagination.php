@@ -15,5 +15,9 @@ return [
 
     'previous' => '&laquo; 前へ',
     'next' => '次へ &raquo;',
+    'showing' => '表示',
+    'to' => 'から',
+    'of' => 'の',
+    'results' => '結果',
 
 ];

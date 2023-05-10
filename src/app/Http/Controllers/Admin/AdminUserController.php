@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Validates\UserValidate;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class AdminUserController extends Controller
     public function index(): View
     {
         $data = [];
-        $data['users'] = User::all();
+        $data['users'] = User::paginate(15);
 
         return view('admin.users.index')->with('data', $data);
     }
@@ -37,7 +38,7 @@ class AdminUserController extends Controller
 
     public function saveUpdate(Request $request): RedirectResponse
     {
-        User::validate($request);
+        UserValidate::validate($request);
         User::where('id', $request['id'])->update(
             $request->only([
                 'name',
@@ -52,8 +53,8 @@ class AdminUserController extends Controller
 
     public function save(Request $request): RedirectResponse
     {
-        User::validate($request);
-        User::validateAndPassword($request);
+        UserValidate::validate($request);
+        UserValidate::validateAndPassword($request);
         User::create([
             'name' => $request['name'],
             'role' => $request['role'],

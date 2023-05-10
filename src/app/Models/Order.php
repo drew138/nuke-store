@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 class Order extends Model
@@ -106,13 +105,6 @@ class Order extends Model
     public function getUpdatedAt(): int
     {
         return $this->attributes['updated_at'];
-    }
-
-    public static function validateRequest(Request $request): void
-    {
-        $request->validate([
-            'total' => ['required', 'integer', 'min:0'],
-        ]);
     }
 
     public static function calculateTotal(Collection $bombs, array $shoppingData): int

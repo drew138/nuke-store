@@ -1,7 +1,21 @@
 <?php
 
 return [
-    'home' => '主页',
+    'home' => '首页',
+    'account' => '账户',
+    'users' => '用户',
+    'bombs' => '炸弹',
+    'map' => '地图',
+    'cart' => '购物车',
+    'orders' => '订单',
+    'update' => '更新',
+    'search' => '搜索',
+    'login' => '登录',
+    'admin' => '管理员',
+    'reviews' => '评论',
+    'create' => '创建',
+    'register' => '注册',
+    'compare' => '比较',
     'home_header_title' => __('app.app_name').'欢迎您！',
     'home_header_admin_title' => __('app.app_name').'管理员欢迎您！',
     'home_header_subtitle' => '市场上最好的价钱买最好的兆吨！',

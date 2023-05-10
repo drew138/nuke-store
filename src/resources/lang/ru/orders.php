@@ -1,6 +1,6 @@
 <?php
 
-return  [
+return [
     'orders' => 'Заказы',
     'index_subtitle' => 'Просмотрите все ваши заказы',
     'show_subtitle' => 'Просмотреть детали вашего заказа',

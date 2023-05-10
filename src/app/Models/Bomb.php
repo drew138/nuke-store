@@ -6,7 +6,6 @@ use App\Traits\HasClassicSetter;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 class Bomb extends Model
@@ -181,26 +180,12 @@ class Bomb extends Model
         return $this->attributes['updated_at'];
     }
 
-    public static function validate(Request $request): void
-    {
-        $request->validate([
-            'name' => 'required|string',
-            'type' => 'required|string',
-            'price' => 'required|gt:0',
-            'location_country' => 'required|string',
-            'manufacturing_country' => 'required|string',
-            'stock' => 'required|gte:0',
-            'image' => 'image',
-            'destruction_power' => 'required|gte:0',
-        ]);
-    }
-
     public static function searchByName(string $name)
     {
         if ($name == '') {
-            return Bomb::all();
+            return Bomb::paginate(12);
         }
 
-        return Bomb::where('name', 'LIKE', '%'.$name.'%')->get();
+        return Bomb::where('name', 'LIKE', '%'.$name.'%')->paginate(12);
     }
 }
