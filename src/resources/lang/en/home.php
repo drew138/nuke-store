@@ -16,6 +16,7 @@ return [
     'create' => 'Create',
     'register' => 'Register',
     'compare' => 'Compare',
+    'rickandmorty' => 'Rick and Morty',
     'home_header_title' => 'Welcome to '.__('app.app_name').'!',
     'home_header_admin_title' => 'Welcome to '.__('app.app_name').' for administrators!',
     'home_header_subtitle' => 'The best megatons for the best prices on the market!',
@@ -23,4 +24,5 @@ return [
     'home_header_bomb' => 'Bombs list',
     'home_header_create_bomb' => 'Create a bomb',
     'home_header_map' => 'World map',
+    'home_header_rickandmorty' => 'Rick and Morty characters',
 ];

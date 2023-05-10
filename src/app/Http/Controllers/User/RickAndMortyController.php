@@ -15,6 +15,6 @@ class RickAndMortyController extends Controller
         $results = Http::get($url)['results'];
         $data = ['characters' => $results];
 
-        return view('user.rickAndMorty.index')->with('data', $data);
+        return view('user.rickandmorty.index')->with('data', $data);
     }
 }
