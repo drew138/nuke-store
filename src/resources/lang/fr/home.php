@@ -16,6 +16,7 @@ return [
     'create' => 'Créer',
     'register' => 'S\'inscrire',
     'compare' => 'Comparer',
+    'rickandmorty' => 'Rick et Morty',
     'home_header_title' => 'Bienvenue sur '.__('app.app_name').' !',
     'home_header_admin_title' => 'Bienvenue sur '.__('app.app_name').' pour les administrateurs !',
     'home_header_subtitle' => 'Les meilleurs mégatonnes aux meilleurs prix du marché !',
@@ -23,4 +24,5 @@ return [
     'home_header_bomb' => 'Liste des bombes',
     'home_header_create_bomb' => 'Créer une bombe',
     'home_header_map' => 'Carte du monde',
+    'home_header_rickandmorty' => 'Personnages de Rick et Morty',
 ];

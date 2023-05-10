@@ -16,6 +16,7 @@ return [
     'create' => '创建',
     'register' => '注册',
     'compare' => '比较',
+    'rickandmorty' => '瑞克和莫蒂',
     'home_header_title' => __('app.app_name').'欢迎您！',
     'home_header_admin_title' => __('app.app_name').'管理员欢迎您！',
     'home_header_subtitle' => '市场上最好的价钱买最好的兆吨！',
@@ -23,4 +24,5 @@ return [
     'home_header_bomb' => '炸弹清单',
     'home_header_create_bomb' => '创建一个炸弹',
     'home_header_map' => '世界地图',
+    'home_header_rickandmorty' => '瑞克和莫蒂的角色',
 ];
