@@ -91,7 +91,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/account/orders/download/{id}', 'App\Http\Controllers\User\OrderController@download')->name('orders.download');
     Route::post('/account/orders/create', 'App\Http\Controllers\User\OrderController@save')->name('orders.save');
 
-    // Rick and Mort
-
+    // Rick and Morty
+    Route::get('/rickandmorty', 'App\Http\Controllers\User\RickAndMortyController@index')->name('rickandmorty.index');
 });
-Route::get('/rickandmorty', 'App\Http\Controllers\User\RickAndMortyController@index')->name('rickandmorty.index');
+
