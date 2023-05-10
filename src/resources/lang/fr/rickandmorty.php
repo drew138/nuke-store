@@ -4,9 +4,9 @@ return [
     'rickandmorty' => 'Rick et Morty',
     'Human' => 'Humain',
     'Alien' => 'Extraterrestre',
-    'Alive' => "Vivant",
+    'Alive' => 'Vivant',
     'Dead' => 'Mort',
     'Male' => 'Masculin',
     'Female' => 'Féminin',
-    'unknown' => 'Inconnu'
+    'unknown' => 'Inconnu',
 ];
