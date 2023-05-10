@@ -94,4 +94,3 @@ Route::middleware('auth')->group(function () {
     // Rick and Morty
     Route::get('/rickandmorty', 'App\Http\Controllers\User\RickAndMortyController@index')->name('rickandmorty.index');
 });
-
